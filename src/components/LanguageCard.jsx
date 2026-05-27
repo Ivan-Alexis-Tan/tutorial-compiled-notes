@@ -14,7 +14,7 @@ export default function LanguageCard({ title = "", language = "", url = "/"}) {
 
     return (
         <div className="flex flex-col items-center justify-between p-10 gap-5 hover:border-5 transition-all border rounded-2xl h-66.5">
-            <img src={imgFile} width={"150px"} height={"150px"} />
+            <img src={imgFile} className="w-37.5 h-37.5 object-contain" />
 
             <h2 className="text-xl font-bold">
                 {capsEveryWord(title)}
