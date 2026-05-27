@@ -1,0 +1,53 @@
+[
+    {
+        "id": 1,
+        "language": "Python",
+        "path": "/python-guides",
+        "guides": [
+            {
+                "id": 1,
+                "title": "Basics Guides",
+                "path": ""
+            },
+            {
+                "id": 2,
+                "title": "FastAPI Guides",
+                "path": "/python-guides/fast-api"
+            },
+            {
+                "id": 3,
+                "title": "Flask Guides",
+                "path": "flask"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "language": "JavaScript",
+        "path": "/javascript-guide",
+        "guides": [
+            {
+                "id": 1,
+                "title": "Basics Guides",
+                "path": "/javascript-guides/basics"
+            },
+            {
+                "id": 2,
+                "title": "React Guides",
+                "path": "/javascript-guides/react"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "language": "HTML",
+        "path": "",
+        "guides": []
+    },
+    {
+        "id": 4,
+        "language": "CSS",
+        "path": "",
+        "guides": []
+    }
+]

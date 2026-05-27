@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: hsl(0, 0%, 14%);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --z-nav-bar: 200;
+  --z-ui-toggles: 100;
+  --z-page: 1;
+
+  --link-text-clr: hsl(0, 0%, 87%);
+  --link-hover-text-clr: hsl(160, 100%, 75%);
+  --link-hover-bg-clr: hsl(160, 100%, 50%);
+  --line-break-clr: hsl(0, 0%, 25%);
+}
+
+a {
+  display: inline;
+  font-weight: 500;
+  color: var(--link-text-clr);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--link-hover-text-clr);
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.--underline-hover:hover {
+  color: aquamarine;
+  text-decoration: underline;
+}
+
+.nav__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100%;
+  background-color: hsl(0, 0%, 20%);
+}
+
+.nav__container .nav__navies {
+  display: flex;
+  gap: .8rem;
+}
+
+code {
+  background: hsl(0, 0%, 24%);
+  color: white;
+  border-radius: 5px;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+pre {
+  background: black;
+  overflow-x: auto;
+  border-radius: 10px;
+  padding: .1em 1.5em;
+  margin: 1.5em 3em;
+}
+
+
+pre code {
+    display: block;
+    background: transparent;
+    font-family: monospace;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: .5em;
+  text-align: left;
+}
+
+table thead th {
+  background: hsl(0, 0%, 25%);
+}
+
+tbody tr th, tbody tr td {
+  border: 1px solid hsl(0, 0%, 20%);
+  border-radius: 5px;
+}
+
+table li::before {
+  content: "– ";
+}
+
+table li::marker {
+  content: none
+}
+
+.table-background {
+  background: black;
+  border-radius: 10px;
+}
+
+.h2-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-block: 1rem;
+}
+
+/* =============================================================
+    Stand Alone Styles
+============================================================= */
+.--indented-meaning-text {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-left: 3px solid rgb(180, 180, 180);
+}
+
+.--orange {
+    color: rgb(255, 194, 82);
+}
+
+.--blue {
+    color: hsl(209, 100%, 80%);
+}
+
+.--dark-blue {
+    color: hsl(219, 100%, 67%);
+}
+
+.--yellow {
+    color: yellow;
+}
+
+.--red {
+    color: red;
+}
+
+.--green {
+    color: rgb(0, 189, 0);
+}
+
+.--light-green {
+    color: rgb(0, 255, 0);
+}
+
+.--aquamarine {
+    color: hsl(160, 100%, 75%);
+}
+
+.--purple {
+    color: rgb(255, 60, 255);
+}
+
+.--gray {
+    color: rgb(196, 196, 196);
+}
+.--gray-bg {
+    background: rgb(206, 206, 206);
+}
+
+.--no-bg-fontcolor-blk {
+    background: none;
+    color: black;
+}
+
+.--2D-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.--left-border-separator {
+    border-left: 1px black solid;
+    padding-left: 20px;
+    margin-left: .5em;
+}
+
+.--check-bullet p::before {
+    content: '✔️';
+}
+
+.--check-bullet-h3 h3::before {
+    content: '✔️';
+}
+
+.--title-id-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.--no-bg-code {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+}
+
+.--hr-faded {
+  border: 1px solid hsl(0, 0%, 25%);
+}
+
+/* =============================================================================== */
+
+/* Project 2 - Stopwatch */
+.proj-2-stopwatch__container {
+  background-color: hsl(120, 50%, 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  margin: 0px 1.5em;
+  border: 3px solid hsl(0, 100%, 100%);
+  border-radius: 50px;
+}
+
+.proj-2-stopwatch__time-display {
+  font-size: 5rem;
+  color: hsl(0, 0%, 0%);
+  margin-bottom: .2em;
+}
+
+.proj-2-stopwatch__buttons {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5em;
+}
+
+.proj-2-stopwatch__buttons button {
+  border: none;
+  border-radius: 50px;
+}
+
+.proj-2-stopwatch__buttons button:hover {
+  background-color: hsla(0, 0%, 0%, .7);
+}
+
+/* Project 3 - Pokemon API*/
+.project-3-pokemon-api__info-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-3-pokemon-api__info-id {
+  margin-bottom: 0;
+}
+
+.project-3-pokemon-api__info-sprites img {
+  width: 150px;
+}

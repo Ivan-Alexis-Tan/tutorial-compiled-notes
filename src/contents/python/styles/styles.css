@@ -1,0 +1,491 @@
+* {
+    box-sizing:border-box;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+}
+
+.btn-primary {
+  background-color: royalblue;
+}
+
+.btn-danger {
+  background-color: crimson;
+}
+
+/* Base class */
+.card {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+
+/* Modifier class */
+.card--highlight {
+  border: 2px solid gold;
+  background-color: #fff8dc;
+}
+
+/* Element class (inside card) */
+.card__title {
+  margin: 0;
+  color: black;
+}
+
+/* Utility class */
+.text-muted {
+  color: gray;
+  font-size: 0.9em;
+}
+
+
+/* ====================================== */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: rgb(255, 255, 255);
+    padding-top: 4.5em;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(255, 206, 114); 
+    display: flex;
+    justify-content: space-between;     /* Pushes elements to the opposite side */
+    align-items: center;
+    padding: 0px 30px;
+    z-index: 1000;
+}
+
+main {
+    padding: 5px 50px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+.--stop-a-tag-efx:hover {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+/* Code Block */
+pre {
+    color: #fff;
+    background: #3b3b3b;
+    margin: 5px 30px;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+pre code {
+    display: block;
+    margin: 0px 5px;
+    background: transparent;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+/* Code Highlighter */
+p code {
+    background: #747474;
+    border-radius: 4px;
+    padding: 1px 2px;
+    color: white;
+}
+
+.hiligt {
+    background: #747474;
+    border-radius: 4px;
+    padding: 1px 2px;
+    color: white;
+}
+
+li code {
+    background: #747474;
+    border-radius: 4px;
+    padding: 1px 2px;
+    color: white;
+}
+
+/* === Flash Message === */
+.alert {
+    transition: opacity 0.3s ease;
+    margin-top: 0.5em;
+    padding: 0em 0.2em;
+    background: rgb(116, 255, 116);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.--error-flash-message {
+    background-color: rgb(255, 148, 148);
+}
+
+.alert.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Table Formats*/
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  overflow-x:auto;
+}
+
+th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+table code {
+    background: #747474;
+    border-radius: 4px;
+    padding: 1px 2px;
+    color: white;
+}
+
+table .tdhead {
+    font-weight: bold;
+}
+
+table tbody th {
+    background-color: transparent;
+}
+/* ===================================================== */
+/* ================= Standalone Styles ================= */
+/* ===================================================== */
+.--indented-meaning-text {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-left: 3px solid rgb(180, 180, 180);
+}
+
+.--orange {
+    color: rgb(255, 194, 82);
+}
+
+.--blue {
+    color: #27baff;
+}
+
+.--dark-blue {
+    color: rgb(1, 90, 255);
+}
+
+.--yellow {
+    color: yellow;
+}
+
+.--green {
+    color: rgb(0, 189, 0);
+}
+
+.--light-green {
+    color: rgb(0, 255, 0);
+}
+
+.--mid-aquamarine {
+    color: rgb(0, 0, 0);
+}
+
+.--purple {
+    color: rgb(255, 60, 255);
+}
+
+.--gray {
+    color: rgb(196, 196, 196);
+}
+.--gray-bg {
+    background: rgb(206, 206, 206);
+}
+
+.--no-bg-fontcolor-blk {
+    background: none;
+    color: black;
+}
+
+.--2D-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.--left-border-separator {
+    border-left: 1px black solid;
+    padding-left: 20px;
+    margin-left: .5em;
+}
+
+.--check-bullet p::before {
+    content: '✔️';
+}
+
+.--check-bullet-h3 h3::before {
+    content: '✔️';
+}
+
+.--title-id-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* =================================================================== */
+/* ====================== Navigation Bar ========================== */
+/* =================================================================== */
+/* .header-nav {
+    position: fixed;
+} */
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Navigation Bar <a> */
+.header-nav .nav a {
+    font-weight: bold;
+    padding: 0px 20px;
+}
+
+
+/* ============== Practice Section ============== */
+/* Practice Sections */
+.practice {
+    padding-left: 15px;
+    border-left: 1px solid;
+}
+
+/* Button Layout */
+.practice .button {
+    display: flex;
+    align-items: center;
+}
+
+/* The Button Themselves */
+.practice button {
+    width: 75px;
+    height: 25px;
+    margin: 5px;
+}
+
+/* If Statement Practice */
+.practice .practice-section h4 {
+    margin-bottom: 1px;
+    text-decoration: underline;
+}
+
+.filter-list {
+    display: flex;
+    align-items: center;
+}
+
+
+/* ============== Practice Source Code ============== */
+/* Body */
+.practice-code {
+    border-left: 1px solid;
+}
+
+/* Title */
+.practice-code-title {
+    display: flex;
+    align-items: center;
+    margin: -10px 5px;
+}
+
+/* Practice Source Code <strong> */
+.practice-code-title strong {
+    padding-left: 5px;
+}
+
+/* Practice Source Code <p> */
+.practice-code-title p {
+    padding-left: 5px;
+}
+
+/* ========= HTML Entities Table ==============*/
+.html-entities-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.html-entities-table th, .html-entities-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.html-entities-table th {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+.html-entities-table code {
+    background: #cfcfcf;
+    border-radius: 4px;
+    padding: 1px 2px;
+}
+
+.html-entities-remember code {
+    background: #cfcfcf;
+    border-radius: 4px;
+    padding: 1px 2px;
+}
+
+.home-experiment input[type='text'] {
+    background-color: lightgreen;
+}
+/* ========= CSS Naming Conventions ========= */
+.bem-sec .__bem-title::first-letter {
+    color: rgb(201, 0, 0);
+}
+
+/* === Full Example of HTML and CSS === */
+/* Block */
+.product-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  background: white;
+}
+
+/* Modifier (block-level) */
+.product-card--featured {
+  border-color: gold;
+  background: #fffbe5;
+}
+
+/* Elements */
+.product-card__image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.product-card__title {
+  font-size: 1.4em;
+  margin: 10px 0;
+}
+
+.product-card__price {
+  color: #444;
+}
+
+/* Element Modifiers */
+.product-card__button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-card__button--buy {
+  background: #007bff;
+  color: white;
+}
+
+.product-card__button--wishlist {
+  background: #eee;
+  color: #333;
+}
+/* === */
+
+
+/* ========= CSS Naming Conventions ========= */
+.naming-conv-section .naming-conv-sec__mean {
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-left: 3px solid rgb(180, 180, 180);
+    margin-top: -10px;
+}
+
+.sample-code__str {
+    color: rgb(255, 194, 82);
+}
+
+.sample-code__param {
+    color: #80bdff;
+}
+
+/* ========== Admin ============== */
+.admin-page__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-page__be-admin {
+    display: flex;
+}
+
+.operate-user-db {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.del-user__confirm-btns {
+    display: flex;
+    gap: 1em;
+}
+
+/* ========== user_profile.html ========== */
+.edit-profile-form {
+    display: flex;
+    margin: 1em;
+}
+
+.user-profile-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.intro-sqlalchemy-guide-page-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ========== sqlalchemy_filter.html ========== */
+.sqlalchemy-filter-guide-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sqlalchemy-filter-guide__summary-sec-hypelnk {
+    display: flex;
+    flex-direction: column;
+}
+
+.sqlalchemy-filter-guide-summary-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
