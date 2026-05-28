@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
-import { routeData } from "../../routeData"
+import { languageRoute } from "../../routeData"
 
-const titles = routeData.python.libraries.fastapijwt.titles
+const titles = languageRoute("python").libTitles("fastapi")
 
 export default function FastApiJwt() {
     const { id } = useParams()

@@ -1,5 +1,5 @@
-import {Link} from 'react-router-dom'
-import { initLibRoute } from '../routeData'
+import {Link, useParams} from 'react-router-dom'
+import { languageRoute } from '../routeData'
 
 const navigationLinks = [
     {url: "javascript", text: "Javascript"},
@@ -9,6 +9,7 @@ const navigationLinks = [
 ]
 
 export default function NavBar() {
+
     return (
         <>
             <div className='flex flex-col justify-between items-center p-5 sm:flex-row bg-black'>
@@ -20,7 +21,7 @@ export default function NavBar() {
                 
                 <div className='flex gap-10 text-[16px]'>
                     {navigationLinks.map(nav => {
-                        const { initUrl, initLib } = initLibRoute(nav.url)
+                        const { initUrl } = languageRoute(nav.url).url
                         return (
                             <Link key={nav.url} to={`guides/${nav.url}/${initUrl}/1`}>
                                 <span>{nav.text}</span>

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { routeData } from "../../routeData"
+import { languageRoute } from "../../routeData"
 
 import InstallationAndSetup from "./nextjs-guides/Next1InstallationAndSetup"
 import CreatingRoutesAndNav from "./nextjs-guides/Next2CreatingRoutesAndNav"
@@ -15,7 +15,7 @@ import Next11Caching from "./nextjs-guides/Next11Caching"
 import Next12CommonlyUsedHooks from "./nextjs-guides/Next12CommonHooks"
 import Next13Authentication from "./nextjs-guides/Next13Authentication"
 
-const titles = routeData.javascript.libraries.nextjs.titles
+const titles = languageRoute('javascript').libTitles('nextjs')
 
 export default function NextJSGuide() {
     const { id } = useParams()

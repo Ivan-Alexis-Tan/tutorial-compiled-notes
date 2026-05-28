@@ -1,13 +1,14 @@
 import { Link, Navigate, Outlet, useParams } from "react-router-dom"
 import { useState } from "react";
 
-import { getGuideCode, getLibraryData, routeData } from "../routeData";
+import { languageRoute } from "../routeData";
 
 export default function LibraryPage() {
     const {language, library, code } = useParams();
     const [showProj, setShowProject] = useState(false)
 
-    const libraryData = getLibraryData(language, library)
+    const { data, url, libraries, libCode, libData } = languageRoute(language)
+    const libraryData = libData(library)
 
     if (!libraryData) return <Navigate to='not-found' replace/>
 

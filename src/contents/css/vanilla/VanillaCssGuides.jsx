@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { routeData } from "../../../routeData"
+import { languageRoute } from "../../../routeData"
 
 import VanillaCssCombinators from "./guides/VanillaCssCombinators"
 import VanillaCssPseudoClasses from "./guides/VanillaCssPsuedoClasses"
@@ -8,7 +8,7 @@ import VanillaCssOverflow from "./guides/VanillaCssOverflow"
 import VinallaCssPositioning from "./guides/VanillaCssPositioning"
 import VanillaCssTransformations from "./guides/VanillaCssTransformations"
 
-const cssTitles = routeData.css.libraries.vanilla.titles
+const cssTitles = languageRoute('css').libTitles('vanilla')
 const routeIds = Object.keys(cssTitles)
 
 export default function VanillaCssGuides() {

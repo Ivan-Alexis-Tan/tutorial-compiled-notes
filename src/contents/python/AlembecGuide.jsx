@@ -1,7 +1,7 @@
-import { routeData } from "../../routeData"
+import { languageRoute } from "../../routeData"
 import { useLocation, useParams } from "react-router-dom"
 
-const titles = routeData.python.libraries.alembic.titles
+const titles = languageRoute("python").libTitles("alembic")
 
 export default function AlembicGuide() {
     const { id } = useParams()

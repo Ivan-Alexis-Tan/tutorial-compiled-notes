@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { routeData } from "../../routeData"
+import { languageRoute } from "../../routeData"
 
 import GitCommands from "./guides/GitCommands"
 import MessageConvention from "./guides/MessageConvention"
@@ -10,7 +10,8 @@ import GitCreateBranch from "./guides/GitCreateBranch"
 import GitDeleteCommit from "./guides/GitDeleteCommit"
 import GitDeleteBranch from "./guides/GitDeleteBranch"
 
-const guideTitles = routeData.git.guides
+const guideTitles = languageRoute("git").libTitles('base')
+console.log(`guideTitles =`, guideTitles)
 const guideNum = Object.keys(guideTitles)
 
 export default function GitGuides() {

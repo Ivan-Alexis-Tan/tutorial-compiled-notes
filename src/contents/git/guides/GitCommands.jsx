@@ -1,6 +1,6 @@
-import { routeData } from "../../../routeData"
+import { languageRoute } from "../../../routeData"
 
-const titles = routeData.git.guides
+const titles = languageRoute("git").libTitles("base")
 
 export default function GitCommands() {
     return (

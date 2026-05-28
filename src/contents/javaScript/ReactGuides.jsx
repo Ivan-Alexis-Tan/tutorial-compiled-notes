@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom'
 
-import { routeData } from '../../routeData';
+import { languageRoute } from '../../routeData';
 
 import C19ReactQuery from './react-guides/ReactQuery';
 import C20ZustandGuide from './react-guides/ReactZustand';
 import C21ReactHookForm from './react-guides/ReactHookForm';
 import C22ZodGuides from './react-guides/ReactZod';
 
-const jsLibs = routeData.javascript.libraries
+const jsLibs = languageRoute("javascript").libTitles("react")
 
 export default function ReactGuide() {
     const { id } = useParams();
@@ -53,11 +53,11 @@ export default function ReactGuide() {
         case 19:
             return <C19ReactQuery />
         case 20:
-            return <C20ZustandGuide title={jsLibs.react.titles[currentId]} />
+            return <C20ZustandGuide title={jsLibs[currentId]} />
         case 21:
-            return <C21ReactHookForm title={jsLibs.react.titles[currentId]} />
+            return <C21ReactHookForm title={jsLibs[currentId]} />
         case 22:
-            return <C22ZodGuides title={jsLibs.react.titles[currentId]} />
+            return <C22ZodGuides title={jsLibs[currentId]} />
         default:
             break;
     }

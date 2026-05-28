@@ -1,7 +1,7 @@
-import { routeData } from "../../../routeData"
+import { languageRoute } from "../../../routeData"
 import { useParams } from "react-router-dom"
 
-const titles = routeData.javascript.libraries.nextjs.titles
+const titles = languageRoute('javascript').libTitles('nextjs')
 
 export default function CreatingRoutesAndNav() {
     return (
