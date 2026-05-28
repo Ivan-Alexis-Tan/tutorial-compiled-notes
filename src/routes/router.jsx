@@ -36,11 +36,6 @@ export const router = createBrowserRouter([
                 element: <Home />,
             },
 
-            {
-                path: 'home/git',
-                element: <GitGuides />,
-            },
-
             {   
                 path: 'guides/:language/:library',
                 element: <GuidesLayout />,
@@ -48,6 +43,11 @@ export const router = createBrowserRouter([
                     ...pythonGuidesRoute,
                     ...javascriptGuideRoute,
                     ...cssGuideRoute,
+
+                    {
+                        path: "gitguide/:id",
+                        element: <GitGuides />,
+                    },
 
                     {
                         path: 'projects',
