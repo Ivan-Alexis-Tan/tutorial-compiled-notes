@@ -1,6 +1,6 @@
 import { languageRoute } from "../../../routeData"
 
-const titles = languageRoute('git').libTitles('basic')
+const titles = languageRoute('git').libTitles('base')
 
 export default function MessageConvention() {
     return (

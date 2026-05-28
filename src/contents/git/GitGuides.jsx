@@ -1,6 +1,4 @@
-import { useState } from "react"
-
-import { languageRoute } from "../../routeData"
+import { useParams } from "react-router-dom"
 
 import GitCommands from "./guides/GitCommands"
 import MessageConvention from "./guides/MessageConvention"
@@ -10,35 +8,11 @@ import GitCreateBranch from "./guides/GitCreateBranch"
 import GitDeleteCommit from "./guides/GitDeleteCommit"
 import GitDeleteBranch from "./guides/GitDeleteBranch"
 
-const guideTitles = languageRoute("git").libTitles('base')
-console.log(`guideTitles =`, guideTitles)
-const guideNum = Object.keys(guideTitles)
-
 export default function GitGuides() {
-    const [guideId, setGuideId] = useState(0)
+    const { id } = useParams()
+    const currId = Number(id)
 
-    return(
-        <div>
-            <h1>Git Guides</h1>
-
-            {/* Guide Selection */}
-            {guideTitles && <ul>{guideNum.map(num => 
-                <li key={num} 
-                    onClick={_ => setGuideId(Number(num))}
-                >{guideTitles[num]}</li>
-            )}</ul>}
-            
-            {/* Guide Content */}
-            {guideId >= 1 && <>
-                <hr />
-                <ShowGuide id={guideId}/>
-            </>}
-        </div>
-    )
-}
-
-function ShowGuide({ id }) {
-    switch (id) {
+    switch (currId) {
         case 1:
             return <GitCommands />;
         case 2:
@@ -57,4 +31,3 @@ function ShowGuide({ id }) {
             break;
     }
 }
-
