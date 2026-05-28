@@ -7,20 +7,21 @@ import { javascriptGuideRoute, javascriptProjectsRoute } from './javascript.guid
 
 // Layouts
 import RootLayout from '../layout/RootLayout';
-import ContentGuideLayout from '../layout/ContentGuideLayout';
+import GuidesLayout from '../layout/GuidesLayout';
+import ProjectsLayout from '../layout/ProjectsLayout';
 
 // Page Components
 import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 
 // Libraries/Framework Components ('Languages')
-import GuidesLayout from '../layout/GuidesLayout';
 import Projects from '../pages/Projects';
 import LanguagePage from '../pages/Language';
-import ProjectsLayout from '../layout/ProjectsLayout';
 import GitGuides from '../contents/git/GitGuides';
 import { cssGuideRoute } from './css.guides.route';
 import LibraryPage from '../pages/LibrarayPage';
+
+// Coding Challenges
 import CodingChallengeLanguages from '../coding-challenges/ChallengeLanguages';
 import ChallengeTasks from '../coding-challenges/ChallengeTasks';
 import ChallengesPage from '../coding-challenges/ChallengesPage';
