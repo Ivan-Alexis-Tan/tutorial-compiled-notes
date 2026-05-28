@@ -1,4 +1,4 @@
-export const routeData = {
+const routeData = {
     python: {
         text: "Python",
         libraries: {
@@ -286,57 +286,69 @@ export const routeData = {
     },
     git: {
         text: 'Git',
-        guides: {
-            1: "Git Commands",
-            2: "Message Convention",
-            3: "Git Ignore",
-            4: "Deleting Commit",
-            5: "Create Branch",
-            6: "Merge Branch",
-            7: "Deleting Branch",
-        }
+        libraries: {
+            base: {
+                text: "Git",
+                guideCode: "gitguide",
+                titles: {
+                    1: "Git Commands",
+                    2: "Message Convention",
+                    3: "Git Ignore",
+                    4: "Deleting Commit",
+                    5: "Create Branch",
+                    6: "Merge Branch",
+                    7: "Deleting Branch",
+                }
+            },
+        },
     },
 }
 
 export const languages = Object.keys(routeData)
 
-export function initLibRoute(language) {
-    if (!languages.includes(language) | language === "git") return []
-    
-    const libs = routeData[language]?.libraries
-    const libList = Object.keys(libs)
-    const initGuideCode = libs[libList[0]]?.guideCode
+export function languageRoute(language) {
+    const route = routeData[language] ?? null
 
-    return { 
-        initUrl: `${libList[0]}/${initGuideCode}`,
-        initLib: libList[0],
-        initGuideCode: initGuideCode,
+    const libraries = route?.libraries ?? {}
+    const libraryList = Object.keys(libraries)
+    const initGuideCode = libraries[libraryList[0]]?.guideCode
+
+    function validateLib(library) {
+        if (!route) return false
+        if (!libraryList.includes(library)) return false
+
+        return true
     }
-}
 
-export function getGuideData(language) {
-    if (!languages.includes(language) | language === "git") return null
+    function getLibraryData(library) {
+        if (!validateLib(library)) return null
+        
+        return routeData[language].libraries[library] ?? null
+    }
 
-    return routeData[language] ?? null
-}
+    function getGuideCode(library) {
+        const validated = validateLib(library)
+        if (!validated) return null
 
-export function getLibraries(language) {
-    const guides = getGuideData(language)
-    if (!guides) return []
+        return routeData[language].libraries[library].guideCode
+    }
 
-    return Object.keys(guides?.libraries)
-}
+    function getLibTitles(library) {
+        if (!validateLib(library)) return null
+        return structuredClone(getLibraryData(library).titles)
+    }
 
-export function getLibraryData(language, library) {
-    if (!languages.includes(language)) return null
-    if (!getLibraries(language).includes(library)) return null
-    
-    return routeData[language].libraries[library] ?? null
-}
-
-export function getGuideCode(language, library) {
-    if (!languages.includes(language)) return null
-    if (!getLibraries(language).includes(library)) return null
-
-    return routeData[language].libraries[library].guideCode
+    return {
+        data: structuredClone(route),
+        url: { 
+            initUrl: `${libraryList[0]}/${initGuideCode}`,
+            initLib: libraryList[0],
+            initGuideCode: initGuideCode,
+        },
+        langTitle: route?.text,
+        libraries: libraryList,
+        libTitles: getLibTitles,
+        libCode: getGuideCode,
+        libData: getLibraryData,
+    }
 }
