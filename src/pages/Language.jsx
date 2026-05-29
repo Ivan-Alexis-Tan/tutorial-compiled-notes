@@ -1,8 +1,6 @@
-import { useParams, Outlet, Link, Navigate } from 'react-router-dom'
+import { useParams, Link, Navigate } from 'react-router-dom'
 
 import { languageRoute } from "../routeData"
-
-import LanguageCard from '../components/LanguageCard';
 
 export default function LanguagePage() {
     const { language, library } = useParams();
@@ -12,21 +10,21 @@ export default function LanguagePage() {
     if (!data || !librariesData) return <Navigate to={'/not-found'} replace />
 
     return (
-        <>
+        <div className='flex flex-col min-h-0 h-full'>
             <h2 className='text-2xl font-bold mb-4'>{langTitle} Guides</h2>
                     
             {(libraries.length >= 1)
-                ? <ul className='text-[16px] max-h-60 overflow-auto'>
-                    {libraries.map(lib => (<li key={lib} className={`mb-2 px-4`}>
+                ? <div className='flex flex-col gap-2 min-h-0 overflow-auto h-full'>
+                    {libraries.map(lib => (
                         <Link to={`/guides/${language}/${lib}/${libCode(lib)}/1`}
-                            className={`inline`}
+                            className={`block pl-4`}
                         >
                             {libData(lib).text}
                         </Link>
-                    </li>))}
-                </ul>
+                    ))}
+                </div>
                 : <p>No guides at the moment</p>
             }
-        </>
+        </div>
     )
 }
