@@ -338,6 +338,11 @@ export function languageRoute(language) {
         return structuredClone(getLibraryData(library).titles)
     }
 
+    function getProjects(library) {
+        if (!validateLib(library)) return null
+        return structuredClone(getLibraryData(library)?.projects) ?? {}
+    }
+
     return {
         data: structuredClone(route),
         url: { 
@@ -348,6 +353,7 @@ export function languageRoute(language) {
         langTitle: route?.text,
         libraries: libraryList,
         libTitles: getLibTitles,
+        libProjects: getProjects,
         libCode: getGuideCode,
         libData: getLibraryData,
     }
