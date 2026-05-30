@@ -12,7 +12,7 @@ export default function GuidesLayout() {
                     <SideBarLayout />
                 </div>
 
-                <div className=' min-w-0 flex-10'>
+                <div className='min-w-0 flex-10 overflow-auto'>
                     <Outlet />
                 </div>
             </div>
