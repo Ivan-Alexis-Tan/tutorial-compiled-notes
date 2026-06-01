@@ -14,7 +14,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --z-nav-bar: 200;
+  --z-nav-bar: 300;
+  --z-sidebar: 200;
   --z-ui-toggles: 100;
   --z-page: 1;
 
