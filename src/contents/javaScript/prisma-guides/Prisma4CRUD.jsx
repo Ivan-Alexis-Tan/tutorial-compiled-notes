@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { highlightActive } from "../../../lib/helpers"
 
 
 export default function Prisma4CRUD() {
@@ -7,7 +8,7 @@ export default function Prisma4CRUD() {
 
     return (
         <div>
-            <h1>Prisma CRUD</h1>
+            <h1 className="text-4xl font-bold mb-5">Prisma CRUD</h1>
             <p>General Prisma CRUD structure:</p>
             <pre><code>
 {`</> TypeScript
@@ -16,16 +17,17 @@ prisma.<tableName>.<prismaMethod>
             </code></pre>
             
             {/* Guide List */}
-            <h2>Guides:</h2>
-            <ol>
+            <h2 className="text-xl font-bold mb-2">Guides:</h2>
+            <ol className="flex flex-col [&>li]:pl-10 [&>li]:list-disc">
                 {ids.map(id => (
                 <li key={id}
+                    className={`rounded-2xl mb-1 ${highlightActive(Number(id), currentId)}`}
                     onClick={_ => setCurrentId(Number(id))}
                 >{crudCategories[id]?.title}
                 </li>
             ))}
             </ol>
-            <hr className="--hr-faded" />
+            <hr className="--hr-faded my-5" />
             
             {/* Guide Contents */}
             {crudCategories[currentId]?.comp}
@@ -36,7 +38,7 @@ prisma.<tableName>.<prismaMethod>
 const ReadingData = () => {
     return (
         <div>
-            <h2>1. Reading Data</h2>
+            <h2 className="text-2xl font-bold mb-5">1. Reading Data</h2>
 
             <ul>
                 <li>Get all rows:</li>
@@ -78,7 +80,7 @@ prisma.<tableName>.findFirstOrThrow({
 const FilteringSortingPagination = () => {
     return (
         <div>
-            <h2>2. Filtering, Sorting, Pagination</h2>
+            <h2 className="text-2xl font-bold mb-5">2. Filtering, Sorting, Pagination</h2>
             <pre><code>
 {`</> TypeScript
 type OrderByType = "desc" | "asc"
@@ -116,7 +118,7 @@ prisma.post.findMany({
 const Creating = () => {
     return (
         <div>
-            <h2>3. Creating</h2>
+            <h2 className="h2-title">3. Creating</h2>
             <pre><code>
 {`</> TS
 prisma.<tableName>.create({
@@ -148,7 +150,7 @@ prisma.post.create({
 const Updating = () => {
     return (
         <div>
-            <h2>4. Updating</h2>
+            <h2 className="h2-title">4. Updating</h2>
             <p>Update one row:</p>
             <pre><code>
 {`</> TS
@@ -192,7 +194,7 @@ prisma.post.updateMany({
 const Deleting = () => {
     return (
         <div>
-            <h2>5. Deleting</h2>
+            <h2 className="h2-title">5. Deleting</h2>
             <p>Delete one row:</p>
             <pre><code>
 {`</> TS
@@ -224,7 +226,7 @@ prisma.post.deleteMany({ where: { published: false } })
 const Relations = () => {
     return (
         <div>
-            <h2>6. Relations (the big one)</h2>
+            <h2 className="h2-title">6. Relations (the big one)</h2>
             <p>If <code>tableA</code> belongs to <code>tableB</code>, you can fetch related data in one query using <code>include</code></p>
             <ul><li>Example: <code>Post</code> table belongs to <code>User</code> table.</li></ul>
             <pre><code>
@@ -285,7 +287,7 @@ prisma.post.findUnique({
 const Upsert = () => {
     return (
         <div>
-            <h2>7. Upsert (Create or Update)</h2>
+            <h2 className="h2-title">7. Upsert (Create or Update)</h2>
             <p>If the <strong>row exits &rarr; update</strong>; if <strong>not &rarr; create</strong>.</p>
             <p>Useful for seeding or sync logic.</p>
 
@@ -316,7 +318,7 @@ prisma.post.upsert({
 const Count = () => {
     return (
         <div>
-            <h2>8. Count</h2>
+            <h2 className="h2-title">8. Count</h2>
             <pre><code>
 {`</> TS
 prisma.<tableName>.count({ 

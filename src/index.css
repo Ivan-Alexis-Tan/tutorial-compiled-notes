@@ -104,9 +104,9 @@ pre {
 
 
 pre code {
-    display: block;
-    background: transparent;
-    font-family: monospace;
+  display: block;
+  background: transparent;
+  font-family: monospace;
 }
 
 table {
@@ -139,6 +139,10 @@ table li::marker {
 .table-background {
   background: black;
   border-radius: 10px;
+}
+
+.col-spanned {
+  font-weight: bold;
 }
 
 .h2-title {
@@ -236,6 +240,8 @@ table li::marker {
 
 .--hr-faded {
   border: 1px solid hsl(0, 0%, 25%);
+  margin-top: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .h1-title {

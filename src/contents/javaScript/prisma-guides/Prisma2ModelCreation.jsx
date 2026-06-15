@@ -1,14 +1,14 @@
 export default function Prisma2ModelCreation() {
     return (
         <div>
-            <h1>Model Creation</h1>
+            <h1 className="h1-title">Model Creation</h1>
             <p>The field structure:</p>
             <pre><code>{`fieldName   FieldType   attributes`}</code></pre>
             <p>Attributes start with <code>@</code> (field-level) or <code>@@</code> (model-level).</p>
             <hr className="--hr-faded" />
 
             <div>
-                <h2>Scalar Types &mdash; commonly used</h2>
+                <h2 className="h2-title">Scalar Types &mdash; commonly used</h2>
                 <table>
                     <thead>
                         <tr>
@@ -43,7 +43,7 @@ export default function Prisma2ModelCreation() {
             <hr className="--hr-faded" />
         
             <div>
-                <h2>Common Field Attributes:</h2>
+                <h2 className="h2-title">Common Field Attributes:</h2>
                 <pre><code>
 {`</> Prisma
 model User {
@@ -55,10 +55,13 @@ model User {
 }
 `}
                 </code></pre>
-                <p>The <code>?</code> means optional/nullable &mdash; <strong>no</strong> <code>?</code> means required.</p>
-                <p>If try to create record without a required field, Prisma throws before it even hits the database.</p>
+                
+                <div className="[&>p]:mb-2 mb-5">
+                    <p>The <code>?</code> means optional/nullable &mdash; <strong>no</strong> <code>?</code> means required.</p>
+                    <p>If try to create record without a required field, Prisma throws before it even hits the database.</p>
+                </div>
 
-                <h3>Field Attributes Details</h3>
+                <h3 className="h3-title">Field Attributes Details</h3>
                 <table>
                     <thead>
                         <tr>
@@ -99,7 +102,7 @@ model User {
             <hr className="--hr-faded" />
 
             <div>
-                <h2>Relations</h2>
+                <h2 className="h2-title">Relations</h2>
 
                 <pre><code>
 {`</> Prisma
@@ -116,7 +119,7 @@ model Post {
 `}
                 </code></pre>
                 <p>Prisma requires to define <strong>both sides</strong> of a relation.</p>
-                <ul>
+                <ul className="[&>li]:ml-10 *:list-disc [&>li]:mb-2 [&>ul]:ml-15">
                     <li>The <code>Post</code> side holds the actual foreign key column (<code>authorId</code>)</li>
                     <li><code>User</code> side holds the virtual <code>posts</code> field.</li>
                     <ul><li>Doesn't exists as a real column &mdash; just for querying convenience</li></ul>
@@ -125,7 +128,7 @@ model Post {
             <hr className="--hr-faded" />
 
             <div>
-                <h2>Model-level Attributes (<code>@@</code>)</h2>
+                <h2 className="h2-title">Model-level Attributes (<code>@@</code>)</h2>
                 <pre><code>
 {`</> Prisma
 model Post {
@@ -139,9 +142,12 @@ model Post {
 `}
                 </code></pre>
 
-                <div>
-                    <h3><code>@@unique([fieldA, fieldB])</code></h3>
-                    <p>A <strong>composite unique constraint</strong> &mdash; the <i>combination</i> of those two fields must be unique, not each filed individually.</p>
+                <div className="mb-5">
+                    <h3 className="h3-title">
+                        <code>@@unique([fieldA, fieldB])</code>
+                    </h3>
+                    <p className="mb-5">A <strong>composite unique constraint</strong> &mdash; the <i>combination</i> of those two fields must be unique, not each filed individually.</p>
+                    
                     <p><strong>Example:</strong></p>
                     <pre><code>
 {`</> Prisma
@@ -153,15 +159,21 @@ model Enrollment {
 }
 `}
                     </code></pre>
-                    <p>A student can appear many times (in different courses).</p>
-                    <p>A course can appear many times (with different students).</p>
-                    <p>But the pair (studentId, courseId) must be unique — a student can only be enrolled in the same course once.</p>
+                    
+                    <div className="[&>p]:mb-2">
+                        <p>A student can appear many times (in different courses).</p>
+                        <p>A course can appear many times (with different students).</p>
+                        <p>But the pair (studentId, courseId) must be unique — a student can only be enrolled in the same course once.</p>
+                    </div>
                 </div>
 
-                <div>
-                    <h3><code>@@index([field])</code></h3>
-                    <p>A database index is a separate data structure the DB maintains so it can look up rows by that column fast — instead of scanning every row.</p>
-                    <p>It doesn't change what data you can insert; it only affects query performance.</p>
+                <div className="mb-5">
+                    <h3 className="h3-title"><code>@@index([field])</code></h3>
+                    
+                    <div className="[&>p]:mb-2 mb-5">
+                        <p>A database index is a separate data structure the DB maintains so it can look up rows by that column fast — instead of scanning every row.</p>
+                        <p>It doesn't change what data you can insert; it only affects query performance.</p>
+                    </div>
                     <p><strong>Example:</strong></p>
                     <pre><code>
 {`</> Prisma
@@ -172,10 +184,13 @@ model Post {
 }
 `}
                     </code></pre>
-                    <p>Without this, <code>WHERE authorId = 5</code> means the DB reads every single Post row.</p>
-                    <p>With the index, it <strong>jumps directly to the matching rows</strong>.</p>
-                    <p>At small scale this doesn't matter; at real scale (thousands to millions of rows) queries on un-indexed foreign keys get noticeably slow.</p>
-                    <p>You'd commonly put an index on any foreign key column you're going to filter or join on frequently — which is almost always.</p>
+                    
+                    <div className="[&>p]:mb-2 mb-5">
+                        <p>Without this, <code>WHERE authorId = 5</code> means the DB reads every single Post row.</p>
+                        <p>With the index, it <strong>jumps directly to the matching rows</strong>.</p>
+                        <p>At small scale this doesn't matter; at real scale (thousands to millions of rows) queries on un-indexed foreign keys get noticeably slow.</p>
+                        <p>You'd commonly put an index on any foreign key column you're going to filter or join on frequently — which is almost always.</p>
+                    </div>
                     
                     <p><strong>You can also index multiple fields together:</strong></p>
                     <pre><code>
@@ -186,11 +201,11 @@ model Post {
                 </div>
             </div>
 
-            <div>
-                <h3><code>@@id([fieldA, fieldB])</code></h3>
-                <p>A <strong>composite primary key</strong> — when no single field is the unique identifier, but the combination of two fields is.</p>
+            <div className="mb-5">
+                <h3 className="h3-title"><code>@@id([fieldA, fieldB])</code></h3>
+                <p className="mb-5">A <strong>composite primary key</strong> — when no single field is the unique identifier, but the combination of two fields is.</p>
                 
-                <p>Common in join tables:</p>
+                <p className="font-bold">Common in join tables:</p>
                 <pre><code>
 {`</> Prisma
 model PostTag {
@@ -200,9 +215,9 @@ model PostTag {
     @@id([postId, tagId])
 }`}
                 </code></pre>
-                <p>No auto-increment ID needed because <code>(postId, tagId)</code> is already uniquely identifying.</p>
+                <p className="mb-5">No auto-increment ID needed because <code>(postId, tagId)</code> is already uniquely identifying.</p>
 
-                <h3>Practical Rule for When to Use</h3>
+                <h3 className="h3-title">Practical Rule for When to Use</h3>
                 <table>
                     <thead>
                         <tr>

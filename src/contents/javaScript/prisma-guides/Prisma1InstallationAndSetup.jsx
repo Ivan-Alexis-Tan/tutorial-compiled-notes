@@ -1,10 +1,10 @@
 export default function Prisma1InstallationAndSetup() {
     return (
         <div>
-            <h1>Installation and Setup</h1>
+            <h1 className="h1-title">Installation and Setup</h1>
 
             <div>
-                <h2>Installation</h2>
+                <h2 className="h2-title">Installation</h2>
                 <p>Install Prisma:</p>
                 <pre><code>
 {`</> Bash
@@ -18,8 +18,11 @@ npm i prisma --save-dev
 npx prisma init --datasource-provider sqlite
 `}
                 </code></pre>
-                <p>The command <code>npx prisma init</code> creates <code>.env</code>, <code>schema.prisma</code>, and <code>prisma.config.ts</code> files.</p>
-                <p>Meanwhile <code>--datasource-provider sqlite</code> wrote to use sqlite that otherwise using postgresql on default.</p>
+                
+                <div className="[&>p]:mb-3 mb-7">
+                  <p>The command <code>npx prisma init</code> creates <code>.env</code>, <code>schema.prisma</code>, and <code>prisma.config.ts</code> files.</p>
+                  <p>Meanwhile <code>--datasource-provider sqlite</code> wrote to use sqlite that otherwise using postgresql on default.</p>
+                </div>
 
                 <p>In <code>schema.prisma</code>:</p>
                 <pre><code>
@@ -75,10 +78,10 @@ export default defineConfig({
             <hr className="--hr-faded" />
 
             <div>
-              <h2>Dependency Installation Notes</h2>
-              <p>Varies by the database choice.</p>
+              <h2 className="h2-title">Dependency Installation Notes</h2>
+              <p className="mb-5">Varies by the database choice.</p>
 
-              <h3>Prisma v7 &mdash; what to install per project</h3>
+              <h3 className="h3-title">Prisma v7 &mdash; what to install per project</h3>
               <table>
                 <thead>
                   <tr>
@@ -89,7 +92,7 @@ export default defineConfig({
                 </thead>
                 <tbody>
                   <tr>
-                    <td colSpan={3}>
+                    <td colSpan={3} className="col-spanned">
                       ALWAYS REQUIRED &mdash; EVERY PROJECT, EVERY DATABASE
                     </td>
                   </tr>
@@ -105,7 +108,7 @@ npm install --save-dev prisma`}
                   </tr>
 
                   <tr>
-                    <td colSpan={3}>
+                    <td colSpan={3} className="col-spanned">
                       THEN ADD DRIVER ADAPTER &mdash; PICK BASED ON THE DATABASE
                     </td>
                   </tr>
@@ -158,7 +161,7 @@ npm install --save-dev @types/pg`}
                   </tr>
 
                   <tr>
-                    <td colSpan={3}>
+                    <td colSpan={3} className="col-spanned">
                       AFTER INSTALLING &mdash; ALWAYS RUN THIS
                     </td>
                   </tr>

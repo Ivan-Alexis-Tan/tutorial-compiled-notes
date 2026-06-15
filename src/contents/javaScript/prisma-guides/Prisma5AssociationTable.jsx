@@ -1,10 +1,10 @@
 export default function Prisma5AssociationTable() {
     return (
-        <div>
-            <h1>Association Table</h1>
+        <div className="mb-5">
+            <h1 className="h1-title">Association Table</h1>
             
             <div>
-                <h2>Option 1: Implicit Many-to-Many</h2>
+                <h2 className="h2-title">Option 1: Implicit Many-to-Many</h2>
                 <p>Prisma creates the join table for you — you never see it, you never touch it.</p>
 
                 <pre><code>
@@ -19,14 +19,17 @@ model Tag {
     posts Post[]
 }`}
                 </code></pre>
-                <p>Prisma generates a hidden <code>_PostToTag</code> table in the DB <strong>automatically</strong>.</p>
-                <p>You just reference through the relation directly in queries.</p>
-                <p>Because you don't control that join table, <strong>you can't add extra columns</strong> to it.</p>
+                
+                <div className="[&>p]:mb-2">
+                    <p>Prisma generates a hidden <code>_PostToTag</code> table in the DB <strong>automatically</strong>.</p>
+                    <p>You just reference through the relation directly in queries.</p>
+                    <p>Because you don't control that join table, <strong>you can't add extra columns</strong> to it.</p>
+                </div>
             </div>
             <hr className="--hr-faded" />
 
             <div>
-                <h2>Option 2: Explicit Join Model</h2>
+                <h2 className="h2-title">Option 2: Explicit Join Model</h2>
                 <p>When you need extra data on the relationship itself — like <code>enrolledAt</code>, <code>role</code>, <code>status</code> — you make the join table an actual model.</p>
                 <pre><code>
 {`</> Prisma
@@ -52,8 +55,9 @@ model Enrollment {
     @@id([studentId, courseId])
 }`}
                 </code></pre>
-                <p>Things to note:</p>
-                <ul>
+                
+                <p className="font-bold mb-2">Things to note:</p>
+                <ul className="[&>li]:ml-10 [&>li]:mb-2 [&>li]:list-disc">
                     <li><code>Enrollment</code> is the equivalent of your SQLAlchemy association object.</li>
                     <li><code>@@id([studentId, courseId])</code> is the composite primary key — the pair is what uniquely identifies a row, no auto-increment needed</li>
                     <li>Both <code>Student</code> and <code>Course</code> point to <code>Enrollment[]</code>, not directly to each other</li>
@@ -63,7 +67,7 @@ model Enrollment {
             <hr className="--hr-faded" />
 
             <div>
-                <h2>Which to Use:</h2>
+                <h2 className="h2-title">Which to Use:</h2>
                 <table>
                     <thead>
                         <tr>
