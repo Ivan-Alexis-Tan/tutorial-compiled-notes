@@ -1,10 +1,10 @@
 export default function Next5Routing() {
     return (
-        <div>
-            <h1>Routing</h1>
-            <p>Uses file-based routing.</p>
+        <div className="mb-5">
+            <h1 className="h1-title">Routing</h1>
+            <p className="mb-5">Uses file-based routing.</p>
 
-            <p>Supposed the file DIR:</p>
+            <p className="font-bold">Supposed the file DIR:</p>
             <pre><code>
 {`/root-project
 ├── /.next
@@ -19,12 +19,15 @@ export default function Next5Routing() {
             <p><code>About</code> web page can be accessed now via <code>http://localhost:3000/about</code>.</p>
             <hr className="--hr-faded" />
             
-            <div>
-                <h2>🪆 Nested Routes</h2>
-                <p>Avoids routing conflicts of having a same route name.</p>
-                <p><strong>Example:</strong> Create a <strong>dashboard page</strong> that shows <strong>analytics</strong> and <strong>users</strong> status.</p>
-                <p>Can be solve by routing to:</p>
-                <ul>
+            <div className="mb-5">
+                <h2 className="h2-title">🪆 Nested Routes</h2>
+                <div className="[&>p]:mt-2 mb-5">
+                    <p>Avoids routing conflicts of having a same route name.</p>
+                    <p><strong>Example:</strong> Create a <strong>dashboard page</strong> that shows <strong>analytics</strong> and <strong>users</strong> status.</p>
+                </div>
+                
+                <p className="font-bold">Can be solve by routing to:</p>
+                <ul className="[&>li]:mt-1 mb-5">
                     <li><code>http://localhost:3000/dashboard/analytics</code></li>
                     <li><code>http://localhost:3000/dashboard/users</code></li>
                 </ul>
@@ -64,13 +67,18 @@ export default function UserDashboard() {
                 </code></pre>
             </div>
             <hr className="--hr-faded"/>
-            <div>
-                <h2>🧩 Dynamic Routes</h2>
-                <p>By adding <code>{`[folderName]`}</code> on the folder name to be dynamic.</p>
-                <p><strong>Example:</strong> Create <i>user profile</i> web page on each users.</p>
-                <p>This asserts to URL route with <code>http://localhost:3000/dashboard/users/id</code>.</p>
-                <p>In this case, <code>/id</code> should be dynamic with certain values like <code>id=1</code>, <code>id=2</code>, <code>id=...</code>.</p>
-                <p>The DIR:</p>
+
+            <div className="mb-5">
+                <h2 className="h2-title">🧩 Dynamic Routes</h2>
+                
+                <div className="[&>p]:mt-2 mb-5">
+                    <p>By adding <code>{`[folderName]`}</code> on the folder name to be dynamic.</p>
+                    <p><strong>Example:</strong> Create <i>user profile</i> web page on each users.</p>
+                    <p>This asserts to URL route with <code>http://localhost:3000/dashboard/users/id</code>.</p>
+                    <p>In this case, <code>/id</code> should be dynamic with certain values like <code>id=1</code>, <code>id=2</code>, <code>id=...</code>.</p>
+                </div>
+                
+                <p className="font-bold">The DIR:</p>
                 <pre><code>
 {`/root-project
 ├── /.next

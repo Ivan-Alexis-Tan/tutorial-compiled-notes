@@ -1,10 +1,10 @@
 export default function Next9DataFetching() {
     return (
-        <div>
-            <h1>Data Fetching</h1>
+        <div className="mb-5">
+            <h1 className="h1-title">Data Fetching</h1>
 
-            <div>
-                <h2>1. Use of <code>useEffect()</code> and <code>fetch()</code></h2>
+            <div className="mb-5">
+                <h2 className="h2-title">1. Use of <code>useEffect()</code> and <code>fetch()</code></h2>
                 <p><strong>Example 1:</strong> <code>useEffect()</code></p>
                 <pre><code>
 {`</> TypeScript
@@ -30,7 +30,7 @@ export default function Home() {
 }
 `}
                 </code></pre>
-                <p>This is the bare fetching and is not efficient.</p>
+                <p className="mb-5">This is the bare fetching and is not efficient.</p>
 
                 <p><strong>Example 2:</strong> Serverside Fetching</p>
                 <pre><code>

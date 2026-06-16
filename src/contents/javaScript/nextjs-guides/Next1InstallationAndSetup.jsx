@@ -6,22 +6,24 @@ const titles = languageRoute('javascript').libTitles('nextjs')
 export default function InstallationAndSetup() {
     return (
         <div>
-            <h1>{titles[useParams().id]}</h1>
-            <div>
-                <h2>A. Installation</h2>
-                <li>Only installs the dependencies to setup a Next.js environment (e.g. TypScript, Tailwind CSS, etc.)</li>
-                <p>In CMD write:</p>
+            <h1 className="h1-title">{titles[useParams().id]}</h1>
+            
+            <div className="mb-5">
+                <h2 className="h2-title">A. Installation</h2>
+                <p className="mb-5">Only installs the dependencies to setup a Next.js environment (e.g. TypScript, Tailwind CSS, etc.)</p>
+                
+                <p className="font-bold">In CMD write:</p>
                 <pre><code>
 {`npx create-next-app`}
                 </code></pre>
                 
-                <p>Then it will ask many different questions about dependencies to install.</p>
-                    <ol>
-                        <li>"What is your project name?"</li>
-                            <ul><li><code>.</code> if you want the current dir as project folder.</li></ul>
-                        <li>"Would you like to use the recommended Next.js defaults?"</li>
-                            <ul><li>When it doubt, choose <i>"yes, use recommended defaults"</i></li></ul>
-                    </ol>
+                <p className="mb-3">Then it will ask many different questions about dependencies to install.</p>
+                <ol className="[&>li]:ml-10 list-decimal [&>ul]:ml-15 [&>ul]:list-disc [&>li]:mb-1 [&>ul]:mb-3 mb-5">
+                    <li>"What is your project name?"</li>
+                        <ul><li><code>.</code> if you want the current dir as project folder.</li></ul>
+                    <li>"Would you like to use the recommended Next.js defaults?"</li>
+                        <ul><li>When it doubt, choose <i>"yes, use recommended defaults"</i></li></ul>
+                </ol>
                 
                 <p>The terminal could be like this after answering and installing all dependencies.</p>
                 <pre><code>
@@ -70,9 +72,10 @@ Success! Created nextjs-tutorial at C:/Users/Acer/Documents/Software Development
 `}
                 </code></pre>
             </div>
+            <hr className="--hr-faded"/>
 
-            <div>
-                <h2>B. Folders and Files Created/Installed</h2>
+            <div className="mb-5">
+                <h2 className="h2-title">B. Folders and Files Created/Installed</h2>
                 <p>There are files created after running <code>npx create-next-app</code>.</p>
                 <pre><code>
 {`/myApp

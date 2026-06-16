@@ -5,11 +5,11 @@ const titles = languageRoute('javascript').libTitles('nextjs')
 
 export default function CreatingRoutesAndNav() {
     return (
-        <div>
-            <h1>{titles[useParams().id]}</h1>
+        <div className="mb-5">
+            <h1 className="h1-title">{titles[useParams().id]}</h1>
 
-            <div>
-                <h2>A. Creating Routes</h2>
+            <div className="mb-5">
+                <h2 className="h2-title">A. Creating Routes</h2>
                 <p>Just <strong>simply create folder in <code>/app</code></strong> and it will automatically create route for it.</p>
                 <pre><code>
 {`/myApp
@@ -22,10 +22,10 @@ export default function CreatingRoutesAndNav() {
                 <p>Automatically creates rout for it.</p>
                 <pre><code>http://localhost:3000/newFolder</code></pre>
 
-                <div>
-                    <h3>Example of Creating Route:</h3>
-                    <p><strong>Goal:</strong> Create an "About" route in home page.</p>
-                    <p>Directory:</p>
+                <div className="mb-5">
+                    <h3 className="h3-title">Example of Creating Route:</h3>
+                    <p className="mb-1"><strong>Goal:</strong> Create an "About" route in home page.</p>
+                    <p className="font-bold">Directory:</p>
                     <pre><code>
 {`/myApp
 ├── /.next
@@ -73,18 +73,17 @@ Contacts page `}{<span>&rarr;</span>} {`http://localhost:3000/contact
                     <p>This enables the client to navigate to about and contact pages.</p>
                 </div>
             </div>
+            <hr className="--hr-faded" />
 
-            <div>
-                <h2>B. Creating Navigation (Nav Bar)</h2>
-                <div>
-                    <ul>
-                        <li>Import <code>Link</code> tag: <code>{'import { Link } from "next/link"'}</code></li>
-                        <li>Create <code>{`<Link>`}</code> tag and add a <code>href=</code> attribute.</li>
-                            <ul>
-                                <li><code>href=</code> accepts <i>string value</i> to serve as linking route.</li>
-                            </ul>
-                    </ul>
-                </div>
+            <div className="mb-5">
+                <h2 className="h2-title">B. Creating Navigation (Nav Bar)</h2>
+                <ul className="[&>li]:mb-2 [&>li]:ml-5 [&>li]:list-disc">
+                    <li>Import <code>Link</code> tag: <code>{'import { Link } from "next/link"'}</code></li>
+                    <li>Create <code>{`<Link>`}</code> tag and add a <code>href=</code> attribute.</li>
+                        <ul className="ml-10 [&>li]:list-disc">
+                            <li><code>href=</code> accepts <i>string value</i> to serve as linking route.</li>
+                        </ul>
+                </ul>
 
                 <div>
                     <pre><code>

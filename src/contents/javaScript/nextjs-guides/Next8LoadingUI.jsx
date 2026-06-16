@@ -1,8 +1,8 @@
 export default function Next8LoadingUI() {
     return (
-        <div>
-            <h1>Loading UI</h1>
-            <p>Showing a loading progress while data is being fetched.</p>
+        <div className="mb-5">
+            <h1 className="h1-title">Loading UI</h1>
+            <p className="mb-2">Showing a loading progress while data is being fetched.</p>
             <p>By adding <code>loader.tsx</code> file.</p>
             <pre><code>
 {`/app

@@ -1,40 +1,38 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import SummaryTable, { useSummaryTable } from "../../../components/SummaryTable"
 
 export default function Next13Authentication() {
     const [currId, setCurrId] = useState(1)
     const ids = Object.keys(guides)
+    const guideTitles = ids.map(id => guides[id].name)
+
+    const { tableStates } = useSummaryTable({
+        colnames: ["Guides"],
+        mappedData: guides,
+    })
 
     return (
-        <div>
-            <h1>Authentication</h1>
+        <div className="mb-5">
+            <h1 className="h1-title">Authentication</h1>
             
-            <h2>Guides:</h2>
-            <ol>
-                {ids.map(id => (
-                    <li key={id} onClick={_ => setCurrId(Number(id))}>
-                        {typeof guides[id].title === "function" ? guides[id].title() : guides[id].title}
-                    </li>
-                ))}
-            </ol>
-            <hr className="--hr-faded" />
-
-            {guides[currId].comp}
+            <SummaryTable tableStates={tableStates} />
         </div>
     )
 }
 
 const AuthenticationVSAuthorization = () => {
     return (
-        <div>
-            <h1>Authentication vs. Authorization</h1>
-            <h3>Authentication</h3>
+        <div className="[&_li]:mt-2 [&_li]:ml-10 [&_li]:list-disc [&_ul]:mb-5">
+            <h2 className="h2-title">Authentication vs. Authorization</h2>
+
+            <h3 className="h3-title">Authentication</h3>
             <ul>
                 <li>About making sure the user is who they say they are.</li>
                 <li>User is proving his/her identity with something he/she has like a username and password</li>
             </ul>
 
-            <h3>Authorization</h3>
+            <h3 className="h3-title">Authorization</h3>
             <ul>
                 <li>The next step after authenticating.</li>
                 <li>Once a user's identity is confirmed, authorization decides what parts of the application they are allowed to use.</li>
@@ -47,23 +45,25 @@ const AuthenticationVSAuthorization = () => {
 const SettingNextAuthJS = () => {
     return (
         <div>
-            <h1>Setting up NextAuth.js</h1>
+            <h2 className="h2-title">Setting up NextAuth.js</h2>
 
-            <div>
-                <h2>Install <code>NextAuth.js</code>:</h2>
+            <div className="mb-5">
+                <h3 className="h3-title">Install <code>NextAuth.js</code>:</h3>
                 <pre><code>
 {`</> Bash
 pnpm i next-auth@beta`}
                 </code></pre>
                 <p><code>beta</code> version is compatible with <code>Next.js</code> 14+</p>
             </div>
+            <hr className="--hr-faded"/>
 
-            <div>
-                <h2>Generate Secret Key</h2>
+            <div className="mb-3">
+                <h3 className="h3-title">Generate Secret Key</h3>
                 <pre><code>
 {`</> Bash
 # macOS
 openssl rand -base64 32
+
 # Windows can use https://generate-secret.vercel.app/32
 `}
                 </code></pre>
@@ -72,8 +72,11 @@ openssl rand -base64 32
 {`/.env
 AUTH_SECRET=your-secret-key`}
                 </code></pre>
-                <p>In production, update the environment variables in Vercel project too.</p>
-                <p>Guide on Vercel: <Link to={"https://vercel.com/docs/environment-variables"}>Add environment variables on Vercel</Link> </p>
+                
+                <div className="[&>p]:mt-2 mb-5">
+                    <p>In production, update the environment variables in Vercel project too.</p>
+                    <p>Guide on Vercel: <Link to={"https://vercel.com/docs/environment-variables"}>Add environment variables on Vercel</Link> </p>
+                </div>
             </div>
 
         </div>
@@ -82,13 +85,17 @@ AUTH_SECRET=your-secret-key`}
 
 const CreateAuthConfig = () => {
     return (
-        <div>
-            <h1>Create <code>/auth.config.ts</code> File</h1>
-            <p>Create an <code>auth.config.ts</code> file at the root of the project that exports <code>authConfig</code> object.</p>
-            <p>This object will <strong>contain configuration options</strong> for <code>NextAuth.js</code></p>
+        <div className="mb-5">
+            <h2 className="h2-title">Create <code>/auth.config.ts</code> File</h2>
             
-            <div>
-                <h2>Adding Page Option</h2>
+            <div className="[&>p]:mt-2 mb-5">
+                <p>Create an <code>auth.config.ts</code> file at the root of the project that exports <code>authConfig</code> object.</p>
+                <p>This object will <strong>contain configuration options</strong> for <code>NextAuth.js</code></p>
+            </div>
+            <hr className="--hr-faded"/>
+            
+            <div className="mb-5">
+                <h2 className="h2-title">Adding Page Option</h2>
                 <pre><code>
 {`</> ts
 // /auth.config.ts
@@ -102,14 +109,22 @@ export const authConfig = {
 } satisfies NextAuthConfig;
 `}
                 </code></pre>
-                <p>Can use the <code>pages</code> option to specify the route for custom sign-in, sign-out, and error pages.</p>
-                <p>Not required, but by adding <code>signIn: "/login"</code> to <code>pages</code> option, the <strong>user will be redirected to custom login page</strong>, rather than the <code>NextAuth.js</code> default page.</p>
+                
+                <div className="[&>p]:mt-2 mb-5">
+                    <p>Can use the <code>pages</code> option to specify the route for custom sign-in, sign-out, and error pages.</p>
+                    <p>Not required, but by adding <code>signIn: "/login"</code> to <code>pages</code> option, the <strong>user will be redirected to custom login page</strong>, rather than the <code>NextAuth.js</code> default page.</p>
+                </div>
             </div>
+            <hr className="--hr-faded"/>
 
-            <div>
-                <h2>Protected Routes with Next.js Proxy</h2>
-                <p>Add logic to protect routes.</p>
-                <p>This prevent users from accessing the dashboard page unless they are logged in.</p>
+            <div className="mb-5">
+                <h2 className="h2-title">Protected Routes with Next.js Proxy</h2>
+                
+                <div className="[&>p]:mt-2 mb-5">
+                    <p>Add logic to protect routes.</p>
+                    <p>This prevent users from accessing the dashboard page unless they are logged in.</p>
+                </div>
+
                 <pre><code>
 {`</> TS
 // /auth.config.ts
@@ -139,7 +154,7 @@ export const authConfig = {
 `}
                 </code></pre>
                 <p>The <code>authorized</code> callback:</p>
-                <ul>
+                <ul className="[&>li]:ml-10 [&>li]:mt-2 [&>li,&>ul]:list-disc [&>ul]:ml-15 mb-5">
                     <li>Verifies if the request is authorized to access a page with Next.js Proxy.</li>
                     <li>Is called before a request is completed.</li>
                     <li>It receives an object with the <code>auth</code> and <code>request</code> properties.</li>
@@ -150,12 +165,12 @@ export const authConfig = {
                 </ul>
 
                 <p>The <code>providers</code> option:</p>
-                <ul>
+                <ul className="[&>li]:ml-10 [&>li]:mt-2 [&>li,&>ul]:list-disc [&>ul]:ml-15 mb-5">
                     <li>An arraw where you list different login options.</li>
                     <li>For now, it's empty to satisfy NextAuth config.</li>
                     <li>Learn more: 
                         <Link to={"https://nextjs.org/learn/dashboard-app/adding-authentication#adding-the-credentials-provider"}>
-                            <i>Adding the Credentials provider</i>
+                            <i> Adding the Credentials provider</i>
                         </Link>
                     </li>
                 </ul>
@@ -167,9 +182,12 @@ export const authConfig = {
 const CreateProxyFile = () => {
     return (
         <div>
-            <h1>Create Proxy File</h1>
-            <p>In the root of your project, create a file called <code>proxy.ts</code> with contents below.</p>
-            <p>Then, import the <code>authConfig</code> object into the Proxy file.</p>
+            <h2 className="h2-title">Create Proxy File</h2>
+            
+            <div className="[&>p]:mt-2 mb-5">
+                <p>In the root of your project, create a file called <code>proxy.ts</code> with contents below.</p>
+                <p>Then, import the <code>authConfig</code> object into the Proxy file.</p>
+            </div>
 
             <pre><code>
 {`</> TS
@@ -186,10 +204,13 @@ export const config = {
 }
 `}
             </code></pre>
-            <p>Here you're initializing <code>NextAuth.js</code> with the <code>authConfig</code> object and exporting the <code>auth</code> property.</p>
-            <p>Uses <code>matcher</code> option to specificy that it should run on specific paths.</p>
-            <p><strong>Protected routes will not even start rendering until the Proxy verifies the authentication</strong>.</p>
-            <ul><li>Enhances securtiy and performance of the application.</li></ul>
+            
+            <div className="[&>p]:mt-2 [&>ul]:ml-10 [&_li]:list-disc">
+                <p>Here you're initializing <code>NextAuth.js</code> with the <code>authConfig</code> object and exporting the <code>auth</code> property.</p>
+                <p>Uses <code>matcher</code> option to specificy that it should run on specific paths.</p>
+                <p><strong>Protected routes will not even start rendering until the Proxy verifies the authentication</strong>.</p>
+                <ul><li>Enhances securtiy and performance of the application.</li></ul>
+            </div>
         </div>
     )
 }
@@ -197,13 +218,17 @@ export const config = {
 const PasswordHashing = () => {
     return (
         <div>
-            <h1>Password Hashing and <code>auth.ts</code> File.</h1>
-            <p>About converting a password into a fixed-length string of characters, providing a layer of security even if the user's data is exposed.</p>
-            <p>Uses <code>bcrypt</code> packacge to hash the user's password before storing it in the database.</p>
-            <p><strong>Create separate file because <code>bcrypt</code> relies on Node.js APIs</strong> not available in Next.js Proxy.</p>
+            <h2 className="h2-title">Password Hashing and <code>auth.ts</code> File.</h2>
             
-            <div>
-                <h2>1. Create a new file</h2>
+            <div className="[&>p]:mt-2 mb-5">
+                <p>About converting a password into a fixed-length string of characters, providing a layer of security even if the user's data is exposed.</p>
+                <p>Uses <code>bcrypt</code> packacge to hash the user's password before storing it in the database.</p>
+                <p><strong>Create separate file because <code>bcrypt</code> relies on Node.js APIs</strong> not available in Next.js Proxy.</p>
+            </div>
+            <hr className="--hr-faded"/>
+            
+            <div className="mb-5">
+                <h2 className="h2-title">1. Create a new file</h2>
                 <p>Create a new file called <code>auth.ts</code> that spreads your <code>authConfig</code> object:</p>
                 <pre><code>
 {`</> TS
@@ -218,17 +243,22 @@ export const { auth, signIn, signOut } = NextAuth({
 `}
                 </code></pre>
             </div>
+            <hr className="--hr-faded"/>
 
             <div>
-                <h2>2. Adding Credentials Provider</h2>
-                <p><code>providers</code> is an array that lists different login options such as Google or GitHub.</p>
-                <p>On this context, it only focuses on using 
-                    <Link to={"https://authjs.dev/getting-started/providers/credentials"}>
-                        <i> Credentials provider </i>
-                    </Link>
-                    only.
-                </p>
-                <p>The credentials provider allows users to log in with a username and password.</p>
+                <h2 className="h2-title">2. Adding Credentials Provider</h2>
+                
+                <div className="[&>p]:mt-2 mb-5">
+                    <p><code>providers</code> is an array that lists different login options such as Google or GitHub.</p>
+                    <p>On this context, it only focuses on using 
+                        <Link to={"https://authjs.dev/getting-started/providers/credentials"}>
+                            <i> Credentials provider </i>
+                        </Link>
+                        only.
+                    </p>
+                    <p>The credentials provider allows users to log in with a username and password.</p>
+                </div>
+
                 <pre><code>
 {`</> TS
 // /auth.ts
@@ -243,8 +273,8 @@ export const { auth, signIn, signOut } = NextAuth({
 })
 `}
                 </code></pre>
-                <p>Good to know:</p>
-                <ul>
+                <p className="font-bold">Good to know:</p>
+                <ul className="[&_li]:list-disc [&>li]:ml-10 mb-5">
                     <li>There are other alternative providers such as <Link to={"https://authjs.dev/getting-started/authentication/oauth"}
                         ><i>OAuth</i></Link> or <Link to={"https://authjs.dev/getting-started/authentication/email"}
                         ><i>email</i>.</Link>
@@ -254,11 +284,16 @@ export const { auth, signIn, signOut } = NextAuth({
                     </li>
                 </ul>
             </div>
+            <hr className="--hr-faded"/>
 
-            <div>
-                <h2>3. Add Sign In Functionality</h2>
-                <p>You can use the <code>authorize()</code> function to handle the authentication logic.</p>
-                <p>Similarly to Server Actions, <code>zod</code> can be used to validate the email and password before checking if the user exists in the database:</p>
+            <div className="mb-5">
+                <h2 className="h2-title">3. Add Sign In Functionality</h2>
+                
+                <div className="[&>p]:mt-2 mb-5">
+                    <p>You can use the <code>authorize()</code> function to handle the authentication logic.</p>
+                    <p>Similarly to Server Actions, <code>zod</code> can be used to validate the email and password before checking if the user exists in the database:</p>
+                </div>
+
                 <pre><code>
 {`</> TS
 // /auth.ts
@@ -396,9 +431,13 @@ export const { auth, signIn, signOut } = NextAuth({
 const LoginServerAction = () => {
     return (
         <div>
-            <h1>Login Server Action</h1>
-            <p>In <code>action.ts</code> (if does not exists create one: <code>/app/lib/actions.ts</code>), create a new action function called <code>authenticate()</code></p>
-            <p>This action should import the <code>signIn()</code> from <code>auth.ts</code>:</p>
+            <h2 className="h2-title">Login Server Action</h2>
+            
+            <div className="[&>p]:mt-2 mb-5">
+                <p>In <code>action.ts</code> (if does not exists create one: <code>/app/lib/actions.ts</code>), create a new action function called <code>authenticate()</code></p>
+                <p>This action should import the <code>signIn()</code> from <code>auth.ts</code>:</p>
+            </div>
+
             <pre><code>
 {`</> TS
 // /app/lib/actions.ts
@@ -432,10 +471,13 @@ export async function authenticate(
 }
 `}
             </code></pre>
-            <p>If there's a <code>"CredentialSignin"</code> error, you want to show an appropriate error message.</p>
-            <p>Learn more: <Link
-                ><i>NextAuth.js errors documentation</i></Link>
-            </p>
+            
+            <div className="[&>p]:mt-2 mb-5">
+                <p>If there's a <code>"CredentialSignin"</code> error, you want to show an appropriate error message.</p>
+                <p>Learn more: <Link
+                    ><i>NextAuth.js errors documentation</i></Link>
+                </p>
+            </div>
         </div>
     )
 }
@@ -443,9 +485,10 @@ export async function authenticate(
 const ConnectToLoginForm = () => {
     return (
         <div>
-            <h1>Connect Auth and Server Action to Login Form</h1>
-            <p>In login form component, use React's <code>useActionState</code> to call the server action, handle form errors, and display the form's pending state:</p>
-            <p>Example Login Form:</p>
+            <h2 className="h2-title">Connect Auth and Server Action to Login Form</h2>
+            <p className="mb-5">In login form component, use React's <code>useActionState</code> to call the server action, handle form errors, and display the form's pending state:</p>
+            
+            <p className="font-bold">Example Login Form:</p>
             <pre><code>
 {`</> TS
 'use client';
@@ -557,7 +600,7 @@ export default function LoginForm() {
 const LogoutFunctionality = () => {
     return (
         <div>
-            <h1>Logout Functionality</h1>
+            <h2 className="h2-title">Logout Functionality</h2>
             <p>Call the <code>signOut()</code> from <code>auth.ts</code> and apply to the logout <code>{"<form>"}</code> element:</p>
             <pre><code>
 {`</> TS
@@ -602,12 +645,12 @@ export default function SideNav() {
 }
 
 const guides = {
-    1: {title: "Authentication vs. Authorization", comp: <AuthenticationVSAuthorization/>},
-    2: {title: "Setting up NextAuth.js", comp: <SettingNextAuthJS />},
-    3: {title: () => {return <>Create <code>/auth.config.ts</code> File</>}, comp: <CreateAuthConfig />},
-    4: {title: "Create Proxy File", comp: <CreateProxyFile />},
-    5: {title: _ => <>Password Hashing and <code>/auth.ts</code> File</>, comp: <PasswordHashing />},
-    6: {title: "Login Server Action", comp: <LoginServerAction />},
-    7: {title: "Connect Auth and Server Action to Login Form", comp: <ConnectToLoginForm />},
-    8: {title: "Logout Functionality", comp: <LogoutFunctionality />},
+    1: {name: "Authentication vs. Authorization", comp: <AuthenticationVSAuthorization/>},
+    2: {name: "Setting up NextAuth.js", comp: <SettingNextAuthJS />},
+    3: {name: () => {return <>Create <code>/auth.config.ts</code> File</>}, comp: <CreateAuthConfig />},
+    4: {name: "Create Proxy File", comp: <CreateProxyFile />},
+    5: {name: _ => <>Password Hashing and <code>/auth.ts</code> File</>, comp: <PasswordHashing />},
+    6: {name: "Login Server Action", comp: <LoginServerAction />},
+    7: {name: "Connect Auth and Server Action to Login Form", comp: <ConnectToLoginForm />},
+    8: {name: "Logout Functionality", comp: <LogoutFunctionality />},
 }

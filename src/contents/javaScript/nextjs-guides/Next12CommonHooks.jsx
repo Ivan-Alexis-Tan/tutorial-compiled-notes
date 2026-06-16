@@ -1,39 +1,33 @@
 import { useState } from "react"
+import SummaryTable, { useSummaryTable } from "../../../components/SummaryTable"
 
 export default function Next12CommonlyUsedHooks() {
-    const [id, setId] = useState(0)
     const guideIds = Object.keys(guideInfo)
+    const guideTitles = guideIds.map(id => guideInfo[id].title)
+    
+    const { tableStates } = useSummaryTable({
+        colnames: ["Hooks", "Description"],
+        mappedData: guideInfo,
+    })
     
     return (
-        <div>
-            <h1>Commonly Used Hooks</h1>
-            <p onClick={_ => setId(0)}>&rarr; Hooks Summary Table</p>
-            <ol>{guideIds.map(id => (
-                <li key={id} onClick={_ => setId(Number(id))}>
-                    <code>{guideInfo[id]?.title}</code>
-                </li>
-            ))}</ol>
-            <hr className="--hr-faded" />
-            
-            {(id === 0) && <SummaryTable 
-                ids={guideIds} 
-                guideInfo={guideInfo} 
-                setIdFn={setId} 
-            />}
-
-            {(id >= 1) && guideInfo[id]?.comp}
+        <div className="mb-5">
+            <h1 className="h1-title">
+                Commonly Used Hooks
+            </h1>
+            <SummaryTable tableStates={tableStates}  />
         </div>
     )
 }
 
 const UseRouterHook = () => {
     return (
-        <div>
-            <h2><code>useRouter</code></h2>
-            <p>Allows programmatic navigation.</p>
+        <div className="mb-5">
+            <h2 className="h2-title"><code>useRouter</code></h2>
+            <p className="mb-5">Allows programmatic navigation.</p>
 
-            <h3>When you need it:</h3>
-            <ul>
+            <h3 className="h3-title">When you need it:</h3>
+            <ul className="[&>li]">
                 <li>After a form submission succeeds, redirect the user.</li>
                 <li>On a button click that isn't a link.</li>
             </ul>
@@ -63,10 +57,14 @@ export default function CreatePostForm() {
 const UsePathnameHook = () => {
     return (
         <div>
-            <h2><code>usePathname</code></h2>
-            <p>Returns the current URL path as a plain string.</p>
-            <p>Used to hightight the active link in a navbar or sidebar.</p>
-            <p>Example:</p>
+            <h2 className="h2-title"><code>usePathname</code></h2>
+            
+            <div className="[&>p]:mt-2 mb-5">
+                <p>Returns the current URL path as a plain string.</p>
+                <p>Used to hightight the active link in a navbar or sidebar.</p>
+            </div>
+
+            <p className="font-bold">Example:</p>
             <pre><code>
 {`</> tsx
 "use client"
@@ -97,9 +95,12 @@ export default function Navbar() {
 const UseSearchParamsHook = () => {
     return (
         <div>
-            <h2><code>useSearchParams</code></h2>
-            <p>Reads the query string of the current URL &mdash; the <code>?key=value</code> part.</p>
-            <p>Used <strong>when needs search input, filters, pagination</strong> &mdash; anything that lives in the URL as query param.</p>
+            <h2 className="h2-title"><code>useSearchParams</code></h2>
+            
+            <div className="[&>p]:mt-2">
+                <p>Reads the query string of the current URL &mdash; the <code>?key=value</code> part.</p>
+                <p>Used <strong>when needs search input, filters, pagination</strong> &mdash; anything that lives in the URL as query param.</p>
+            </div>
 
             <pre><code>
 {`</> tsx
@@ -125,9 +126,12 @@ export default function PostFilter() {
 const UseParamsHook = () => {
     return (
         <div>
-            <h2><code>useParams</code></h2>
-            <p>Reads the dynamic segments of the current route.</p>
-            <p>Use when you have a route like <code>app/posts/[slugs]/page.tsx</code> and you need the <code>slug</code> value inside a client component on that page.</p>
+            <h2 className="h2-title"><code>useParams</code></h2>
+            
+            <div className="[&>p]:mt-2">
+                <p>Reads the dynamic segments of the current route.</p>
+                <p>Use when you have a route like <code>app/posts/[slugs]/page.tsx</code> and you need the <code>slug</code> value inside a client component on that page.</p>
+            </div>
         
             <pre><code>
 {`</> tsx
@@ -156,16 +160,21 @@ export default function PostAction() {
 const UseActionStateHook = () => {
     return (
         <div>
-            <h2><code>useActionState</code></h2>
-            <p>Wires a Server Action to a form to track what the action returned after submission.</p>
-            <p><strong>The mechanism:</strong> Every time your form submits, <code>useActionState</code> calls your action with two arguments</p>
-            <ol>
-                <li><code>prevState</code> &ndash; what your action returned last time, or the initial state on first submit</li>
-                <li><code>formData</code> &ndash; a <code>FormData</code> type</li>
-            </ol>
-            <p>The action's return value becomes the new <code>state</code> in your component.</p>
+            <h2 className="h2-title"><code>useActionState</code></h2>
+            
+            <div className="[&>p]:mt-3 mb-5">
+                <p>Wires a Server Action to a form to track what the action returned after submission.</p>
+                <p><strong>The mechanism:</strong> Every time your form submits, <code>useActionState</code> calls your action with two arguments</p>
+                
+                <ol className="[&>li]:ml-10 [&>li]:list-decimal">
+                    <li><code>prevState</code> &ndash; what your action returned last time, or the initial state on first submit</li>
+                    <li><code>formData</code> &ndash; a <code>FormData</code> type</li>
+                </ol>
 
-            <p>Example:</p>
+                <p>The action's return value becomes the new <code>state</code> in your component.</p>
+            </div>
+
+            <p className="font-bold">Example:</p>
             <pre><code>
 {`</> tsx
 "use client"
@@ -185,7 +194,7 @@ export default function CreatePostForm() {
 }
 `}
             </code></pre>
-            <ul>
+            <ul className="[&>li]:ml-10 [&>li]:list-disc mb-5">
                 <li><code>state</code> &ndash; what <code>createPost</code> last return (starts as <code>{"{ error: null }"}</code>)</li>
                 <li><code>formAction</code> &ndash; the wired version of <code>createPost</code> &mdash; pass this to the form</li>
             </ul>
@@ -229,10 +238,13 @@ export async function createPost(
 const UseFormStatusHook = () => {
     return (
         <div>
-            <h2><code>useFormStatus</code></h2>
-            <p>Tells you whether the parent form is currently submitting.</p>
-            <p>This reads the context from the nearest <code>{"<form>"}</code> tag above it in the DOM.</p>
-            <p>That's why this <strong><i>must</i> live in a separate child component</strong> &mdash; if in the same component as the form, it's <i>not inside the form yet when it renders</i>.</p>
+            <h2 className="h2-title"><code>useFormStatus</code></h2>
+            
+            <div className="[&>p]:mt-2">
+                <p>Tells you whether the parent form is currently submitting.</p>
+                <p>This reads the context from the nearest <code>{"<form>"}</code> tag above it in the DOM.</p>
+                <p>That's why this <strong><i>must</i> live in a separate child component</strong> &mdash; if in the same component as the form, it's <i>not inside the form yet when it renders</i>.</p>
+            </div>
 
             <pre><code>
 {`</> tsx
@@ -271,9 +283,13 @@ export default function CreatePostForm() {
 const SelectedLayoutSegmentHooks = () => {
     return (
         <div>
-            <h2><code>useSelectedLayoutSegment</code> and <code>useSelectedLayoutSegments</code></h2>
-            <p>From inside a <code>layout.tsx</code>, tells you which route segment below it is currently active.</p>
-            <p>Used when you have a layout with a sidebar or tab bar, and you want to highlight the active section without prop drilling or reading the full pathname.</p>
+            <h2 className="h2-title"><code>useSelectedLayoutSegment</code> and <code>useSelectedLayoutSegments</code></h2>
+            
+            <div className="[&>p]:mt-2">
+                <p>From inside a <code>layout.tsx</code>, tells you which route segment below it is currently active.</p>
+                <p>Used when you have a layout with a sidebar or tab bar, and you want to highlight the active section without prop drilling or reading the full pathname.</p>
+            </div>
+
             <pre><code>
 {`</> tsx
 import { useSelectedLayoutSegment } from "next/navigation
@@ -295,8 +311,11 @@ export default function Sidebar() {
 `}
             </code></pre>
             
-            <p>Meanwhile <code>useSelectedLayoutSegments()</code> returns an array of all active segments below the current layout:</p>
-            <p>Used when have a deeply nested routes and need to know the full active path, not just the immediate child.</p>
+            <div className="[&>p]:mt-2">
+                <p>Meanwhile <code>useSelectedLayoutSegments()</code> returns an array of all active segments below the current layout:</p>
+                <p>Used when have a deeply nested routes and need to know the full active path, not just the immediate child.</p>
+            </div>
+
             <pre><code>
 {`</> tsx
 // User is at /posts/my-first-post
@@ -309,71 +328,40 @@ const segments = useSelectedLayoutSegment()
     )
 }
 
-const SummaryTable = ({ ids = [], guideInfo = {}, setIdFn = () => {} } = {}) => {
-    return (
-        <div>
-            <h2>Summary Table</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Hook</th>
-                        <th>Use when you need...</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {ids.map(id => {
-                        const title = guideInfo[id]?.title
-                        const summary = guideInfo[id]?.summary
-                        
-                        return (
-                            <tr>
-                                <td onClick={_ => setIdFn(Number(id))}>
-                                    <code>{guideInfo[id]?.title}</code>
-                                </td>
-                                <td>{(typeof summary === "string") ? summary : summary()}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-        </div>
-    )
-}
-
 const guideInfo = {
     1: {
-        title: "useRouter", 
+        name: _ => <code>useRouter</code>, 
         comp: <UseRouterHook/>, 
-        summary: "To navigate in code, not through links and tags",
+        desc: "To navigate in code, not through links and tags",
     },
     2: {
-        title: "usePathname", 
+        name: _ => <code>usePathname</code>, 
         comp: <UsePathnameHook/>,
-        summary: "To know the current path (active nav links)",
+        desc: "To know the current path (active nav links)",
     },
     3: {
-        title: "useSearchParams", 
+        name: _ => <code>useSearchParams</code>, 
         comp: <UseSearchParamsHook/>,
-        summary: _ => <td>"To read <code>?key=value</code> from the URL"</td>,
+        desc: _ => <>To read <code>?key=value</code> from the URL</>,
     },
     4: {
-        title: "useParams", 
+        name: _ => <code>useParams</code>, 
         comp: <UseParamsHook/>,
-        summary: _ => <td>"A dynamic route segment (<code>[slug]</code>) inside a client component."</td>,
+        desc: _ => <>A dynamic route segment (<code>[slug]</code>) inside a client component.</>,
     },
     5: {
-        title: "useActionState", 
+        name: _ => <code>useActionState</code>, 
         comp: <UseActionStateHook/>,
-        summary: "To show results of Server Action on a form.",
+        desc: "To show results of Server Action on a form.",
     },
     6: {
-        title: "useFormStatus", 
+        name: _ => <code>useFormStatus</code>, 
         comp: <UseFormStatusHook/>,
-        summary: "To show loading state while a form action is running",
+        desc: "To show loading state while a form action is running",
     },
     7: {
-        title: "useSelectedLayoutSegment(s)", 
+        name: _ => <code>useSelectedLayoutSegment(s)</code>, 
         comp: <SelectedLayoutSegmentHooks/>,
-        summary: "To know which child route is active in a layout.",
+        desc: "To know which child route is active in a layout.",
     },
 }

@@ -5,10 +5,11 @@ const titles = languageRoute('javascript').libTitles('nextjs')
 
 export default function WorkingWithImageFiles() {
     return (
-        <div>
-            <h1>{titles[useParams().id]}</h1>
-            <div>
-                <ul>
+        <div className="mb-5">
+            <h1 className="h1-title">{titles[useParams().id]}</h1>
+            
+            <div className="mb-5">
+                <ul className="*:list-disc *:mb-1 [&>li]:ml-5 [&>li]:mt-2 [&>ul]:ml-10">
                     <li>Import <code>Image</code> tag: <code>import Image from "next/image"</code></li>
                         <ul>
                             <li>An extension of usual html <code>{"<img>"}</code> tag.</li>
@@ -16,12 +17,12 @@ export default function WorkingWithImageFiles() {
                             <li>Images are in lazy loading.</li>
                         </ul>
                     <li>Images <strong>must be downloaded or be passed locally</strong>, or else <i>must declare a configuration in <code>next.config.ts</code> file</i>.</li>
-
                 </ul>
             </div>
+            <hr className="--hr-faded"/>
 
-            <div>
-                <h2>Example Usage 1: Passing Source Locally</h2>
+            <div className="mb-5">
+                <h2 className="h2-title">Example Usage 1: Passing Source Locally</h2>
                 <p><code>next.svg</code> is located at <code>/public</code>, so it is safely passed in <code>src=</code>.</p>
                 <pre><code>
 {`<Image
@@ -34,9 +35,10 @@ export default function WorkingWithImageFiles() {
 />`}
                 </code></pre>
             </div>
+            <hr className="--hr-faded"/>
 
-            <div>
-                <h2>Example Usage 2: Passing Source Online</h2>
+            <div className="[&>p]:mb-2">
+                <h2 className="h2-title">Example Usage 2: Passing Source Online</h2>
                 <p>Linking <code>src=</code> to <i>Pavolia Reine's YouTube profile picture</i> without downloading.</p>
                 <p>In <code>/app/page.tsx</code> file:</p>
                 <pre><code>

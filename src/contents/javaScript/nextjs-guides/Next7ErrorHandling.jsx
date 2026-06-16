@@ -1,7 +1,7 @@
 export default function Next7ErrorHandling() {
     return (
-        <div>
-            <h1>Error Handling</h1>
+        <div className="mb-5">
+            <h1 className="h1-title">Error Handling</h1>
             <p>Needs a <code>error.ts</code> file as error handler file.</p>
             <pre><code>
 {`/app
@@ -46,10 +46,10 @@ export default function Error({ error, reset, }: ErrorHandler) {
 `}
             </code></pre>
 
-            <div>
-                <h2>One Global Error Handler File</h2>
-                <p>By creating one <code>global-error.tsx</code> file in the root of the app folder.</p>
-                <p><strong>Only the closest error file</strong> to the route takes priority &mdash; you won't see the content both from <code>global-error.tsx</code> and the <code>error.tsx</code> file.</p>
+            <div className="mb-5">
+                <h2 className="h2-title">One Global Error Handler File</h2>
+                <p className="mb-2">By creating one <code>global-error.tsx</code> file in the root of the app folder.</p>
+                <p className="mb-2"><strong>Only the closest error file</strong> to the route takes priority &mdash; you won't see the content both from <code>global-error.tsx</code> and the <code>error.tsx</code> file.</p>
                 <pre><code>
 {`/app
 ├── layout.tsx

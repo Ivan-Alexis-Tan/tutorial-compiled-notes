@@ -1,11 +1,11 @@
 export default function ServerAndClientComponents() {
     return (
-        <div>
-            <h1>Server Components and Client Components</h1>
+        <div className="mb-5">
+            <h1 className="h1-title">Server Components and Client Components</h1>
 
-            <div>
-                <h2>🗄️ Server Components</h2>
-                <ul>
+            <div className="mb-5">
+                <h2 className="h2-title">🗄️ Server Components</h2>
+                <ul className="[&>li]:mt-2 [&>li]:ml-5 [&>li,&>ul>li]:list-disc [&>ul]:ml-10 mb-5">
                     <li>Rendered on the server.</li>
                     <li>HTML output is then sent to the client.</li>
                     <li><strong>Can access serverside resources</strong> (e.g., database, file system)</li>
@@ -17,18 +17,19 @@ export default function ServerAndClientComponents() {
                     <li>Reliable for keeping sensitive information (e.g., access token)</li>
                 </ul>
 
-                <h3>When to Use</h3>
-                <ul>
+                <h3 className="h3-title">When to Use</h3>
+                <ul className="[&>li]:mt-1 [&>li]:ml-5">
                     <li><strong>Data Fetching:</strong> Fetching data directly from your backend or database.</li>
                     <li><strong>Static Content:</strong> Rendering blogs, product lists, or layouts.</li>
                     <li><strong>Security:</strong> Keeping sensitive logic and API keys away from the client.</li>
                     <li><strong>Performance:</strong> Reducing the amount of JavaScript sent to the user's device.</li>
                 </ul>
             </div>
+            <hr className="--hr-faded"/>
 
-            <div>
-                <h2>🖥️ Client Components</h2>
-                <ul>
+            <div className="mb-5">
+                <h2 className="h2-title">🖥️ Client Components</h2>
+                <ul className="[&>li]:mt-2 [&>li]:ml-5 [&>li]:list-disc mb-5">
                     <li>Rendered on client-side (the browser).</li>
                     <li>Excells on client interactivity (e.g., buttons, page navigation, form submission)</li>
                     <li>Must write <code>'use client'</code> string on the top most of the component file.</li>
@@ -51,17 +52,18 @@ export default function ClientSideComponent() {
                     <li>Everything within the client component that doesn't require interactivity or isn't dependent on the browser is still rendered on the server.</li>
                 </ul>
 
-                <h3>When to Use:</h3>
-                <ul>
+                <h3 className="h3-title">When to Use:</h3>
+                <ul className="[&>li]:mt-1 [&>li]:ml-5">
                     <li><strong>Interactivity:</strong> Handling user actions like button clicks, form submissions, or toggles.</li>
                     <li><strong>State Management:</strong> Using hooks like <code>useState</code> or <code>useReducer</code> to manage local UI states.</li>
                     <li><strong>Broswer APIs:</strong> Accessing <code>window</code>, <code>localStorage</code>, <code>navigator</code>, or geolocation</li>
                     <li><strong>Animations:</strong> Using client-side libraries for motion or complex UI updates.</li>
                 </ul>
             </div>
+            <hr className="--hr-faded"/>
 
-            <div>
-                <h2>Key Difference</h2>
+            <div className="mb-5">
+                <h2 className="h2-title">Key Difference</h2>
                 <table>
                     <thead>
                         <tr>

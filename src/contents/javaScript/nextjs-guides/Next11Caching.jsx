@@ -1,25 +1,25 @@
 export default function Next11Caching() {
     return (
-        <div>
-            <h1>Caching</h1>
-            <p>Simply means storing data that is reusable instead of refetching them.</p>
+        <div className="mb-5">
+            <h1 className="h1-title">Caching</h1>
+            <p className="mb-2">Simply means storing data that is reusable instead of refetching them.</p>
 
-            <div>
-                <h2>Types of Cache</h2>
-                <h3>1. Browser Caching</h3>
+            <div className="mb-5 [&>h3]:mt-3 [&>ul]:ml-10 [&>ul]:list-disc">
+                <h2 className="h2-title">Types of Cache</h2>
+                <h3 className="h3-title">1. Browser Caching</h3>
                 <ul><li>Saves static files locally.</li></ul>
 
-                <h3>2. Server Cache</h3>
+                <h3 className="h3-title">2. Server Cache</h3>
                 <ul><li>Stores pre-rendered pages & API responses.</li></ul>
             
-                <h3>3. Data Cache</h3>
+                <h3 className="h3-title">3. Data Cache</h3>
                 <ul><li>Remembers fetched data to avoid repeat requests.</li></ul>
             </div>
             <hr className="--hr-faded" />
             
-            <div>
-                <h2>Configuring Caching</h2>
-                <p>No longer choose SSR (Server-side Rendering) or SSG (Static Site Generation).</p>
+            <div className="mb-5">
+                <h2 className="h2-title">Configuring Caching</h2>
+                <p className="mb-2">No longer choose SSR (Server-side Rendering) or SSG (Static Site Generation).</p>
                 <p>Simply add an additional flag on <code>next.config.ts</code></p>
                 <pre><code>
 {`</> TypeScript
@@ -35,14 +35,17 @@ export default nextConfig;
             </div>
             <hr className="--hr-faded" />
 
-            <div>
-                <h2>Marking with <code>"use cache"</code></h2>
-                <p>Can be marked on routes, components, or function.</p>
-                <p>Tells Next.js to store and reuse the output if inputs haven't changed.</p>
-                <p>Like <code>"use client"</code> and <code>"use server"</code></p>
+            <div className="mb-5">
+                <h2 className="h2-title">Marking with <code>"use cache"</code></h2>
+                
+                <div className="[&>p]:mt-2 mb-5">
+                    <p>Can be marked on routes, components, or function.</p>
+                    <p>Tells Next.js to store and reuse the output if inputs haven't changed.</p>
+                    <p>Like <code>"use client"</code> and <code>"use server"</code></p>
+                </div>
 
-                <p>Does:</p>
-                <ul>
+                <p className="font-bold">Does:</p>
+                <ul className="[&>li]:ml-10 [&>li]:list-disc mb-5">
                     <li>Prerenders it at a build time</li>
                     <li>Stores it in memory</li>
                     <li>Revalidates it automatically (every 15 minutes on default)</li>
@@ -83,9 +86,9 @@ export async function getData() {
             </div>
             <hr className="--hr-faded" />
 
-            <div>
-                <h2>Fine-Tune the Cache</h2>
-                <p>Using <code>cacheLife()</code></p>
+            <div className="mb-5">
+                <h2 className="h2-title">Fine-Tune the Cache</h2>
+                <p className="mb-2">Using <code>cacheLife()</code></p>
                 <ul><li>Controls how long data stays cached.</li></ul>
                 <pre><code>
 {`</> TypeScript
@@ -135,24 +138,24 @@ export async function getData() {
 }
 `}
                 </code></pre>
-                <p>This groups cached items for easier invalidation.</p>
+                <p className="mb-5">This groups cached items for easier invalidation.</p>
             
-                <p>Difference:</p>
-                <ul>
+                <p className="font-bold">Difference:</p>
+                <ul className="[&>li]:ml-10 [&>li]:list-disc mb-5">
                     <li><code>cacheLife</code> &rarr; <i>When</i> to clear</li>
                     <li><code>cacheTag</code> &rarr; <i>What</i> to clear</li>
                 </ul>
                 
-                <p>To refresh constant instantly, use:</p>
-                <ul>
+                <p className="font-bold">To refresh constant instantly, use:</p>
+                <ul className="[&>li]:ml-10 [&>li]:list-disc mb-5">
                     <li><code>revalidate()</code></li>
                     <li><code>revalidateTag()</code></li>
                 </ul>
             </div>
             <hr className="--hr-faded" />
 
-            <div>
-                <h2>Partial Pre-rendering (PPR)</h2>
+            <div className="mb-5">
+                <h2 className="h2-title">Partial Pre-rendering (PPR)</h2>
 
                 <pre><code>
 {`</> TypeScript

@@ -1,7 +1,7 @@
 export default function Next10ApiRoutes() {
     return (
-        <div>
-            <h1>API Routes</h1>
+        <div className="mb-5">
+            <h1 className="h1-title">API Routes</h1>
             <p>Simply <strong>create a folder with any name</strong> and then <strong>create a special file</strong> named <code>route.ts</code> inside it.</p>
             <pre><code>
 {`/app
@@ -10,7 +10,8 @@ export default function Next10ApiRoutes() {
     └── route.ts    -> (POST) 🌐/api 
 `}
             </code></pre>
-            <p>Then begin writing server code.</p>
+            <p className="mb-5">Then begin writing server code.</p>
+
             <p><strong>Example:</strong></p>
             <pre><code>
 {`</> TypeScript
@@ -23,9 +24,10 @@ export async function GET() {
             </code></pre>
             <hr className="--hr-faded" />
 
-            <div>
-                <h2>Route Handlers</h2>
-                <p>Create a folder for the api (common to name as <code>api</code>).</p>
+            <div className="mb-5">
+                <h2 className="h2-title">Route Handlers</h2>
+
+                <p className="mb-2">Create a folder for the api (common to name as <code>api</code>).</p>
                 <p>Then add a database file.</p>
 
                 <pre><code>
@@ -110,8 +112,8 @@ export async function DELETE(
             </div>
             <hr className="--hr-faded" />
 
-            <div>
-                <h2>API Route Fetchers</h2>
+            <div className="mb-5">
+                <h2 className="h2-title">API Route Fetchers</h2>
                 <pre><code>
 {`/app
 ├── /api
