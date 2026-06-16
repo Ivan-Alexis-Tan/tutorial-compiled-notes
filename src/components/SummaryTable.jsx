@@ -33,7 +33,7 @@ export default function SummaryTable(tableStates = mappedDefault) {
                         <table className="min-w-200 max-w-2xl w-full">
                             <thead>
                                 <tr>
-                                    {colnames.map(col => (<th key={col}>{col}</th>))}
+                                    {colnames.map((col, idx) => (<th key={`${idx}`+col}>{col}</th>))}
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,11 +41,11 @@ export default function SummaryTable(tableStates = mappedDefault) {
                                     const sec = mappedData[id]
                                     return <tr key={id}>
                                         <td>
-                                            <code className="hover:border hover:border-white"
+                                            <span className="hover:cursor-pointer hover:text-(--link-hover-text-clr) hover:*:text-(--link-hover-text-clr)!"
                                                 onClick={_ => setRowId(id)}
-                                            >{sec.name}</code>
+                                            >{typeof(sec.name) === "function" ? sec.name() : sec.name}</span>
                                         </td>
-                                        <td>{sec.desc}</td>
+                                        {sec.desc && <td>{typeof(sec.desc) === "function" ? sec.desc() : sec.desc}</td>}
                                     </tr>
                                 })}
                             </tbody>
