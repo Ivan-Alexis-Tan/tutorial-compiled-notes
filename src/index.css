@@ -19,6 +19,8 @@
   --z-ui-toggles: 100;
   --z-page: 1;
 
+  --bg-clr: hsl(0, 0%, 14%);
+
   --link-text-clr: hsl(0, 0%, 87%);
   --link-hover-text-clr: hsl(160, 100%, 75%);
   --link-hover-bg-clr: hsl(160, 100%, 50%);
@@ -64,6 +66,43 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (min-width: 1300px) {
+  /* NextAuth Guide Page */
+  .nextauth-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 5.5rem);
+
+    > .table-steps {
+      display: flex;
+      gap: 1rem;
+      min-height: 0;
+      height: 100%;
+
+      > .table-linker {
+        overflow: auto;
+        max-height: 40rem;
+        margin: 0;
+      }
+
+      > .next-auth-contents {
+        overflow: auto;
+
+        h2 {
+          position: sticky;
+          top: 0;
+          padding-bottom: 5px;
+          background-color: var(--bg-clr);
+        }
+
+        hr {
+          display: none;
+        }
+      }
+    }
   }
 }
 
