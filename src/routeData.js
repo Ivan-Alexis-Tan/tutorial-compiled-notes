@@ -241,6 +241,7 @@ const routeData = {
                     11: "Caching",
                     12: "Commonly Used Hooks",
                     13: "Authentication",
+                    14: "NextAuth",
                 }
             },
             prisma: {

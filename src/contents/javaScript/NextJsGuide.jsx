@@ -14,6 +14,7 @@ import Next10ApiRoutes from "./nextjs-guides/Next10ApiRoutes"
 import Next11Caching from "./nextjs-guides/Next11Caching"
 import Next12CommonlyUsedHooks from "./nextjs-guides/Next12CommonHooks"
 import Next13Authentication from "./nextjs-guides/Next13Authentication"
+import Next14NextAuth from "./nextjs-guides/Next14NextAuth"
 
 const titles = languageRoute('javascript').libTitles('nextjs')
 
@@ -46,6 +47,8 @@ export default function NextJSGuide() {
             return <Next12CommonlyUsedHooks />
         case 13:
             return <Next13Authentication />
+        case 14:
+            return <Next14NextAuth />
         default:
             return
     }
