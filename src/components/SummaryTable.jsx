@@ -15,7 +15,11 @@ export function useSummaryTable({colnames = [], mappedData = mappedDefault}) {
             mappedData,
             rowId,
             setRowId,
-        }
+        },
+        colnames,
+        mappedData,
+        rowId,
+        setRowId,
     }
 }
 
