@@ -571,6 +571,116 @@ expires
     )
 }
 
+const RBAC = _ => {
+    return (
+        <div className="[&_h3]:text-xl [&_h3]:font-bold [&_h3]:mb-5
+                        [&_ul>li]:ml-10 [&_ul>li]:list-disc [&_ul>li]:pb-1
+        ">
+            <h2>Role-based Access Control (RBAC)</h2>
+
+            <div>
+                <h3>1. Define Roles in Prisma</h3>
+                <pre><code>
+{`</> prisma
+enum Role {
+    USER
+    ADMIN
+}
+
+model User {
+    id      Int     @id @default(autoincrement())
+    email   String  @unique
+
+    role    Role    @default(USER)
+}
+`}
+                </code></pre>
+                <p><strong>Purpose</strong></p>
+                <ul className="mb-5">
+                    <li>Database restricts valid values.</li>
+                    <li>Prisma generates the <code>Role</code> TypeScript type.</li>
+                    <li>New users automatically become <code>USER</code>.</li>
+                </ul>
+
+                <p>Then, migrate database if data already exists:</p>
+                <pre><code>npx prisma migrate dev --name add-user-role</code></pre>
+            </div>
+            <hr className="--hr-faded" />
+
+            <div>
+                <h3>2. Extend NextAuth types</h3>
+                
+                <p>Create a <code>{`<fileName>.d.ts`}</code> file</p>
+                <pre><code>
+{`</> TypeScript
+// /app/types/next-auth.d.ts
+
+import "next-auth"
+import { DefaultSession } from "next-auth"
+import { Role } from "@/generated/prisma/client"
+
+declare module "next-auth" {
+    interface Session {
+        user: {
+            role: Role
+        } & DefaultSession["user"];
+    }
+    
+    interface User {
+        role: Role
+    }
+} 
+`}
+                </code></pre>
+                <p><strong>Purpose</strong></p>
+                <p>Tells TypeScript that these exists:</p>
+                <ul className="mb-5">
+                    <li><code>session.user.role</code></li>
+                    <li><code>user.role</code></li>
+                </ul>
+            </div>
+            <hr className="--hr-faded" />
+
+            <div>
+                <h3>3. Copy the Role into the Session</h3>
+                <p>In <code>auth.ts</code>:</p>
+                <pre><code>
+{`</> TypeScript
+callbacks: {
+    async session({ session, user }) {
+        session.user.role = user.role
+        return session
+    }
+}
+`}
+                </code></pre>
+                <p><strong>Purpose</strong></p>
+                <ul>
+                    <li>Enables to include <code>role</code> column to the <code>session</code></li>
+                    <li>Now you can access this anywhere, example:</li>
+                    <pre><code>
+{`</> TypeScript
+import { auth } from "@/auth.ts"
+
+export default async function Page() {
+    const session = await auth();
+
+    return (
+        <div>
+            {session?.user.role === "USER"
+                && <button>Remove item</button>
+            }
+        </div>
+    )
+} 
+`}
+                    </code></pre>
+                </ul>
+            </div>
+        </div>
+    )
+}
+
 const guides = {
     1: {name: 1, desc: "Install the Packages", comp: InstallPackage},
     2: {name: 2, desc: "Prepare the Database", comp: PrepDatabase},
@@ -584,4 +694,5 @@ const guides = {
     10: {name: 10, desc: "OAuth Login", comp: OAuthLogin},
     11: {name: 11, desc: "OAuth Callback", comp: OAuthCallback},
     12: {name: 12, desc: "Database Records", comp: DbRecords},
+    13: {name: 13, desc: "Role-based Access Control (RBAC)", comp: RBAC},
 }
