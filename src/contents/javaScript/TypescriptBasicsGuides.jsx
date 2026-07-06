@@ -24,52 +24,30 @@ import Ts21TypeSyntax from "./typescript-guides/Ts21TypeSyntax";
 
 export default function TypescriptBasicsGuides() {
     const { id } = useParams()
-    const currentId = Number(id)
+     
+    return routesTypescriptBasicsGuide[Number(id)]
+}
 
-    switch (currentId) {
-        case 1:
-            return <Ts1Introduction />
-        case 2:
-            return <Ts2PrimitiveTypes />
-        case 3:
-            return <Ts3ArraysAndTuples />
-        case 4:
-            return <Ts4LiteralsAndEnums />
-        case 5:
-            return <Ts5TypeCastingAnyUnknown />
-        case 6: 
-            return <Ts6OptionalChainingAndBang />
-        case 7: 
-            return <Ts7BasicFunctionTypes />
-        case 8: 
-            return <Ts8AdvancedFunctionTypes />
-        case 9:
-            return <Ts9Interfaces />
-        case 10:
-            return <Ts10ClassesAndAbstractClasses />
-        case 11:
-            return <Ts11ClassesAndInterfaces />
-        case 12:
-            return <Ts12StaticAttribAndMethods />
-        case 13:
-            return <Ts13Generics />
-        case 14:
-            return <Ts14AdvancedTypes />
-        case 15:
-            return <Ts15TypeGuard />
-        case 16:
-            return <Ts16DiscriminatedUnion />
-        case 17:
-            return <Ts17UtilityTypes />
-        case 18: 
-            return <Ts18Modules />
-        case 19: 
-            return <Ts19ModuleConfigs />
-        case 20:
-            return <Ts20Namespaces />
-        case 21:
-            return <Ts21TypeSyntax />
-        default:
-            break;
-    }
+const routesTypescriptBasicsGuide = {
+    1: <Ts1Introduction />,
+    2: <Ts2PrimitiveTypes />,
+    3: <Ts3ArraysAndTuples />,
+    4: <Ts4LiteralsAndEnums />,
+    5: <Ts5TypeCastingAnyUnknown />,
+    6: <Ts6OptionalChainingAndBang />,
+    7: <Ts7BasicFunctionTypes />,
+    8: <Ts8AdvancedFunctionTypes />,
+    9: <Ts9Interfaces />,
+    10: <Ts10ClassesAndAbstractClasses />,
+    11: <Ts11ClassesAndInterfaces />,
+    12: <Ts12StaticAttribAndMethods />,
+    13: <Ts13Generics />,
+    14: <Ts14AdvancedTypes />,
+    15: <Ts15TypeGuard />,
+    16: <Ts16DiscriminatedUnion />,
+    17: <Ts17UtilityTypes />,
+    18: <Ts18Modules />,
+    19: <Ts19ModuleConfigs />,
+    20: <Ts20Namespaces />,
+    21: <Ts21TypeSyntax />,
 }
