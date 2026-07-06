@@ -576,7 +576,7 @@ const RBAC = _ => {
         <div className="[&_h3]:text-xl [&_h3]:font-bold [&_h3]:mb-5
                         [&_ul>li]:ml-10 [&_ul>li]:list-disc [&_ul>li]:pb-1
         ">
-            <h2>Role-based Access Control (RBAC)</h2>
+            <h2>13. Role-based Access Control (RBAC)</h2>
 
             <div>
                 <h3>1. Define Roles in Prisma</h3>

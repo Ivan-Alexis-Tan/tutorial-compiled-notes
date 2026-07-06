@@ -25,6 +25,7 @@ import LibraryPage from '../pages/LibrarayPage';
 import CodingChallengeLanguages from '../coding-challenges/ChallengeLanguages';
 import ChallengeTasks from '../coding-challenges/ChallengeTasks';
 import ChallengesPage from '../coding-challenges/ChallengesPage';
+import PostgresqlGuide from '../contents/sql/PostgresqlGuide';
 
 
 export const router = createBrowserRouter([
@@ -45,16 +46,21 @@ export const router = createBrowserRouter([
                     ...cssGuideRoute,
 
                     {
-                        path: "gitguide/:id",
-                        element: <GitGuides />,
-                    },
-
-                    {
                         path: 'projects',
                         element: <ProjectsLayout />,
                         children: [
                             ...javascriptProjectsRoute
                         ]
+                    },
+
+                    {
+                        path: "gitguide/:id",
+                        element: <GitGuides />,
+                    },
+
+                    {
+                        path: "postgresqlguide/:id",
+                        element: <PostgresqlGuide/>,
                     },
                 ]
             },

@@ -1,3 +1,5 @@
+import { routesPostgresqlGuides } from "./contents/sql/PostgresqlGuide"
+
 const routeData = {
     python: {
         text: "Python",
@@ -303,6 +305,18 @@ const routeData = {
             },
         },
     },
+    sql: {
+        text: 'SQL',
+        libraries: {
+            postgresql: {
+                text: "PostgreSQL",
+                guideCode: "postgresqlguide",
+                titles: {
+                    ...getTitles(routesPostgresqlGuides)
+                }
+            },
+        },
+    },
 }
 
 export const languages = Object.keys(routeData)
@@ -358,4 +372,13 @@ export function languageRoute(language) {
         libCode: getGuideCode,
         libData: getLibraryData,
     }
+}
+
+function getTitles(guideObj) {
+    const ids = Object.keys(guideObj)
+
+    return ids.reduce((acc, id) => {
+        acc[id] = guideObj[id].title
+        return acc
+    }, {})
 }
