@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SummaryTable, { useSummaryTable } from "../../../components/SummaryTable";
 
 export default function Next14NextAuth() {
@@ -62,11 +63,23 @@ const InstallPackage = _ => {
     return (
         <div>
             <h2>1. Install The Packages</h2>
+            <p className="mb-5">Choose only one adapter that aligns to the choosen database.</p>
             
-            <pre><code>
+            <div className="mb-5">
+                <p><strong>MySQL</strong> as database:</p>
+                <pre><code>
 {`</> Bash
 npm install next-auth @auth/prisma-adapter`}
-            </code></pre>
+                </code></pre>
+
+                <p><strong>PostgreSQL</strong> as database:</p>
+                <pre><code>
+{`</> Bash
+npm install next-auth pg @prisma/adapter-pg
+`}
+                </code></pre>
+
+            </div>
 
             <p>Then install Prisma if not yet installed.</p>
 
@@ -75,6 +88,27 @@ npm install next-auth @auth/prisma-adapter`}
 npm install @prisma/client
 npm install -D prisma`}
             </code></pre>
+            <hr className="--hr-faded"/>
+
+            <div>
+                <h2>If Planning to Deploy the Database</h2>
+                <p>Create a database:</p>
+                <ul className="mb-5 [&>li]:ml-10 [&>li]:list-disc">
+                    <li>Vercel Postgres (if deploying on Vercel)</li>
+                    <li>Neon</li>
+                    <li>Supabase</li>
+                    <li>Railway</li>
+                </ul>
+
+                <p>All of them eventually give something like</p>
+                <pre><code>
+{`</> env
+DATABASE_URL="postgresql://user:password@host:5432/dbname?sslmode=require"
+`}
+                </code></pre>
+
+                <p>Unlike the MariaDB adapter, PostgreSQL usually only needs this single connection string.</p>
+            </div>
         </div>
     )
 }
@@ -160,9 +194,11 @@ const CreatePrismaClient = _ => {
     return (
         <div>
             <h2>3. Create the Prisma Client</h2>
-            <h3><strong>Example:</strong></h3>
+
+            <div>
+                <h3><strong>Example 1:</strong> MySQL</h3>
             
-            <pre><code>
+                <pre><code>
 {`</> TypeScript
 // lib/prisma.ts
 
@@ -187,7 +223,48 @@ export const prisma = globalForPrisma.prisma ?? client
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma
 `}
-            </code></pre>
+                </code></pre>
+            </div>
+
+            <div>
+                <p><strong>Example 2:</strong> PostgreSQL</p>
+                <pre><code>
+{`</> TypeScript
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "../generated/prisma/client";
+import { Pool } from "pg";
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+})
+
+const adapter = new PrismaPg(pool)
+
+const client = new PrismaClient({ adapter })
+
+const globalForPrisma = globalThis as {
+    prisma?: PrismaClient;
+};
+
+export const prisma = globalForPrisma.prisma ?? client;
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+`}
+                </code></pre>
+            </div>
+
+            
+            <div className="mb-5">
+                <p><strong>Example 3:</strong> If no PostgreSQL adapter</p>
+                <pre><code>
+{`</> TypeScript
+import { PrismaClient } from "@/generated/prisma/client";
+
+export const prisma = new PrismaClient();
+`}
+                </code></pre>
+                <p>This is still extremely common.</p>
+            </div>
 
             <p>Everything that needs database access should reuse this single client.</p>
         </div>
@@ -215,9 +292,23 @@ AUTH_GITHUB_SECRET=
             </code></pre>
             
             <div className="[&>p]:my-1">
-                <p><code>AUTH_SECRET</code></p>
-                <p>This encrypts cookies and sessions.</p>
-                <p>Without it, Auth.js cannot safely create/read sessions.</p>
+                <p>
+                    <code>AUTH_SECRET</code> <Link to={"https://auth-secret-gen.vercel.app/"}
+                        className="italic hover:not-italic hover:text-(--link-hover-bg-clr) hover:underline"
+                    >get here</Link>
+                </p>
+
+                <ul className="[&>li]:ml-10 [&>li]:list-disc mb-5">
+                    <li>This encrypts cookies and sessions.</li>
+                    <li>Without it, Auth.js cannot safely create/read sessions.</li>
+                </ul>
+
+                <p>Get by running:</p>
+                <pre><code>
+{`</> Bash
+openssl rand -base64 32
+`}
+                </code></pre>
             </div>
         </div>
     )
