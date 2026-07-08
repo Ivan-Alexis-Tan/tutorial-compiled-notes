@@ -69,13 +69,14 @@ const InstallPackage = _ => {
                 <p><strong>MySQL</strong> as database:</p>
                 <pre><code>
 {`</> Bash
-npm install next-auth @auth/prisma-adapter`}
+npm install next-auth @auth/prisma-mariadb`}
                 </code></pre>
 
                 <p><strong>PostgreSQL</strong> as database:</p>
                 <pre><code>
 {`</> Bash
 npm install next-auth pg @prisma/adapter-pg
+npm install -D @types/pg
 `}
                 </code></pre>
 
@@ -85,7 +86,7 @@ npm install next-auth pg @prisma/adapter-pg
 
             <pre><code>
 {`</> Bash
-npm install @prisma/client
+npm install @prisma/client @auth/prisma-adapter
 npm install -D prisma`}
             </code></pre>
             <hr className="--hr-faded"/>
