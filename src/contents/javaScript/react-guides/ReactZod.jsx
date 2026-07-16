@@ -5,23 +5,26 @@ function setComponent(title, component) {
 }
 
 export default function C22ZodGuides({ title }) {
-    const [id, setId] = useState(1) 
+    const [guideId, setGuideId] = useState(1) 
 
     return (
-        <div>
-            <h1>{title} Guides</h1>
+        <div className="[&_h2]:text-2xl [&_h2,&_h3]:font-bold [&_h2]:mb-5 [&_h3]:text-xl [&_h3]:mb-3 mb-5">
+            <h1 className="text-2xl font-bold mb-5">{title} Guides</h1>
 
-            <ol>{Object.keys(guideTitles).map(id => <li key={id} 
-                onClick={_ => setId(Number(id))}
-                >{guideTitles[id].title}</li>
-            )}</ol>
+            <div className="flex flex-col gap-1 mb-5">
+                {Object.keys(guideTitles).map(id => (
+                    <span key={id} 
+                        onClick={_ => setGuideId(Number(id))}
+                        className={`pl-10  rounded-2xl ${guideId === Number(id) && "bg-black"}
+                                    hover:bg-black hover:text-(--link-hover-bg-clr) hover:cursor-pointer`}
+                    >
+                        {guideTitles[id].title}
+                    </span>
+                ))}
+            </div>
+            <hr className="mb-5" />
 
-            {(id >= 1) && (
-                <>
-                    <hr />
-                    {guideTitles[id].component}
-                </>
-            )}
+            {guideTitles[guideId].component}
         </div>
     )
 }
@@ -29,14 +32,14 @@ export default function C22ZodGuides({ title }) {
 const BasicsAndSetup = _ => {
     return (
         <div>
-            <h1>{guideTitles[1].title}</h1>
-            <div>
-                <h2>Installation</h2>
+            <h2>{guideTitles[1].title}</h2>
+            <div className="mb-5">
+                <h3>Installation</h3>
                 <p>Write <code>npm install zod</code> using a CLT.</p>
             </div>
             
             <div>
-                <h2>Basics: Schema building</h2>
+                <h3>Basics: Schema building</h3>
 
                 <pre><code>
 {`</> JavaScript
@@ -48,20 +51,22 @@ const userSchema = z.object({
 })
 `}
                 </code></pre>
-                <p>Zod's <code>z</code> accesses:</p>
-                <ul>
-                    <li><strong>Data structure</strong> (etc. object, array, etc.)</li>
+                <div className="mb-5">
+                    <p className="font-bold">Zod's <code>z</code> accesses:</p>
+                    <ul className="[&>li]:list-decimal [&>li]:ml-5 [&>ul]:mb-3 [&>ul]:ml-10 [&>ul>li]:list-disc">
+                        <li><strong>Data structure</strong> (etc. object, array, etc.)</li>
+                            <ul>
+                                <li>Allows formation of data structure.</li>
+                                <li><code>z.object()</code>, <code>z.array()</code></li>
+                            </ul>
+                        
+                        <li><strong>Data types</strong> (etc. string, number, boolean, etc.)</li>
                         <ul>
-                            <li>Allows formation of data structure.</li>
-                            <li><code>z.object()</code>, <code>z.array()</code></li>
+                            <li>Allows data type validations.</li>
+                            <li><code>z.string()</code>, <code>z.number()</code>, <code>z.boolean()</code>, etc.</li>
                         </ul>
-                    
-                    <li><strong>Data types</strong> (etc. string, number, boolean, etc.)</li>
-                    <ul>
-                        <li>Allows data type validations.</li>
-                        <li><code>z.string()</code>, <code>z.number()</code>, <code>z.boolean()</code>, etc.</li>
                     </ul>
-                </ul>
+                </div>
 
                 <p>To parse and validate input, example:</p>
                 <pre><code>
@@ -81,17 +86,19 @@ console.log(userSchema.parse(user))
 {firstName: 'Juan', email: 'test@gmail.com'}
 `}
                 </code></pre>
-                <p><code>{`<schema>.safeParse()`}</code></p>
-                <ul>
-                    <li><strong>Does not automatically throws error</strong>.</li>
-                    <li>Returns a boolean value of the status and other details about the error.</li>
-                </ul>
+                <div className="[&>ul]:mb-5 [&>ul>li]:ml-10 [&>ul>li]:list-disc">
+                    <p><code>{`<schema>.safeParse()`}</code></p>
+                    <ul>
+                        <li><strong>Does not automatically throws error</strong>.</li>
+                        <li>Returns a boolean value of the status and other details about the error.</li>
+                    </ul>
 
-                <p><code>{`<schema>.parse()`}</code></p>
-                <ul>
-                    <li>Much more strict version.</li>
-                    <li><strong>Automatically throws error</strong>.</li>
-                </ul>
+                    <p><code>{`<schema>.parse()`}</code></p>
+                    <ul>
+                        <li>Much more strict version.</li>
+                        <li><strong>Automatically throws error</strong>.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     )
@@ -100,9 +107,9 @@ console.log(userSchema.parse(user))
 const BasicUsage = _ => {
     return (
         <div>
-            <h1>{guideTitles[2].title}</h1>
+            <h2>{guideTitles[2].title}</h2>
             <div>
-                <p>1. Schema Building</p>
+                <h3>1. Schema Building</h3>
                 <pre><code>
 {`</> JavaScript
 import { z } from 'zod'
@@ -135,14 +142,21 @@ console.log(userSchema.parse(user))
                 <p>Console Output:</p>
                 <pre><code>
 {`{success: true, data: {…}}
-    {firstName: 'Juan', email: 'test@gmail.com', profileUrl: 'https://www.myprofile.com', age: 18, friends: Array(3), …}
+{
+    firstName: 'Juan', 
+    email: 'test@gmail.com', 
+    profileUrl: 'https://www.myprofile.com', 
+    age: 18, 
+    friends: Array(3), 
+    …
+}
 `}
                 </code></pre>
             </div>
             <hr className="--hr-faded" />
 
             <div>
-                <h2>2. Pure Hardcoded Form</h2>
+                <h3>2. Pure Hardcoded Form</h3>
                 <pre><code>
 {`</> JavaScript
 import z from "zod"
@@ -207,7 +221,7 @@ export default function HardcodedForm() {
             <hr className="--hr-faded" />
 
             <div>
-                <h2>3. Integration: Zod and React Hook Form</h2>
+                <h3>3. Integration: Zod and React Hook Form</h3>
                 <pre><code>
 {`</> JavaScript
 import { z } from 'zod'
@@ -253,7 +267,7 @@ function capitalize(str) {
             <hr className="--hr-faded" />
             
             <div>
-                <h2>4. With API Request</h2>
+                <h3>4. With API Request</h3>
                 <pre><code>
 {`</> TypeScript
 import { z } from "zod";
@@ -291,7 +305,7 @@ export async function getUsers(filters: UsersFilters) {
             <hr className="--hr-faded" />
 
             <div>
-                <h2>5. Working with <code>.env</code> files</h2>
+                <h3>5. Working with <code>.env</code> files</h3>
                 <p>Supposed the DIR is:</p>
                 <pre><code>
 {`/root-proj
@@ -354,8 +368,8 @@ export async function getUsers(filters) {
 const PrimitiveTypes = _ => {
     return (
         <div>
-            <h1>{guideTitles[3].title}</h1>
-            <p>Basic JS value types.</p>
+            <h2>{guideTitles[3].title}</h2>
+            <p className="mb-5">Basic JS value types.</p>
             <h3>1. String &mdash; <code>z.string()</code></h3>
             <pre><code>
 {`const userSchema = z.object({
@@ -402,8 +416,8 @@ const PrimitiveTypes = _ => {
 const Structures = _ => {
     return (
         <div>
-            <h1>Structures</h1>
-            <p>Containers that hold other types:</p>
+            <h2>Structures</h2>
+            <p className="mb-5">Containers that hold other types.</p>
 
             <h3>1. Object &mdash; <code>{`z.object({ <key>: <zMethod> })`}</code></h3>
             <pre><code>
@@ -490,10 +504,11 @@ const StringFormat = _ => {
 const Literals = _ => {
     return (
         <div>
-            <h1>Literals</h1>
-            <p>An exact specific value.</p>
+            <h2>Literals</h2>
+            <p className="mb-5">An exact specific value.</p>
 
-            <ul>
+            <p>Example:</p>
+            <ul className="[&>li]:ml-10 [&>li]:list-disc [&>li]:mb-1">
                 <li><code>z.literal("admin")</code></li>
                 <li><code>z.literal(42)</code></li>
                 <li><code>z.literal(true)</code></li>
@@ -504,17 +519,17 @@ const Literals = _ => {
 
 const CombiningTypes = _ => {
     return (
-        <div>
-            <h1>Combining Types</h1>
+        <div className="[&>p]:mb-10">
+            <h2>Combining Types</h2>
 
             <h3>1. Union &mdash; <code>{`z.union([ <zMethod1>, <zMethod2> ])`}</code></h3>
-            <p>Either/or these types</p>
+            <p>Either/or these types.</p>
 
             <h3>2. Discrimated Union &mdash; <code>{`z.discriminatedUnion("type", [...])`}</code></h3>
-            <p>Smarter union with a key</p>
+            <p>Smarter union with a key.</p>
 
             <h3>3. Intersection &mdash; <code>{`z.intersection(<SchemaA>, <SchemaB>)`}</code></h3>
-            <p>Must satisfy both types</p>
+            <p>Must satisfy both types.</p>
 
             <h3>4. Enumerated &mdash; <code>{`z.enum(["admin", "user", "guest"])`}</code></h3>
             <p>One of these types.</p>
@@ -524,8 +539,8 @@ const CombiningTypes = _ => {
 
 const ModifiersAndSpecialWrappers = _ => {
     return (
-        <div>
-            <h1>Modifiers/Special Wrappers</h1>
+        <div className="[&>p]:mb-10">
+            <h2>Modifiers/Special Wrappers</h2>
             <h3>1. Optional &mdash; <code>z.optional(z.string())</code></h3>
             <p>The indicated value or undefined.</p>
 
@@ -551,8 +566,8 @@ const ModifiersAndSpecialWrappers = _ => {
 
 const TypeInference = _ => {
     return (
-        <div>
-            <h1>Type Inference</h1>
+        <div className="[&>p]:mb-1">
+            <h2>Type Inference</h2>
             <p>Arguably one of Zod's killer features.</p>
             <p>Not a validator but very important.</p>
             <p><strong>Automatically gives you the TypeScript type from your schema</strong> &mdash; no duplication!</p>

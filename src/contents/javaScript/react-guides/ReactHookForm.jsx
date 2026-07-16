@@ -1,47 +1,25 @@
 import { useState } from "react"
 
-const guideTitles = {
-    1: 'Basics and Setup',
-    2: "Validations and Messages",
-    3: "Async and Fetching API from Backend",
-    4: "Additional Techniques",
-}
-
 export default function C21ReactHookForm({ title }) {
-    const [selectedId, setSelectedId] = useState(0)
-    
-    let showGuide
-    switch(selectedId) {
-        case 1: 
-            showGuide = <Basics />
-            break
-        case 2:
-            showGuide = <ValidationsAndMessages />
-            break
-        case 3:
-            showGuide = <AsyncAndFetchingFromBackend />
-            break
-        case 4:
-            showGuide = <AdditionalTechniques />
-            break
-        default:
-            break
-    }
+    const [guideId, setGuideId] = useState(1)
 
     return (
-        <div>
-            <h1>{title} Guides</h1>
+        <div className="[&_h2]:text-2xl [&_h2,&_h3]:font-bold [&_h2]:mb-5 [&_h3]:text-xl [&_h3]:mb-3">
+            <h1 className="text-4xl font-bold mb-5">{title} Guides</h1>
 
-            <ol>{Object.keys(guideTitles).map(id => <li key={id} onClick={_ => setSelectedId(Number(id))}
-                >{guideTitles[id]}</li>)}
-            </ol>
-
-            {(selectedId > 0) && (
-                <>
-                    <hr/>
-                    {showGuide}
-                </>
-            )}
+            <div className="flex flex-col gap-1 mb-5">
+                {Object.keys(guideTitles).map(id => (
+                    <span key={id} onClick={_ => setGuideId(Number(id))}
+                        className={`pl-5 rounded-2xl  ${guideId === Number(id) && "bg-black"}
+                                    hover:bg-black hover:text-(--link-hover-bg-clr) hover:cursor-pointer`}
+                    >
+                        {guideTitles[id].title}
+                    </span>
+                ))}
+            </div>
+            <hr className="mb-5"/>
+            
+            {guideTitles[guideId].comp}
         </div>
     )
 }
@@ -49,9 +27,9 @@ export default function C21ReactHookForm({ title }) {
 const Basics = _ => {
     return (
         <div>
-            <h1>{guideTitles[1]}</h1>
-            <p><code>useForm()</code> can be unpacked with:</p>
-            <ul>
+            <h2>{guideTitles[1].title}</h2>
+            <p className="mb-3"><code>useForm()</code> can be unpacked with:</p>
+            <ol className="mb-5 [&>ul]:mb-3 [&>li]:ml-5 [&>li]:list-decimal [&_ul>li]:list-disc [&_ul>li]:ml-10 [&_li]:mb-1">
                 <li><code>register</code> </li>
                 <ul><li>Registers variables and records data to object.</li></ul>
 
@@ -61,7 +39,7 @@ const Basics = _ => {
                     <li>A callback &mdash; <strong>needs a submission function</strong>.</li>
                 </ul>
 
-            </ul>
+            </ol>
             <pre><code>
 {`</> JavaScript
 import { useForm } from "react-hook-form"
@@ -95,14 +73,16 @@ export default function App() {
             </code></pre>
             
             <h2>Optional Parameters</h2>
-            <p><code>register()</code> have second parameter for optional configurations such as:</p>
-            <ul>
-                <li><code>required:</code></li>
-                <li><code>validate:</code></li>
-                <li><code>minLengh:</code></li>
-            </ul>
+            <div className="mb-5">
+                <p className="mb-3"><code>register()</code> have second parameter for optional configurations such as:</p>
+                <ul className="[&>li]:mb-1 [&>li]:ml-10 [&>li]:list-disc">
+                    <li><code>required: {`<value>`}</code></li>
+                    <li><code>validate: {`<value>`}</code></li>
+                    <li><code>minLengh: {`<value>`}</code></li>
+                </ul>
+            </div>
 
-            <p>Example usage:</p>
+            <p className="font-bold">Example usage:</p>
             <pre><code>
 {`</> JavaScript
 // Email Input
@@ -131,8 +111,8 @@ export default function App() {
 const ValidationsAndMessages = _ => {
     return (
         <div>
-            <h1>{guideTitles[2]}</h1>
-            <ul>
+            <h2>{guideTitles[2].title}</h2>
+            <ul className="mb-5 [&>ul]:mb-3 [&>li]:ml-5 [&>li]:mb-1 [&_li]:list-disc [&>ul>li]:ml-10">
                 <li><code>register()</code> have second parameter to put message.</li>
                 <ul>
                     <li>Can param <strong>can be set to return a string</strong> to show a message.</li>
@@ -202,10 +182,10 @@ export default function App() {
 const AsyncAndFetchingFromBackend = _ => {
     return (
         <div>
-            <h1>{guideTitles[3]}</h1>
-            <h2>A. Bare Basic Async Backend Fetching</h2>
-            <p><code>{`{ formState: { isSubmitting }, } = useForm()`}</code></p>
-            <ul>
+            <h2>{guideTitles[3].title}</h2>
+            <h3>A. Bare Basic Async Backend Fetching</h3>
+            <p className="mb-2"><code>{`{ formState: { isSubmitting }, } = useForm()`}</code></p>
+            <ul className="[&>li]:ml-5 [&>li]:list-disc">
                 <li><code>isSubmitting</code> acts like <code>isLoading</code> in @tanstack useQuery</li>
                 <li><strong>Returns boolean value</strong> to indicate that <i>is in state of processing submission</i>.</li>
             </ul>
@@ -279,7 +259,9 @@ export default function App() {
 }
 `}
             </code></pre>
-            
+            <hr className="--hr-faded"/>
+
+
             <h2>B. Handling Backend Fetching Errors</h2>
 
             <h3>1. Destructure <code>setError</code></h3>
@@ -289,7 +271,7 @@ export default function App() {
             </ul>
 
             <h3>2. Encaptulate fetching with <code>try-catch</code> block</h3>
-            <p>A. Referencing to email input errors.</p>
+            <p className="font-bold">A. Referencing to email input errors.</p>
             <pre><code>
 {`</> JavaScript
 async function onSubmit(data) {
@@ -305,12 +287,12 @@ async function onSubmit(data) {
 }
 `}
             </code></pre>
-            <ul>
+            <ul className="mb-5 [&>li]:ml-5 [&>li]:list-disc">
                 <li>This code supposed to <strong>throw error when an email input is already taken</strong>.</li>
                 <li>Only throws solely referencing from email input.</li>
             </ul>
 
-            <p>B. Referencing any input in the form or as a whole.</p>
+            <p className="font-bold">B. Referencing any input in the form or as a whole.</p>
             <p>Use <code>{`setError("root", { ... })`}</code> on <code>catch</code> instead.</p>
             <pre><code>
 {`</> JavaScript
@@ -329,7 +311,9 @@ async function onSubmit(data) {
             </code></pre>
             <p>Then show to HTML the error message:</p>
             <pre><code>{`{error.root && <div>{error.root.message}</div>}`}</code></pre>
-            <ul><li><code>error.root.message</code> is where error message can be accessed.</li></ul>
+            <ul className="mb-5">
+                <li className="ml-10 list-disc"><code>error.root.message</code> is where error message can be accessed.</li>
+            </ul>
             
             <h2>Full Sample Code</h2>
             <pre><code>
@@ -403,17 +387,17 @@ export default function App() {
 const AdditionalTechniques = _ => {
     return (
         <div>
-            <h1>{guideTitles[4]}</h1>
+            <h2>{guideTitles[4].title}</h2>
 
             <div>
-                <h2>A. Setting Default Values</h2>
-                <p><code>{`useForm({ defaultValues: {<key>: <val>} })`}</code></p>
-                <ul>
+                <h3>A. Setting Default Values</h3>
+                <p className="mb-3"><code>{`useForm({ defaultValues: {<key>: <val>} })`}</code></p>
+                <ul className="[&>li]:ml-10 [&>li]:list-disc [&>li]:mb-1 mb-5">
                     <li><code>defaultValues:</code> Allows to set initail values on the field.</li>
                     <li><code>{`defaultValues: {<key>: <val>}`}</code>, <code>key</code> must be an existing input field and <code>val</code> is the default value.</li>
                 </ul>
 
-                <p>Example Usage:</p>
+                <p className="font-bold">Example Usage:</p>
                 <pre><code>
 {`</> JavaScript
 import { useForm } from "react-hook-form";
@@ -453,7 +437,7 @@ export default function App() {
             <div>
                 <h2>B. Integration with Zod library</h2>
                 <p>Other than <code>react-hook-form</code>, install other dependencies:</p>
-                <ul>
+                <ul className="[&>li]:ml-5 [&>li]:list-disc [&>li]:mb-1">
                     <li><code>zod</code></li>
                     <li><code>@hookform/resolvers</code></li>
                 </ul>
@@ -519,4 +503,11 @@ export default function App() {
             </div>
         </div>
     )
+}
+
+const guideTitles = {
+    1: {title: 'Basics and Setup', comp: <Basics />},
+    2: {title: "Validations and Messages", comp: <ValidationsAndMessages />},
+    3: {title: "Async and Fetching API from Backend", comp: <AsyncAndFetchingFromBackend />},
+    4: {title: "Additional Techniques", comp: <AdditionalTechniques />},
 }

@@ -65,14 +65,13 @@ export default function ReactGuide() {
 
 function C1CreatingReactEnvironment() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2]:font-bold [&_h2,&_ol,&_ul]:mb-5 [&_li]:ml-10 [&_li]:mb-1 [&_li]:list-disc'>
             <section id="react-notes__creating-react-environment">
-                <h1><a href="#">1.</a> Creating React Environment</h1>
+                <h1 className='text-4xl font-bold mb-5'>Creating React Environment</h1>
                 <article>
-                    <div>
+                    <div className='mb-5'>
                         <ol>
                             <li>Make sure <code>Node.js</code> is already installed in the computer (download source: <code>nodejs.org</code>)</li>
-                            
                         </ol>
                     </div>
 
@@ -147,8 +146,10 @@ VITE v7.3.0  ready in 728 ms
 ➜  Network: use --host to expose
 ➜  press h + enter to show help`}
                         </code></pre>
-                        <p>Environment successfully set and already running. You are good to go.</p>
-                        <p><code>Local:   http://localhost:5173/</code> is the web url. Press CTRL + left click to open.</p>
+                        <div className='mb-5 [&>p]:mb-1'>
+                            <p>Environment successfully set and already running. You are good to go.</p>
+                            <p><code>Local:   http://localhost:5173/</code> is the web url. Press CTRL + left click to open.</p>
+                        </div>
                     </div>
 
                     <div>
@@ -177,9 +178,12 @@ C:/Users/Acer/Documents/Software Development/my-react-app><span className="--yel
 
 function C2ProjectStructure() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2]:font-bold [&_h2,&_ol,&_ul]:mb-5 
+                        [&_ul>li]:ml-15 [&_li]:mb-1 [&_li]:list-disc
+                        [&_ol>li]:font-bold [&_ol>li]:text-xl'
+        >
             <section id="react-notes__project-dir-structure">
-                <h1><a href="#">2.</a> Quick details about the Project Structure of React Application</h1>
+                <h1 className='text-4xl font-bold mb-5'>Project Structure of React Application</h1>
                 <article>
                     <div>
                         <ol>
@@ -256,9 +260,11 @@ function C2ProjectStructure() {
 
 function C3ComponentBasics() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-5
+                        [&_ul]:mb-5 [&_ul>li]:ml-10 [&_ul>li]:list-disc'
+        >
             <section id="react-notes__component-basics">
-                <h1><a href="#">3.</a> Components Basics</h1>
+                <h1 className='text-4xl font-bold mb-5'>Components Basics</h1>
                 <article>
                     <div>
                         <h2>A. Awareness of the Ready-made Sample Projects</h2>
@@ -324,6 +330,7 @@ function App() {
                             </ul>
                         </ol>
                     </div>
+                    <hr className='--hr-faded' />
 
                     <div>
                         <h2>B. Component Creation</h2>
@@ -415,16 +422,15 @@ export default function App() {
                     </div>
                 </article>
             </section>
-            <hr />
         </div>
     )
 }
 
 function C4CardComponents() {
     return (
-        <div>
+        <div className='[&_ul>li]:ml-10 [&_ul>li]:list-disc [&_ul]:mb-5'>
             <section id="react-notes__card-components">
-                <h1><a href="#">4.</a> Card Components</h1>
+                <h1 className='text-4xl font-bold mb-5'>Card Components</h1>
                 <article>
                     <div>
                         <ul>
@@ -457,13 +463,16 @@ export default function Card() {
 
 function C5AddingCssStyle() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-5
+                        [&_ul]:mb-5 [&_ul>li]:ml-10 [&_ul>li]:list-disc'
+        >
             <section id="react-notes__adding-css-styles">
-                <h1><a href="#">5.</a> Adding CSS Styles</h1>
+                <h1 className='text-4xl font-bold mb-5'>Adding CSS Styles</h1>
                 <article>
                     <div>
-                        <p>(The guide does not cover external framework (e.g. tailwind) or preprocessors (e.g. SAS))</p>
-                        <p>Convers only basics:</p>
+                        <p className='mb-5'>(The guide does not cover external framework (e.g. tailwind) or preprocessors (e.g. SAS))</p>
+                        
+                        <h2>Covers only basics:</h2>
                         <ol>
                             <li><strong>External</strong></li>
                             <ul>
@@ -556,12 +565,12 @@ export default function App() {
 
 function C6PropsPropTypesAndDefaultProps() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2,&_ul]:mb-5 [&_ul>li]:ml-10 [&_ul>li]:list-disc'>
             <section id="react-notes__props-and-prop-types">
-                <h1><a href="#">6.</a> Props, PropTypes, and defaultProps (<span class="--red">abandoned module</span>)</h1>
+                <h1 className='text-4xl font-bold mb-5'>Props, PropTypes, and defaultProps (<span class="--red">abandoned module</span>)</h1>
                 <article>
                     <div>
-                        <p><strong>prop</strong></p>
+                        <h2><strong>prop</strong></h2>
                         <ul>
                             <li>Short term for "properties".</li>
                             <li>Are read-only properties that are shared between components.</li>
@@ -569,14 +578,14 @@ function C6PropsPropTypesAndDefaultProps() {
                             <li>Usage construct: <code>{`<Component key=value />`}</code></li>
                         </ul>
 
-                        <p><strong>prop types</strong></p>
+                        <h2><strong>prop types</strong></h2>
                         <ul>
                             <li>A mechanism that ensures that the passed value is of the correct datatype.</li>
                             <li>A good practice when working with props and debugging.</li>
                             <li>Usage construct: <code>{`<propKey>: PropTypes.<propType>`}</code></li>
                         </ul>
 
-                        <p><strong>defaultProps</strong></p>
+                        <h2><strong>defaultProps</strong></h2>
                         <ul>
                             <li>Are default values for props <i>in case they are not passed from the parent component</i>.</li>
                             <li>Usage construct: <code>&lt;defaultKey: defaultVal</code></li>
@@ -590,9 +599,9 @@ function C6PropsPropTypesAndDefaultProps() {
 
 function C7ConditionalRendering() {
     return (
-        <div>
+        <div className='[&_ul]:mb-5 [&_ul>li]:ml-10 [&_ul>li]:list-disc'>
             <section id="react-notes__conditional-rendering">
-                <h1><a href="#">7.</a> Conditional Rendering</h1>
+                <h1 className='text-4xl font-bold mb-5'>Conditional Rendering</h1>
                 <article>
                     <div>
                         <ul>
@@ -634,9 +643,9 @@ Tutor5UserGreeting.propTypes = {
 
 function C8RenderingList() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-5'>
             <section id="react-notes__rendering-list">
-                <h1><a href="#">8.</a> Rendering List</h1>
+                <h1 className='text-4xl font-bold mb-5'>Rendering List</h1>
                 <article>
                     <div>
 
@@ -801,9 +810,9 @@ function App() {
 
 function C9ClickEvents() {
     return (
-        <div>
+        <div className='[&_ul]:mb-5 [&_ul>li]:list-disc [&_ul>li]:ml-10'>
             <section id="react-notes__click-events">
-                <h1><a href="#">9.</a> Click Events</h1>
+                <h1 className='text-4xl font-bold mb-5'>Click Events</h1>
                 <article>
                     <div>
                         <ul>
@@ -872,12 +881,15 @@ function App() {
 
 function C10ReactHookAndUseState() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2]:font-bold [&_h2,&_ul]:mb-5
+                        [&_h3]:font-bold [&_h3]:mb-3
+                        [&_ul>li]:list-disc [&_ul>li]:ml-10 [&_ul>li]:mb-1'
+        >
             <section id="react-notes__react-hook-and-useState">
-                <h1><a href="#">10.</a> React Hook and <code>useState()</code></h1>
+                <h1 className='text-4xl font-bold mb-5'>React Hook and <code>useState()</code></h1>
                 <article>
                     <div>
-                        <h3>React Hook</h3>
+                        <h2>React Hooks</h2>
                         <ul>
                             <li>Special function that allows functional components to use React features without writing class components (React v16.8)</li>
                             <li>Includes:</li>
@@ -969,15 +981,17 @@ export default function App() {
 
 function C11OnChange() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-5
+                        [&_ul]:mb-5 [&_ul>li]:list-disc'
+        >
             <section id="react-notes__onChange-func">
-                <h1><a href="#">11.</a> <code>onChange()</code></h1>
+                <h1 className='text-4xl font-bold mb-5'><code>onChange()</code></h1>
                 <article>
                     <div>
                         <ul>
-                            <li>Event handler used primarily with form element.</li>
-                            <li>Examples:</li>
-                            <ul>
+                            <li className='mb-5'>Event handler used primarily with form element.</li>
+                            <li className='font-bold mb-2'>Examples:</li>
+                            <ul className='ml-10 [&>li]:mb-1'>
                                 <li><code>{`<input>`}</code></li>
                                 <li><code>{`<textarea`}</code></li>
                                 <li><code>{`<select>`}</code></li>
@@ -1003,6 +1017,7 @@ export default function App() {
 }`}
                         </code></pre>
                     </div>
+                    <hr className='--hr-faded' />
 
                     <div>
                         <h2>A. <code>{`<input>`}</code> and <code>{`<textarea>`}</code></h2>
@@ -1097,20 +1112,23 @@ export default function Tutor9MyComponent() {
 
 function C12UpdaterFunction() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2]:font-bold
+                        [&,&_h2,&_ul]:mb-5 [&_ul>li]:list-disc [&_ul>li]:ml-10 [&_ul>li]:mb-1'
+        >
             <section id="react-notes__updater-function">
-                <h1><a href="#">12.</a> Updater Function</h1>
+                <h1 className='text-4xl font-bold mb-5'>Updater Function</h1>
                 <article>
                     <div>
                         <ul>
                             <li>A function passed as an argument to <code>setState()</code> usually.</li>
-                            <ul><li>Example: <code>{`setYear(prevYear => prevYear + 1)`}</code></li></ul>
+                            <ul className='ml-5'><li><i>Example</i>: <code>{`setYear(prevYear => prevYear + 1)`}</code></li></ul>
                             
                             <li>Allows for safe updates based on the previous state.</li>
                             <li>Used with multiple state updates and asynchronous functions.</li>
                             <li><strong>Good practice</strong>.</li>
                         </ul>
                     </div>
+                    <hr className='--hr-faded'/>
 
                     <div>
                         <h2>A. Why we need updater function?</h2>
@@ -1140,8 +1158,9 @@ export default function Tutor10UpdaterFunction() {
     )
 }`}
                         </code></pre>
-                        <p>The <code>count</code> would only increase by one even there are multiple <code><span className="--yellow">setCount</span>(<span class="--blue">count</span> + 1);</code></p>
-                        <p>The reason why so:</p>
+                        <p className='mb-5'>The <code>count</code> would only increase by one even there are multiple <code><span className="--yellow">setCount</span>(<span class="--blue">count</span> + 1);</code></p>
+                        
+                        <p className='font-bold'>The reason why so:</p>
                         <ul>
                             <li>It uses the <strong>current</strong> state to calculate the <strong>next</strong> state.</li>
                             <li><code>setX()</code> functions do no trigger an update.</li>
@@ -1150,6 +1169,7 @@ export default function Tutor10UpdaterFunction() {
                         </ul>
                         <p>To do so &mdash; <i>use with multiple state updates</i> and <i>asynchronous functions</i>.</p>
                     </div>
+                    <hr className='--hr-faded'/>
 
                     <div>
                         <h2>B. Updating Function Basics</h2>
@@ -1180,7 +1200,7 @@ export default function Tutor10UpdaterFunction() {
     )
 }`}
                         </code></pre>
-                        <p>Why this works?</p>
+                        <p className='font-bold'>Why this works?</p>
                             <ul>
                                 <li>It takes the <strong>pending</strong> state to calculate <strong>next</strong> state.</li>
                                 <li>React puts your updater function in a queue (waiting in line).</li>
@@ -1196,9 +1216,9 @@ export default function Tutor10UpdaterFunction() {
 
 function C13UpdateObjectInState() {
     return (
-        <div>
+        <div className=''>
             <section id="react-notes__update-object-in-state">
-                <h1><a href="#">13.</a> Update Object in State</h1>
+                <h1 className='text-4xl font-bold mb-5'>Update Object in State</h1>
                 <article>
                     <div>
                         <pre><code>
@@ -1242,13 +1262,13 @@ export default function Tutor11UpdateObjState() {
 
 function C14UpdateArraysInState() {
     return (
-        <div>
+        <div className='[&,&_ul]:mb-5'>
             <section id="react-notes__update-arrays-in-state">
-                <h1><a href="#">14.</a> Update Arrays in State</h1>
+                <h1 className='text-4xl font-bold mb-5'>Update Arrays in State</h1>
                 <article>
                     <div>
-                        <p>Food list:</p>
-                        <ul>
+                        <p className='font-bold'>Food list:</p>
+                        <ul className='mb-5 [&>li]:ml-10 [&>li]:list-disc'>
                             <li>Display food list.</li>
                             <li>Add food.</li>
                             <li>Remove food.</li>
@@ -1297,11 +1317,11 @@ function C15UpdateArrayOfObjectsInState() {
     return (
         <div>
             <section id="react-note__update-arrays-of-object-in-state">
-                <h1><a href="#">15.</a> Update Array of Objects in State</h1>
+                <h1 className='text-4xl font-bold mb-5'>Update Array of Objects in State</h1>
                 <article>
                     <div>
-                        <h2>List of Cars:</h2>
-                        <ul>
+                        <h2 className='text-2xl font-bold mb-1'>List of Cars:</h2>
+                        <ul className='mb-5 [&>li]:ml-10 [&>li]:list-disc'>
                             <li>Data shape: <code>{`[{year: int, make: str, model: str}, ...]`}</code></li>
                             <li>Display car objects.</li>
                             <li>Add car object.</li>
@@ -1368,10 +1388,10 @@ function C16UseEffect() {
     return (
         <div>
             <section id="react-note__useEffect-func">
-                <h1><a href="#">16.</a> <code>useEffect()</code></h1>
+                <h1 className='text-4xl font-bold mb-5'><code>useEffect()</code></h1>
                 <article>
                     <div>
-                        <ul>
+                        <ul className='[&,&>ul,&>ol]:mb-5 [&_ul>li,&_ol>li]:ml-10 [&_ul>li,&_ol>li]:list-disc [&_ul>li,&_ol>li]:mb-1'>
                             <li>React hook that tells React DO SOME CODE WHEN (pick one):</li>
                             <ul>
                                 <li>This component <strong>re-renders</strong></li>
@@ -1404,34 +1424,39 @@ function C16UseEffect() {
 
 function C17UseContext() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2,&_h3]:font-bold [&_h2]:mb-5
+                        [&_h3]:text-xl [&_h3]:mb-3
+                        [&_div>ul,&_div>ol]:mb-5'
+        >
             <section id="react-note__useContext-func">
-                <h1><a href="#">17.</a> <code>useContext()</code></h1>
+                <h1 className='text-4xl font-bold mb-5'><code>useContext()</code></h1>
                 <article>
                     <div>
-                        <ul>
+                        <ul className='[&>li]:mb-5 [&_ul>li,&_ol>li]:ml-10 [&_ul>li,&_ol>li]:list-disc'>
                             <li>React Hook that allows you to share values between multiple levels of components without passing props through each level.</li>
+                            
                             <li><strong>Provider Component</strong></li>
                             <ol>
                                 <li><code>{`import {createContext from 'react'}`}</code></li>
                                 <li><code>{`export const <ContextVar> = createContext()`}</code></li>
-                                <li><pre><code>
+                                <pre><code>
 {`<ContextVar.Provider value={<value>} >
     <Child />
 </ContextVar</span>.Provider>`}
-                                    </code></pre></li>
+                                    </code></pre>
                             </ol>
 
                             <li><strong>Consumer Components</strong></li>
                             <ol>
-                                <li><pre><code>
+                                <pre><code>
 {`import React, {useContext} from 'react';
 import {<ContextVar>} from './ComponentA';`}
-                                </code></pre></li>
+                                </code></pre>
                                 <li><code>{`const value = useContext(<ContextVar>);`}</code></li>
                             </ol>
                         </ul>
                     </div>
+                    <hr className='--hr-faded'/>
                     
                     <div>
                         <h2>A. Beginners Way (Viable but tedious)</h2>
@@ -1452,7 +1477,7 @@ import {<ContextVar>} from './ComponentA';`}
                         <p>Importing are chained:</p>
                         <pre><code>ComponentA.jsx <span className="--yellow">&rarr;</span> ComponentB.jsx <span className="--yellow">&rarr;</span> ComponentC.jsx <span className="--yellow">&rarr;</span> ComponentD.jsx</code></pre>
 
-                        <p>Beginner's way (Using Props):</p>
+                        <p className='font-bold mb-3'>Beginner's way (Using Props):</p>
                         <ul><li><code>ComponentA.jsx</code>:</li></ul>
                         <pre><code>
 {`import ComponentB from "../tutorial-14__useEffect-hook/ComponentB";
@@ -1488,6 +1513,7 @@ export default function Tutor15MyComponent() {
 }`}
                         </code></pre>
                     </div>
+                    <hr className='--hr-faded'/>
 
                     <div>
                         <h2>B. Use of <code>useContext()</code></h2>
@@ -1544,28 +1570,31 @@ export default function ComponentD() {
 
 function C18UseRef() {
     return (
-        <div>
+        <div className='[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-5'>
             <section id="react-note__useRef-func">
-                <h1><a href="#">18.</a> <code>useRef()</code></h1>
+                <h1 className='text-4xl font-bold mb-5'><code>useRef()</code></h1>
                 <article>
-                    <div>
+                    <div className='[&>ul,&>ol]:mb-5 [&>ul>li]:ml-10 [&>ul>li]:list-disc [&>ul>li]:mb-1'>
                         <ul>
                             <li>Means "use Reference"</li>
                             <li>Very similar to <code>useState()</code>.</li>
                             <li>Does not cause re-renders when its value changes.</li>
                             <li>When you want a component to "remember" some information, but you don't want that information to trigger new renders.</li>
                             
-                            <li>Helpful on:</li>
-                            <ol>
-                                <li>Accessing/Interacting with DOM elements</li>
-                                <li>Handling Focus, Animations, and Transitions</li>
-                                <li>Managing Timers and Intervals</li>
-                            </ol>
+                            
                         </ul>
+
+                        <p>Helpful on:</p>
+                        <ol className='[&>li]:ml-15 [&>li]:list-disc'>
+                            <li>Accessing/Interacting with DOM elements</li>
+                            <li>Handling Focus, Animations, and Transitions</li>
+                            <li>Managing Timers and Intervals</li>
+                        </ol>
 
                         <p><code>useState()</code></p>
                         <ul><li>Re-renders the component when the state value change.</li></ul>
                     </div>
+                    <hr className='--hr-faded'/>
 
                     <div>
                         <h2>A. <code>useRef()</code> Does Not Re-renders</h2>
@@ -1600,6 +1629,7 @@ export default function Tutor16MyComponent() {
 {`ref.current = {'current': 1}`}
                         </code></pre>
                     </div>
+                    <hr className='--hr-faded'/>
 
                     <div>
                         <h2>B. Accessing DOM</h2>

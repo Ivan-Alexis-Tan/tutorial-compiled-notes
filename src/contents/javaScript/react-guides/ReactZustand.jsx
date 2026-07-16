@@ -1,39 +1,27 @@
 import { useState } from "react"
 
 export default function C20ZustandGuide({ title }) {
-    const titleGuides = {
-        1: 'Installation and Setup',
-        2: "Hook Usage",
-        3: "Recommended Techniques"
-    }
-    const titleId = Object.keys(titleGuides)
-    const [id, setId] = useState(0)
-
-    let showGuide
-    switch(id) {
-        case 1:
-            showGuide = <InstallationAndSetup />
-            break
-        case 2:
-            showGuide = <HookUsage />
-            break
-        case 3:
-            showGuide = <RecommendedTechniques />
-            break
-    }
+    const titleIds = Object.keys(titleGuides)
+    const [guideId, setGuideId] = useState(1)
 
     return (
-        <div>
-            <h1>{title} Guide</h1>
+        <div className="[&_h2]:text-2xl [&_h2,&_h3]:font-bold [&_h2]:mb-5 [&_h3]:text-xl [&_h3]:mb-3">
+            <h1 className="text-4xl font-bold mb-5">{title} Guide</h1>
 
-            <ul>{titleId.map(id => <li key={id} 
-                    onClick={_ => setId(Number(id))}
-                    className="--underline-hover"
-                    > {titleGuides[id]}
-                </li>
-            )}</ul>
-
-            {(id >= 1) && showGuide}
+            <div className="flex flex-col gap-1 mb-5">
+                {titleIds.map(id => (
+                    <span key={id} 
+                        onClick={_ => setGuideId(Number(id))}
+                        className={`pl-5 rounded-2xl ${guideId === Number(id) && "bg-black"}
+                                    hover:bg-black hover:text-(--link-hover-bg-clr) hover:cursor-pointer`}
+                    > 
+                        {titleGuides[id].title}
+                    </span>
+                ))}
+            </div>
+            <hr className="mb-5"/>
+            
+            {titleGuides[guideId].comp}
         </div>
     )
 }
@@ -90,14 +78,17 @@ export const useCartStore = create((set) => ({
 }))
 `}
                 </code></pre>
-                <p><code>useCartStore</code> allows to <strong>add, remove, or clearing products on cart</strong> (example of online shopping app)</p>
-                <p>Functionality:</p>
-                <ul>
-                    <li><code>cart</code> &mdash; an array data structure for storing selected products.</li>
-                    <li><code>addToCart</code> &mdash; adds product to cart.</li>
-                    <li><code>removeFromCart</code> &mdash; removes product from the cart.</li>
-                    <li><code>clearCart</code> &mdash; clears cart into an empty array.</li>
-                </ul>
+                <div className="mb-5">
+                    <p><code>useCartStore</code> allows to <strong>add, remove, or clearing products on cart</strong> (example of online shopping app)</p>
+                    
+                    <p className="font-bold mt-3">Functionality:</p>
+                    <ul className="[&>li]:ml-10 [&>li]:list-disc [&>li]:mb-1">
+                        <li><code>cart</code> &mdash; an array data structure for storing selected products.</li>
+                        <li><code>addToCart</code> &mdash; adds product to cart.</li>
+                        <li><code>removeFromCart</code> &mdash; removes product from the cart.</li>
+                        <li><code>clearCart</code> &mdash; clears cart into an empty array.</li>
+                    </ul>
+                </div>
             </div>
 
             <h3>Example 2: Authentication (UI State)</h3>
@@ -164,12 +155,13 @@ function RecommendedTechniques() {
             <h2>Recommended Techniques</h2>
             <div>
                 <h3>A. Selectors</h3>
-                <ul>
+                <ul className="[&>li]:ml-10 [&>li]:list-disc mb-5">
                     <li><strong>Avoids repetition</strong> of defining the state or function state.</li>
                     <li>Could be created inside <code>/root-proj/stores/cart-store.js</code></li>
                     <li>From there, it can be called easily by importing.</li>
                 </ul>
-                <p>Selector creation: <code>/root-proj/stores/cart-store.js</code></p>
+
+                <p><i>Selector creation</i>: <code>/root-proj/stores/cart-store.js</code></p>
                 <pre><code>
 {`</> js
 import { create } from "zustand"
@@ -224,10 +216,11 @@ export default function Cart() {
 `}
                 </code></pre>
             </div>
+            <hr className="--hr-faded"/>
 
             <div>
                 <h3>B. Use of <code>Immer</code> Library</h3>
-                <ul>
+                <ul className="mb-5 [&>li]:ml-10 [&>li]:list-disc">
                     <li>Manages nested object or API data.</li>
                     <li>Helps to <strong>auto-navigate what to object key to update</strong>, then <strong>auto-copy the rest</strong>.</li>
                 </ul>
@@ -276,7 +269,7 @@ export const useUser = create(set => ({
 `}
                 </code></pre>
                 <p>Works, but:</p>
-                <ul>
+                <ul className="mb-5 [&>li]:ml-10 [&>li]:list-disc">
                     <li>Needs object key navation.</li>
                     <li>Hard coding on copying the old data.</li>
                     <li>Readability is getting worse as the data shape gets longer and more nested.</li>
@@ -304,7 +297,7 @@ export const useUser = create(set => ({
 }))
 `}
                     </code></pre>
-                    <ul>
+                    <ul className="mb-5 [&>li]:ml-5 [&>li]:list-disc">
                         <li>More readable.</li>
                         <li>Easy object key navigation.</li>
                         <li>Less hard coding on copying the rest of the data.</li>
@@ -313,4 +306,10 @@ export const useUser = create(set => ({
             </div>
         </div>
     )
+}
+
+const titleGuides = {
+    1: {title: 'Installation and Setup', comp: <InstallationAndSetup />},
+    2: {title: "Hook Usage", comp: <HookUsage />},
+    3: {title: "Recommended Techniques", comp: <RecommendedTechniques />},
 }
