@@ -23,16 +23,21 @@ export function useSummaryTable({colnames = [], mappedData = mappedDefault}) {
     }
 }
 
-export default function SummaryTable(tableStates = mappedDefault) {
-    const { colnames, mappedData, rowId, setRowId } = tableStates.tableStates
+
+export function mapComponent(name, comp, desc) {
+    return { name, comp, desc }
+}
+
+export default function SummaryTable({ tableStates = mappedDefault, className, tableTitle }) {
+    const { colnames, mappedData, rowId, setRowId } = tableStates
     const mapIds = Object.keys(mappedData)
 
     return (
         rowId === 0
             ? <>
-                <h2 className="text-3xl font-bold my-3">Summary Table</h2>
+                <h2 className="text-3xl font-bold my-3">{tableTitle ?? "Summary Table"}</h2>
                     
-                <div className="flex justify-center mb-10">
+                <div className={`flex justify-center mb-10 ${className ?? ""}`}>
                     <div className="flex justify-start overflow-auto">
                         <table className="min-w-200 max-w-2xl w-full">
                             <thead>
@@ -58,7 +63,7 @@ export default function SummaryTable(tableStates = mappedDefault) {
                 </div>
             </>
             : <>
-                <h3 className="inline hover:text-(--link-hover-text-clr) border rounded-4xl p-1 px-2 text-xl font-bold"
+                <h3 className="inline hover:text-(--link-hover-text-clr) border rounded-4xl p-1 px-2 text-xl cursor-pointer"
                     onClick={_ => setRowId(0)}
                 >&larr; View Summary Table</h3>
 
