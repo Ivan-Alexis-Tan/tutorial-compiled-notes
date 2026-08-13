@@ -1,9 +1,9 @@
 export default function Tailwind1InstallationAndSetup() {
     return (
-        <div>
-            <h1>Installation and Setup</h1>
+        <div className="[&_h1,&_h2,&_h3]:font-bold [&_h1]:text-4xl [&_h2]:text-2xl">
+            <h1 className="mb-5">Installation and Setup</h1>
 
-            <h2 className="text-2xl font-bold">1. Create Project</h2>
+            <h2>1. Create Project</h2>
             <pre><code>
 {`</> Bash
 npm create vite@latest <projectName>
@@ -16,7 +16,7 @@ npm create vite@latest <projectName>
 npm install tailwindcss @tailwincss/vite`}
             </code></pre>
 
-            <h2>3. Configure the Vite plugin</h2>
+            <h2 className="mb-3">3. Configure the Vite plugin</h2>
             <p>Add the <code>@tailwindcss/vite</code> plugin to your Vite configuration <strong>inside the root folder</strong>.</p>
             <pre><code>
 {`//dir> /root-proj/vite.config.ts
@@ -37,10 +37,10 @@ export default defineConfig({
 {`//dir: style.css
 @import "tailwindcss"`}
             </code></pre>
-            <hr />
+            <hr className="mb-5" />
 
             <div>
-                <h2>Installing in a Existing Project</h2>
+                <h2 className="mb-5">Installing in a Existing Project</h2>
 
                 <div>
                     <h3>1. Install Tailwind (if using Vite)</h3>
