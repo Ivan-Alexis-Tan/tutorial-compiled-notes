@@ -175,7 +175,7 @@ const routeData = {
                 guideCode: 'reactGuide',
                 titles: {
                     1: 'Creating React Environment',
-                    2: 'Quick details about the Project Structure of React Application',
+                    2: 'Project File Structure',
                     3: 'Components Basics',
                     4: 'Card Components',
                     5: 'Adding CSS Syles',
