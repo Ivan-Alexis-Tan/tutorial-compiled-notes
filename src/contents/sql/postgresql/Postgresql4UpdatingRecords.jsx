@@ -1,11 +1,12 @@
 import { useState } from "react"
-import DataTable, { ToogleDataTable, useToggleDataTable } from "../../../hooks/useDataTable"
-import { studentsData, studentTHeaders } from "./dummyPSQLData"
+import DataTable, { ToogleDataTable, useToggleDataTable } from "../../../components/useDataTable"
+import { mapStudentData, studentsData, studentTHeaders } from "./dummyPSQLData"
 
 const today = new Date().toDateString()
 const toggleDefault = {
     a1: false,
     b1: false,
+    c1: false,
 }
 
 export default function Postgresql4UpdatingRecords() {
@@ -13,16 +14,17 @@ export default function Postgresql4UpdatingRecords() {
     const [showReturn, setShowReturn] = useState(toggleDefault)
 
     function toogleReturn(key) {
-        console.log(`showReturn =`, showReturn)
         setShowReturn(p => ({...p, [key]: !p[key]}))
     }
 
     return (
         <div className="[&_h2]:mb-5">
             <h1 className="mb-5">Updating Records</h1>
+
+            {/* BASIC SYNTAX AND SUPPOSED EXAMPLE =========================================== */}
             <div>
                 <p className="mb-5">
-                    <strong className="text-red-400">ALWAYS USE <code>WHERE</code></strong> clause to avoid modifying all reacords in the table.
+                    <strong className="text-(--txt-red)">ALWAYS USE <code>WHERE</code></strong> clause to avoid modifying all reacords in the table.
                 </p>
 
                 <div>
@@ -70,6 +72,7 @@ CREATE TABLE students(
             </div>
             <hr className="--hr-faded"/>
 
+            {/* UPDATING SINGLE COLUMN =================================================================== */}
             <div>
                 <h2>1. Update Single Column</h2>
                 <div>
@@ -82,35 +85,26 @@ WHERE id = 1;
                     </code></pre>
                 </div>
 
-                <div className="mb-5">
-                    <div className="mb-5">
-                        <span className="hover:text-(--link-hover-bg-clr) hover:underline underline-offset-4"
-                            onClick={_ => toogleReturn("a1")}
-                        >
-                            👁️Return:
-                        </span>
-                        <p className="mt-2 ml-10">Amir's mark changed from 23 to 95.</p>
-                    </div>
-
-                    {showReturn.a1
-                        && <div className="flex justify-center border p-2 bg-black rounded-2xl">
-                            <div className="flex justify-start items-center gap-5 overflow-auto">
-                                <BaseTable />
-                                <span className="text-6xl">&rarr;</span>
-                                
-                                <div className="w-90">
-                                    <DataTable 
-                                        headers={studentTHeaders} 
-                                        data={{...studentsData, 1: [1, "Amir", 95, today]}} 
-                                    />
-                                </div>
-                            </div>
+                <ToggleReturnDataTable
+                    toggleStates={{ toogleReturn, showReturn }}
+                    toggleId={"a1"}
+                    returnText={`Amir's mark changed from 23 to 95.`}
+                    TableComponent={
+                        <div className="w-90">
+                            <DataTable 
+                                data={studentsData.map(student => {
+                                    if (student.id === 1) return mapStudentData(1, "Amir", 95, today)
+                                    else return student
+                                })} 
+                                className="[&>tbody>tr:first-child>td:nth-child(3)]:text-(--txt-red)"
+                            />
                         </div>
                     }
-                </div>
+                />
             </div>
             <hr className="--hr-faded" />
 
+            {/* UPDATING MULTIPLE COLUMNS =============================================================== */}
             <div>
                 <h2>2. Updating Multiple Columns</h2>
                 <div>
@@ -137,36 +131,27 @@ WHERE id = 2;
                     </code></pre>
                 </div>
 
-                <div className="mb-5">
-                    <div className="mb-5">
-                        <span className="hover:text-(--link-hover-bg-clr) hover:underline underline-offset-4"
-                            onClick={_ => toogleReturn("b1")}
-                        >
-                            👁️Return:
-                        </span>
-                        <p className="mt-2 ml-10">Piyush is now named as "Amit Sharma" with mark of 90.</p>
-                    </div>
-
-                    {showReturn.b1
-                        && <div className="flex justify-center border p-2 bg-black rounded-2xl">
-                            <div className="flex justify-start items-center gap-5 overflow-auto">
-                                <BaseTable />
-                                
-                                <span className="text-6xl">&rarr;</span>
-                                
-                                <div className="justify-start w-90 h-full">
-                                    <DataTable 
-                                        headers={studentTHeaders} 
-                                        data={{...studentsData, 2: [2, "Amit Sharma", 90, today]}} 
-                                    />
-                                </div>
-                            </div>
+                <ToggleReturnDataTable 
+                    toggleStates={{ toogleReturn, showReturn }}
+                    toggleId={"b1"}
+                    returnText={`Piyush is now named as "Amit Sharma" with mark of 90.`}
+                    TableComponent={
+                        <div className="justify-start w-90 h-full">
+                            <DataTable 
+                                data={studentsData.map(student => {
+                                        if (student.id === 1) return mapStudentData(2, "Amit Sharma", 90, today)
+                                        else return student
+                                    })
+                                }
+                                className="[&_tbody>tr:nth-child(2)>td:is(:nth-child(2),:nth-child(3))]:text-(--txt-red)" 
+                            />
                         </div>
                     }
-                </div>
+                />
             </div>
             <hr className="--hr-faded" />
 
+            {/* UPDATING MULTIPLE ROWS ================================================================ */}
             <div>
                 <h2>3. Update Multiple Rows</h2>
                 <div>
@@ -188,15 +173,66 @@ WHERE marks < 80;
 `}
                     </code></pre>
                 </div>
+
+                <ToggleReturnDataTable
+                    toggleStates={{ toogleReturn, showReturn }}
+                    toggleId={"c1"}
+                    returnText={"Yet to be filled."}
+                    TableComponent={
+                        <DataTable 
+                            data={studentsData.map(student => {
+                                    if (student.id === 2) return mapStudentData(2, "Amit Sharma", 90, today)
+                                    else return student
+                                })
+                            }
+                            className="[&_tbody>tr:nth-child(2)>td:is(:nth-child(2),:nth-child(3))]:text-(--txt-red)" 
+                        />
+                    }
+                />
             </div>
         </div>
     )
 }
 
+// Utility Components ===================================================
 const BaseTable = _ => {
     return (
         <div className="flex justify-start w-90 h-full">
-            <DataTable headers={studentTHeaders} data={studentsData} />
+            <DataTable data={studentsData} />
+        </div>
+    )
+}
+
+const CompareToBaseTable = ({ TableComponent }) => {
+    return (
+        <div className="flex justify-center border p-2 bg-black rounded-2xl">
+            <div className="flex justify-start items-center gap-5 overflow-auto">
+                <BaseTable />
+                <span className="text-6xl">&rarr;</span>
+                
+                {TableComponent}
+            </div>
+        </div>
+    )
+}
+
+const ToggleReturnDataTable = ({ toggleId, returnText, TableComponent, toggleStates }) => {
+    return (
+        <div className="mb-5">
+            {/* Return Message and Toggle Switch */}
+            <div className="mb-5">
+                <span className="hover:text-(--link-hover-bg-clr) hover:underline underline-offset-4"
+                    onClick={_ => toggleStates.toogleReturn(toggleId)}
+                >
+                    👁️Return:
+                </span>
+                <p className="mt-2 ml-10">{returnText}</p>
+            </div>
+
+            {/* Return Table */}
+            {toggleStates.showReturn[toggleId]
+                && <CompareToBaseTable TableComponent={TableComponent} />
+            }
         </div>
     )
 }
