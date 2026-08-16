@@ -88,7 +88,7 @@ WHERE id = 1;
                 <ToggleReturnDataTable
                     toggleStates={{ toogleReturn, showReturn }}
                     toggleId={"a1"}
-                    returnText={`Amir's mark changed from 23 to 95.`}
+                    returnText={<>Amir's <code>mark</code> changed from 23 to 95.</>}
                     TableComponent={
                         <div className="w-90">
                             <DataTable 
@@ -96,7 +96,7 @@ WHERE id = 1;
                                     if (student.id === 1) return mapStudentData(1, "Amir", 95, today)
                                     else return student
                                 })} 
-                                className="[&>tbody>tr:first-child>td:nth-child(3)]:text-(--txt-red)"
+                                className="[&_.r0c2]:text-(--txt-red)"
                             />
                         </div>
                     }
@@ -134,7 +134,7 @@ WHERE id = 2;
                 <ToggleReturnDataTable 
                     toggleStates={{ toogleReturn, showReturn }}
                     toggleId={"b1"}
-                    returnText={`Piyush is now named as "Amit Sharma" with mark of 90.`}
+                    returnText={<><code>Piyush</code> is now named as <code>Amit Sharma</code> with mark of 90.</>}
                     TableComponent={
                         <div className="justify-start w-90 h-full">
                             <DataTable 
@@ -143,7 +143,7 @@ WHERE id = 2;
                                         else return student
                                     })
                                 }
-                                className="[&_tbody>tr:nth-child(2)>td:is(:nth-child(2),:nth-child(3))]:text-(--txt-red)" 
+                                className="[&_:is(.r1c1,.r1c2)]:text-(--txt-red)"
                             />
                         </div>
                     }
@@ -177,15 +177,15 @@ WHERE marks < 80;
                 <ToggleReturnDataTable
                     toggleStates={{ toogleReturn, showReturn }}
                     toggleId={"c1"}
-                    returnText={"Yet to be filled."}
+                    returnText={<>Any <code>marks</code> lesser than 80 will increase by 5.</>}
                     TableComponent={
                         <DataTable 
                             data={studentsData.map(student => {
-                                    if (student.id === 2) return mapStudentData(2, "Amit Sharma", 90, today)
-                                    else return student
+                                    if (student.marks < 80) return {...student, marks: student.marks + 5}
+                                    return student
                                 })
                             }
-                            className="[&_tbody>tr:nth-child(2)>td:is(:nth-child(2),:nth-child(3))]:text-(--txt-red)" 
+                            className="[&_:is(.r0c2,.r3c2,.r4c2,.r5c2)]:text-(--txt-red)"
                         />
                     }
                 />
