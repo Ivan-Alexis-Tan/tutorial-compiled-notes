@@ -1,5 +1,5 @@
 import { useState } from "react"
-import DataTable, { ToogleDataTable, useToggleDataTable } from "../../../components/useDataTable"
+import DataTable, { ToggleReturnDataTable, ToogleDataTable, useToggleDataTable } from "../../../components/useDataTable"
 import { mapStudentData, studentsData, studentTHeaders } from "./dummyPSQLData"
 
 const today = new Date().toDateString()
@@ -11,11 +11,7 @@ const toggleDefault = {
 
 export default function Postgresql4UpdatingRecords() {
     const [showCased, setShowCased] = useState(false)
-    const [showReturn, setShowReturn] = useState(toggleDefault)
-
-    function toogleReturn(key) {
-        setShowReturn(p => ({...p, [key]: !p[key]}))
-    }
+    const { useHookTools } = useToggleDataTable({ toggleState: toggleDefault })
 
     return (
         <div className="[&_h2]:mb-5">
@@ -86,7 +82,7 @@ WHERE id = 1;
                 </div>
 
                 <ToggleReturnDataTable
-                    toggleStates={{ toogleReturn, showReturn }}
+                    toggleStates={useHookTools}
                     toggleId={"a1"}
                     returnText={<>Amir's <code>mark</code> changed from 23 to 95.</>}
                     TableComponent={
@@ -132,7 +128,7 @@ WHERE id = 2;
                 </div>
 
                 <ToggleReturnDataTable 
-                    toggleStates={{ toogleReturn, showReturn }}
+                    toggleStates={useHookTools}
                     toggleId={"b1"}
                     returnText={<><code>Piyush</code> is now named as <code>Amit Sharma</code> with mark of 90.</>}
                     TableComponent={
@@ -175,11 +171,11 @@ WHERE marks < 80;
                 </div>
 
                 <ToggleReturnDataTable
-                    toggleStates={{ toogleReturn, showReturn }}
+                    toggleStates={useHookTools}
                     toggleId={"c1"}
                     returnText={<>Any <code>marks</code> lesser than 80 will increase by 5.</>}
                     TableComponent={
-                        <DataTable 
+                        <DataTable
                             data={studentsData.map(student => {
                                     if (student.marks < 80) return {...student, marks: student.marks + 5}
                                     return student
@@ -190,49 +186,6 @@ WHERE marks < 80;
                     }
                 />
             </div>
-        </div>
-    )
-}
-
-// Utility Components ===================================================
-const BaseTable = _ => {
-    return (
-        <div className="flex justify-start w-90 h-full">
-            <DataTable data={studentsData} />
-        </div>
-    )
-}
-
-const CompareToBaseTable = ({ TableComponent }) => {
-    return (
-        <div className="flex justify-center border p-2 bg-black rounded-2xl">
-            <div className="flex justify-start items-center gap-5 overflow-auto">
-                <BaseTable />
-                <span className="text-6xl">&rarr;</span>
-                
-                {TableComponent}
-            </div>
-        </div>
-    )
-}
-
-const ToggleReturnDataTable = ({ toggleId, returnText, TableComponent, toggleStates }) => {
-    return (
-        <div className="mb-5">
-            {/* Return Message and Toggle Switch */}
-            <div className="mb-5">
-                <span className="hover:text-(--link-hover-bg-clr) hover:underline underline-offset-4"
-                    onClick={_ => toggleStates.toogleReturn(toggleId)}
-                >
-                    👁️Return:
-                </span>
-                <p className="mt-2 ml-10">{returnText}</p>
-            </div>
-
-            {/* Return Table */}
-            {toggleStates.showReturn[toggleId]
-                && <CompareToBaseTable TableComponent={TableComponent} />
-            }
         </div>
     )
 }

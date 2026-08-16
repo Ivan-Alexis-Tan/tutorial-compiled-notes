@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { studentsData } from "../contents/sql/postgresql/dummyPSQLData"
 
 const toogleStateDefault = {
     tableKey: false
@@ -68,5 +69,48 @@ export default function DataTable({ data = [{},], className = "" }) {
                 }
             </tbody>
         </table>
+    )
+}
+
+// Comparing Table Utilities
+export const BaseTable = ({ data = studentsData}) => {
+    return (
+        <div className="flex justify-start w-90 h-full">
+            <DataTable data={data} />
+        </div>
+    )
+}
+
+export const CompareToBaseTable = ({ TableComponent }) => {
+    return (
+        <div className="flex justify-center border p-2 bg-black rounded-2xl">
+            <div className="flex justify-start items-center gap-5 overflow-auto">
+                <BaseTable />
+                <span className="text-6xl">&rarr;</span>
+                
+                {TableComponent}
+            </div>
+        </div>
+    )
+}
+
+export function ToggleReturnDataTable({ toggleId, returnText, TableComponent, toggleStates = toggleStates }) {
+    return (
+        <div className="mb-5">
+            {/* Return Message and Toggle Switch */}
+            <div className="mb-5">
+                <span className="hover:text-(--link-hover-bg-clr) hover:underline underline-offset-4"
+                    onClick={_ => toggleStates.toggleTable(toggleId)}
+                >
+                    👁️Return:
+                </span>
+                <p className="mt-2 ml-10">{returnText}</p>
+            </div>
+
+            {/* Return Table */}
+            {toggleStates.viewTable[toggleId]
+                && <CompareToBaseTable TableComponent={TableComponent} />
+            }
+        </div>
     )
 }
