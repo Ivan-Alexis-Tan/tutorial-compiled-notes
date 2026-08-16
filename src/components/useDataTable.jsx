@@ -55,10 +55,13 @@ export default function DataTable({ data = [{},], className = "" }) {
             <tbody>
                 {(colHeads.length >= 2 & data.length >= 1)
                     ? dataVals.map((row, idx) => (
-                        <tr key={`r${idx}`}>
-                            {row.map((item, index) => (
-                                <td key={`r${idx}c${index}`}>{item}</td>
-                            ))}
+                        <tr key={`r${idx}`} className={`r${idx}`}>
+                            {row.map((item, index) => {
+                                const coord = `r${idx}c${index}`
+                                return (
+                                    <td key={coord} className={coord}>{item}</td>
+                                )
+                            })}
                         </tr>
                     ))
                     : <></>
