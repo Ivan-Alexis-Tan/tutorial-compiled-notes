@@ -1,4 +1,4 @@
-import { ToogleDataTable, useToggleDataTable } from "../../../hooks/useDataTable"
+import { ToogleDataTable, useToggleDataTable } from "../../../components/useDataTable"
 import { sliceDummyData, studentsData, studentTHeaders } from "./dummyPSQLData"
 
 const stateDefault = {
