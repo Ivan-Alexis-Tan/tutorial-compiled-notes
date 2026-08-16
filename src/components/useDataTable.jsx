@@ -16,7 +16,7 @@ export function useToggleDataTable({ toggleState = toogleStateDefault }) {
     }
 }
 
-export const ToogleDataTable = ({ headersData = [], tableData = {1: []}, tableKey, useHookTools}) => {
+export const ToogleDataTable = ({ tableData = {1: []}, tableKey, useHookTools}) => {
     return (
         <div>
             <div className="mb-3">
@@ -29,7 +29,7 @@ export const ToogleDataTable = ({ headersData = [], tableData = {1: []}, tableKe
             {useHookTools.viewTable[tableKey] 
                 && <div className="flex justify-center p-2 py-5 rounded-2xl bg-black">
                     <div className="w-auto">
-                        <DataTable headers={headersData} data={tableData} />
+                        <DataTable data={tableData} />
                     </div>
                 </div>
             }
@@ -37,26 +37,27 @@ export const ToogleDataTable = ({ headersData = [], tableData = {1: []}, tableKe
     )
 }
 
-export default function DataTable({ headers = [], data = {1: []} }) {
-    const rowIds = Object.keys(data)
-
+export default function DataTable({ data = [{},], className = "" }) {
+    const colHeads = Object.keys(data[0])
+    const dataVals = data.map(item => Object.values(item))
+    
     return (
-        <table>
+        <table className={className ?? ""}>
             <thead className="bg-[hsl(0,0%,27%)]">
-                {headers.length >= 2
+                {colHeads.length >= 2
                     && <tr>
-                        {headers.map(header => (
+                        {colHeads.map(header => (
                             <td key={header}>{header}</td>
                         ))}
                     </tr>
                 }
             </thead>
             <tbody>
-                {(headers.length >= 2 & rowIds.length >= 1)
-                    ? rowIds.map(id => (
-                        <tr key={id}>
-                            {data[id].map(item => (
-                                <td key={id+item}>{item}</td>
+                {(colHeads.length >= 2 & data.length >= 1)
+                    ? dataVals.map((row, idx) => (
+                        <tr key={`r${idx}`}>
+                            {row.map((item, index) => (
+                                <td key={`r${idx}c${index}`}>{item}</td>
                             ))}
                         </tr>
                     ))
