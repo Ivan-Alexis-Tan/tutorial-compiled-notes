@@ -17,14 +17,16 @@ export function useToggleDataTable({ toggleState = toogleStateDefault }) {
     }
 }
 
-export const ToogleDataTable = ({ tableData = {1: []}, tableKey, useHookTools}) => {
+export const ToogleDataTable = ({ tableData = [], tableKey, useHookTools}) => {
     return (
         <div>
             <div className="mb-3">
                 <span className="px-3 py-1 hover:bg-[hsl(0,0%,0%)] hover:text-(--link-hover-bg-clr) rounded-2xl border"
                     onClick={_ => useHookTools.toggleTable(tableKey)}
                     title={useHookTools.viewTable[tableKey] ? "Hide" : "Show return"}
-                >{useHookTools.viewTable[tableKey] ? "❌Return" : "👁️Return"}</span>
+                >
+                    {useHookTools.viewTable[tableKey] ? "❌Return" : "👁️Return"}
+                </span>
             </div>
 
             {useHookTools.viewTable[tableKey] 
@@ -39,7 +41,7 @@ export const ToogleDataTable = ({ tableData = {1: []}, tableKey, useHookTools}) 
 }
 
 export default function DataTable({ data = [{},], className = "" }) {
-    const colHeads = Object.keys(data[0])
+    const colHeads = Object.keys(data[0]) ?? []
     const dataVals = data.map(item => Object.values(item))
     
     return (

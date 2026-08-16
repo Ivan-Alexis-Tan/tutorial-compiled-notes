@@ -4,6 +4,7 @@ import Postgresql1DesigningTables from "./postgresql/Postgresql1DesigningTables"
 import Postgresql2NullValue from "./postgresql/Postgresql2NullValue"
 import Postgresql3InsertingData from "./postgresql/Postgresql3InsertingData"
 import Postgresql4UpdatingRecords from "./postgresql/Postgresql4UpdatingRecords"
+import PostgreSQL5DeletingData from "./postgresql/Postgresql5DeletingData"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -18,8 +19,13 @@ export default function PostgresqlGuide() {
 }
 
 export const routesPostgresqlGuides = {
-    1: {title: "Designing Tables", comp: <Postgresql1DesigningTables />},
-    2: {title: "Null Value", comp: <Postgresql2NullValue />},
-    3: {title: "Inserting Data", comp: <Postgresql3InsertingData />},
-    4: {title: "Updating Records", comp: <Postgresql4UpdatingRecords />},
+    1: mapPostgresGuide("Designing Tables", <Postgresql1DesigningTables />),
+    2: mapPostgresGuide("Null Value", <Postgresql2NullValue />),
+    3: mapPostgresGuide("Inserting Data", <Postgresql3InsertingData />),
+    4: mapPostgresGuide("Updating Records", <Postgresql4UpdatingRecords />),
+    5: mapPostgresGuide("Deleting Data", <PostgreSQL5DeletingData />),
+}
+
+function mapPostgresGuide(title, comp) {
+    return { title, comp }
 }
