@@ -9,7 +9,6 @@ export const studentsData = [
     mapStudentData(6, "Preeti", 67, today),
     mapStudentData(7, "Priya", "[null]", today),
 ]
-export const studentTHeaders = Object.keys(studentsData[0])
 
 export function sliceDummyData(data, start = 0, end) {
     const sliced = Object.entries(data).slice(start, end)

@@ -1,5 +1,5 @@
 import { ToogleDataTable, useToggleDataTable } from "../../../components/useDataTable"
-import { sliceDummyData, studentsData, studentTHeaders } from "./dummyPSQLData"
+import { sliceDummyData, studentsData } from "./dummyPSQLData"
 
 const stateDefault = {
     a1: false,
@@ -60,7 +60,6 @@ VALUES(1, 'Amir', 23);
 
                 <div>
                     <ToogleDataTable 
-                        headersData={studentTHeaders} 
                         tableData={sliceDummyData(studentsData, 0, 1)} 
                         tableKey={"a1"}
                         useHookTools={useHookTools}
@@ -93,7 +92,6 @@ VALUES('Riya', 86);
 
                     <div>
                         <ToogleDataTable 
-                            headersData={studentTHeaders} 
                             tableData={sliceDummyData(studentsData, 0, 3)} 
                             tableKey={"b1"}
                             useHookTools={useHookTools}
@@ -135,7 +133,6 @@ VALUES
 
                 <div>
                     <ToogleDataTable 
-                        headersData={studentTHeaders} 
                         tableData={sliceDummyData(studentsData, 0,  6)} 
                         tableKey={"c1"}
                         useHookTools={useHookTools}
@@ -163,7 +160,6 @@ VALUES('Piyush');
 
                     <div>
                         <ToogleDataTable 
-                            headersData={studentTHeaders} 
                             tableData={sliceDummyData(studentsData, 0, 7)} 
                             tableKey={"d1"}
                             useHookTools={useHookTools}

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import DataTable, { ToggleReturnDataTable, ToogleDataTable, useToggleDataTable } from "../../../components/useDataTable"
-import { mapStudentData, studentsData, studentTHeaders } from "./dummyPSQLData"
+import { mapStudentData, studentsData } from "./dummyPSQLData"
 
 const today = new Date().toDateString()
 const toggleDefault = {
