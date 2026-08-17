@@ -7,6 +7,7 @@ import Postgresql4UpdatingRecords from "./postgresql/Postgresql4UpdatingRecords"
 import PostgreSQL5DeletingData from "./postgresql/Postgresql5DeletingData"
 import Postgresql6SelectClause from "./postgresql/Postgresql6SelectClause"
 import PostgreSQL7Filtering from "./postgresql/Postgresql7Filtering"
+import PostgreSQL8AndOrNotOperators from "./postgresql/PostgreSQL8AndOrNotOperators"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -28,6 +29,7 @@ export const routesPostgresqlGuides = {
     5: mapPostgresGuide("Deleting Data", <PostgreSQL5DeletingData />),
     6: mapPostgresGuide("SELECT Clause", <Postgresql6SelectClause />),
     7: mapPostgresGuide("Filtering", <PostgreSQL7Filtering />),
+    8: mapPostgresGuide("AND, OR, NOT Operators", <PostgreSQL8AndOrNotOperators />),
 }
 
 function mapPostgresGuide(title, comp) {
