@@ -17,7 +17,7 @@ export function useToggleDataTable({ toggleState = toogleStateDefault }) {
     }
 }
 
-export const ToogleDataTable = ({ tableData = [], tableKey, useHookTools}) => {
+export const ToogleDataTable = ({ tableData = [], tableKey, useHookTools, btnText = "Return"}) => {
     return (
         <div>
             <div className="mb-3">
@@ -25,7 +25,7 @@ export const ToogleDataTable = ({ tableData = [], tableKey, useHookTools}) => {
                     onClick={_ => useHookTools.toggleTable(tableKey)}
                     title={useHookTools.viewTable[tableKey] ? "Hide" : "Show return"}
                 >
-                    {useHookTools.viewTable[tableKey] ? "❌Return" : "👁️Return"}
+                    {useHookTools.viewTable[tableKey] ? `❌${btnText}` : `👁️${btnText}`}
                 </span>
             </div>
 
