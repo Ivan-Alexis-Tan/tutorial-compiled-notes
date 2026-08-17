@@ -6,6 +6,7 @@ import Postgresql3InsertingData from "./postgresql/Postgresql3InsertingData"
 import Postgresql4UpdatingRecords from "./postgresql/Postgresql4UpdatingRecords"
 import PostgreSQL5DeletingData from "./postgresql/Postgresql5DeletingData"
 import Postgresql6SelectClause from "./postgresql/Postgresql6SelectClause"
+import PostgreSQL7Filtering from "./postgresql/Postgresql7Filtering"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -26,6 +27,7 @@ export const routesPostgresqlGuides = {
     4: mapPostgresGuide("Updating Records", <Postgresql4UpdatingRecords />),
     5: mapPostgresGuide("Deleting Data", <PostgreSQL5DeletingData />),
     6: mapPostgresGuide("SELECT Clause", <Postgresql6SelectClause />),
+    7: mapPostgresGuide("Filtering", <PostgreSQL7Filtering />),
 }
 
 function mapPostgresGuide(title, comp) {
