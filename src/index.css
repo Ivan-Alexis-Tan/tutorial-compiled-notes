@@ -353,3 +353,33 @@ table li::marker {
 .project-3-pokemon-api__info-sprites img {
   width: 150px;
 }
+
+.postgres-pagination-form {
+  margin-inline: auto;
+  margin-bottom: 1rem;
+  max-width: 15rem;
+  padding-block: 1rem;
+  padding-right: 1rem;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  background-color: black;
+
+  > div {
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+
+    > label {
+      text-align: end;
+    }
+
+    > input {
+      padding: 0.1rem 0.5rem;
+      background-color: var(--line-break-clr);
+      border-radius: 0.5rem;
+    }
+  }
+}
