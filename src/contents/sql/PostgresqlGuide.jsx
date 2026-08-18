@@ -12,6 +12,7 @@ import PostgreSQL9SortingData from "./postgresql/Postgresql9SortingData"
 import PostgreSQL10LimitAndOffset from "./postgresql/Postgresql10LimitAndOffset"
 import PostgreSQL11PrimaryKeys from "./postgresql/Postgresql11PrimaryKeys"
 import PostgreSQL12ForeignKeys from "./postgresql/Postgresql12ForeignKeys"
+import PostgreSQL13CheckUniqueNotNull from "./postgresql/Postgresql13CheckUniqueNotNull"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -38,6 +39,7 @@ export const routesPostgresqlGuides = {
     10: mapPostgresGuide("LIMIT and OFFSET", <PostgreSQL10LimitAndOffset />),
     11: mapPostgresGuide("Primary Keys", <PostgreSQL11PrimaryKeys />),
     12: mapPostgresGuide("Foreign Keys", <PostgreSQL12ForeignKeys />),
+    13: mapPostgresGuide("CHECK, UNIQUE, NOT NULL Constraints", <PostgreSQL13CheckUniqueNotNull />),
 }
 
 function mapPostgresGuide(title, comp) {
