@@ -10,7 +10,7 @@ import PostgreSQL7Filtering from "./postgresql/Postgresql7Filtering"
 import PostgreSQL8AndOrNotOperators from "./postgresql/PostgreSQL8AndOrNotOperators"
 import PostgreSQL9SortingData from "./postgresql/Postgresql9SortingData"
 import PostgreSQL10LimitAndOffset from "./postgresql/Postgresql10LimitAndOffset"
-import PostgreSQL11PrimaryKeys from "./Postgresql11PrimaryKeys"
+import PostgreSQL11PrimaryKeys from "./postgresql/Postgresql11PrimaryKeys"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
