@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { studentsData } from "../contents/sql/postgresql/dummyPSQLData"
-import { capsEveryWord } from "../lib/helpers"
+import { capitalize, capsEveryWord } from "../lib/helpers"
 
 const toogleStateDefault = {
     tableKey: false
@@ -44,6 +44,18 @@ export const ToogleDataTable = ({ tableData = [], tableKey, useHookTools, btnTex
 export default function DataTable({ data = [{},], className = "", capHeaders = false }) {
     const colHeads = Object.keys(data[0]) ?? []
     const dataVals = data.map(item => Object.values(item))
+
+    function frmtHeader(headerStr) {
+        switch(capHeaders) {
+            case true:
+            case "everyWord":
+                return capsEveryWord(headerStr)
+            case "caps":
+                return capitalize(headerStr)
+            default:
+                return headerStr
+        }
+    }
     
     return (
         <table className={className ?? ""}>
@@ -52,7 +64,7 @@ export default function DataTable({ data = [{},], className = "", capHeaders = f
                     && <tr>
                         {colHeads.map((header, idx) => (
                             <td key={header} className={`hc${idx}`}>
-                                {capHeaders ? capsEveryWord(header) : header}
+                                {frmtHeader(header)}
                             </td>
                         ))}
                     </tr>
