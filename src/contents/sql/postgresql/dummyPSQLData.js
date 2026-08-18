@@ -31,3 +31,25 @@ export const studentData2 = [
   { id: 16, name: 'Lucas',   marks: 59, created_at: today, grade_level: 7,  gender: 'Male' },
   { id: 17, name: 'Olivia',  marks: 88, created_at: today, grade_level: 8,  gender: 'Female' },
 ]
+
+export function mapCustomersTable(id, lastName, firstName, age) {
+    return { id, last_name: lastName, first_name: firstName, age }
+}
+
+export const customersTable = [
+    mapCustomersTable(1, "Dela Cruz", "Juan", 30),
+    mapCustomersTable(2, "Tanaka", "Taro", 23),
+    mapCustomersTable(3, "Smith", "John", 20),
+]
+
+export function mapOrdersTable(id, orderNumber, customerId) {
+    return {id, order_number: orderNumber, customer_id: customerId}
+}
+
+export const ordersTable = [
+    mapOrdersTable(1, 77895, 3),
+    mapOrdersTable(2, 44678, 3),
+    mapOrdersTable(3, 22456, 2),
+    mapOrdersTable(4, 24562, 1),
+]
+
