@@ -139,14 +139,22 @@ OFFSET ${pageConfigs.offset}
 const DbPage = ({ currPage, totalPage, setPageFn, className }) => {
     return (
         <div className={`${className ?? ""}`}>
-            <button onClick={_ => setPageFn("left")}>⬅️</button>
+            <button onClick={_ => setPageFn("left")}
+                title="Previous page"
+            >
+                ⬅️
+            </button>
             
             <div className="flex flex-col items-center">
                 <span className="font-bold">Page</span>
                 {`${currPage}/${totalPage}`}
             </div>
 
-            <button onClick={_ => setPageFn("right")}>➡️</button>
+            <button onClick={_ => setPageFn("right")}
+                title="Next page"
+            >
+                ➡️
+            </button>
         </div>
     )
 }
