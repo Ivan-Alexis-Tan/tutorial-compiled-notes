@@ -14,6 +14,7 @@ import PostgreSQL11PrimaryKeys from "./postgresql/Postgresql11PrimaryKeys"
 import PostgreSQL12ForeignKeys from "./postgresql/Postgresql12ForeignKeys"
 import PostgreSQL13CheckUniqueNotNull from "./postgresql/Postgresql13CheckUniqueNotNull"
 import PostgreSQL14DataIntegrity from "./postgresql/Postgresql14DataIntegrity"
+import PostgreSQL15LikeAndIlike from "./postgresql/Postgresql15LikeAndIlike"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -42,6 +43,7 @@ export const routesPostgresqlGuides = {
     12: mapPostgresGuide("Foreign Keys", <PostgreSQL12ForeignKeys />),
     13: mapPostgresGuide("CHECK, UNIQUE, NOT NULL Constraints", <PostgreSQL13CheckUniqueNotNull />),
     14: mapPostgresGuide("Data Integrity", <PostgreSQL14DataIntegrity />),
+    15: mapPostgresGuide("LIKE and ILIKE", <PostgreSQL15LikeAndIlike />),
 }
 
 function mapPostgresGuide(title, comp) {
