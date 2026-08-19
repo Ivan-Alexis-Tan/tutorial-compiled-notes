@@ -132,6 +132,76 @@ WHERE marks > 80;
 
                 <p>Filter rows first, then removes duplicates.</p>
             </div>
+
+            <hr className="--hr-faded" />
+
+            <div>
+                <h2>5. <code>DISTINCT</code> with <code>ORDER BY</code></h2>
+                <p><code>ORDER BY</code> columns must appear in <code>SELECT</code> list.</p>
+
+                <pre><code>
+{`</> PostgreSQL
+SELECT DISTINCT city
+FROM students
+ORDER BY city;
+`}
+                </code></pre>
+            </div>
+
+            <hr className="--hr-faded" />
+            
+            <div>
+                <h2>6. <code>DISTINCT</code> with Aggregate Functions</h2>
+                <p><code>DISTINCT</code> can be used <strong>inside aggregate functions</strong>.</p>
+
+                <pre><code>
+{`</> PostgreSQL
+SELECT COUNT(DISTINCT city)
+FROM students;
+`}
+                </code></pre>
+
+                <p>Counts unique cities only.</p>
+            </div>
+
+            <hr className="--hr-faded" />
+
+            <div>
+                <h2>7. <code>DISTINCT</code> vs <code>GROUP BY</code> (Very Important)</h2>
+                
+                <div>
+                    <p><code>DISTINCT</code></p>
+                    <ul>
+                        <li>Removes duplicate rows</li>
+                        <li>Simpler syntax</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p><code>GROUP BY</code></p>
+                    <ul>
+                        <li>Group rows</li>
+                        <li>Used with aggregate functions</li>
+                    </ul>
+                </div>
+
+                <pre><code>
+{`</> PostgreSQL
+SELECT DISTINCT city
+FROM student;
+`}
+                </code></pre>
+
+                <p>Same as:</p>
+
+                <pre><code>
+{`</> PostgreSQL
+SELECT city
+FROM student
+GROUP BY city;
+`}
+                </code></pre>
+            </div>
         </div>
     )
 }
