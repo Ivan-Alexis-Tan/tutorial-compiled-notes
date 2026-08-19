@@ -151,6 +151,24 @@ WHERE name ~* '^John';
                                 example: <code>WHERE name ~ 'a?'</code>,
                                 "meaning of example": <>zero or one <code>a</code>s</>,
                             },
+                            {
+                                symbol: <code>{`{n}`}</code>,
+                                meaning: "Exact number of n",
+                                example: <code>WHERE name ~ 'a{`{6}`}'</code>,
+                                "meaning of example": <>exactly 6 <code>a</code>s</>,
+                            },
+                            {
+                                symbol: <code>{`{n,}`}</code>,
+                                meaning: "n or more",
+                                example: <code>WHERE name ~ 'a{`{6,}`}'</code>,
+                                "meaning of example": <>6 or more <code>a</code>s</>,
+                            },
+                            {
+                                symbol: <code>{`{n,m}`}</code>,
+                                meaning: "Between n and m",
+                                example: <code>WHERE name ~ 'a{`{6,7}`}'</code>,
+                                "meaning of example": <>Between 6 and 7  <code>a</code>s</>,
+                            },
                         ]}
                         capHeaders="caps"
                     />
@@ -233,6 +251,48 @@ WHERE name ~ '^Jo+hn$'
                         capHeaders="caps"
                     />
                 </div>
+
+                <hr className="--hr-faded" />
+
+                <div className="[&>div]:mb-5 [&>div>div:first-child]:mb-3 [&>div>div:first-child]:text-end">
+                    <h2><code>LIKE</code> / <code>ILIKE</code> vs Regex</h2>
+                    
+                    <div className="mx-auto max-w-100">
+                        <div>
+                            <h3><code>LIKE</code> / <code>ILIKE</code></h3>
+                            <p>Simple pattern matching</p>
+                        </div>
+
+                        <DataTable
+                            data={[
+                                mapSymbolMeaning(<code>%</code>, "many characters"),
+                                mapSymbolMeaning(<code>_</code>, "one character")
+                            ]}
+                            capHeaders="caps"
+                        />
+                    </div>
+
+                    <div className="mx-auto max-w-100">
+                        <div>
+                            <h3>Regex</h3>
+                            <p>Complex pattern matching</p>
+                        </div>
+
+                        <DataTable
+                            data={[
+                                mapSymbolMeaning(<code>^</code>, "beginning"),
+                                mapSymbolMeaning(<code>$</code>, "end"),
+                                mapSymbolMeaning(<code>.</code>, "any character"),
+                                mapSymbolMeaning(<code>*</code>, "zero or more"),
+                                mapSymbolMeaning(<code>+</code>, "one or more"),
+                                mapSymbolMeaning(<code>?</code>, "zero or none"),
+                                mapSymbolMeaning(<code>[]</code>, "character set"),
+                                mapSymbolMeaning(<code>{`{}`}</code>, "exact/repeated count")
+                            ]}
+                            capHeaders="caps"
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     )
@@ -246,4 +306,8 @@ const RenderToBullets = ({ itemArray = [], before = false }) => {
             {item}
         </li>
     ))
+}
+
+function mapSymbolMeaning(symbol, meaning) {
+    return {symbol, meaning}
 }
