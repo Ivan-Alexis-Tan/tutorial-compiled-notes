@@ -16,6 +16,7 @@ import PostgreSQL13CheckUniqueNotNull from "./postgresql/Postgresql13CheckUnique
 import PostgreSQL14DataIntegrity from "./postgresql/Postgresql14DataIntegrity"
 import PostgreSQL15LikeAndIlike from "./postgresql/Postgresql15LikeAndIlike"
 import PostgreSQL16Regex from "./postgresql/Postgresql16Regex"
+import PostgreSQL17Disctinct from "./Postgresql17Distinct"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -46,6 +47,7 @@ export const routesPostgresqlGuides = {
     14: mapPostgresGuide("Data Integrity", <PostgreSQL14DataIntegrity />),
     15: mapPostgresGuide("LIKE and ILIKE", <PostgreSQL15LikeAndIlike />),
     16: mapPostgresGuide("Regex", <PostgreSQL16Regex />),
+    17: mapPostgresGuide("DISTINCT Clause", <PostgreSQL17Disctinct />),
 }
 
 function mapPostgresGuide(title, comp) {
