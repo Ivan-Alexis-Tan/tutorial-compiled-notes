@@ -16,7 +16,7 @@ import PostgreSQL13CheckUniqueNotNull from "./postgresql/Postgresql13CheckUnique
 import PostgreSQL14DataIntegrity from "./postgresql/Postgresql14DataIntegrity"
 import PostgreSQL15LikeAndIlike from "./postgresql/Postgresql15LikeAndIlike"
 import PostgreSQL16Regex from "./postgresql/Postgresql16Regex"
-import PostgreSQL17Disctinct from "./Postgresql17Distinct"
+import PostgreSQL17Disctinct from "./postgresql/Postgresql7Filtering"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()

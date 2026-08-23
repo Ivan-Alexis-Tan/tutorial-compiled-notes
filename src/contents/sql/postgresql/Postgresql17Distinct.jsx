@@ -1,4 +1,4 @@
-import DataTable from "../../components/useDataTable";
+import DataTable from "../../../components/useDataTable";
 
 const studentsTable = [
     {
