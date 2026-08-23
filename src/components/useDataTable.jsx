@@ -41,7 +41,12 @@ export const ToogleDataTable = ({ tableData = [], tableKey, useHookTools, btnTex
     )
 }
 
-export default function DataTable({ data = [{},], className = "", capHeaders = false }) {
+export default function DataTable({ 
+    data = [{},],
+    className = "", 
+    indexed = false, 
+    capHeaders = false 
+}) {
     const colHeads = Object.keys(data[0]) ?? []
     const dataVals = data.map(item => Object.values(item))
 
@@ -62,6 +67,8 @@ export default function DataTable({ data = [{},], className = "", capHeaders = f
             <thead className="bg-[hsl(0,0%,27%)]">
                 {colHeads.length >= 2
                     && <tr>
+                        {indexed && <td></td>}
+                        
                         {colHeads.map((header, idx) => (
                             <td key={header} className={`hc${idx}`}>
                                 {frmtHeader(header)}
@@ -74,6 +81,8 @@ export default function DataTable({ data = [{},], className = "", capHeaders = f
                 {(colHeads.length >= 2 & data.length >= 1)
                     ? dataVals.map((row, idx) => (
                         <tr key={`r${idx}`} className={`r${idx}`}>
+                            {indexed && <td>{idx + 1}</td>}
+
                             {row.map((item, index) => {
                                 const coord = `r${idx}c${index}`
                                 return (
