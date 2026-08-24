@@ -20,6 +20,7 @@ import PostgreSQL17Disctinct from "./postgresql/Postgresql7Filtering"
 import PostgreSQL18ColumnAliasAndExpression from "./postgresql/Postgresql18ColumnAliasAndExpression"
 import PostgreSQL19Pagination from "./postgresql/Postgresql19Pagination"
 import PostgreSQL20AggregateFn from "./postgresql/Postgresql20AggregateFn"
+import PostgreSQL21GroupBy from "./postgresql/Postgresql21GroupBy"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -54,6 +55,7 @@ export const routesPostgresqlGuides = {
     18: mapPostgresGuide("Column Aliases and Expression", <PostgreSQL18ColumnAliasAndExpression />),
     19: mapPostgresGuide("Pagination", <PostgreSQL19Pagination />),
     20: mapPostgresGuide("Aggregate Functions", <PostgreSQL20AggregateFn />),
+    21: mapPostgresGuide("GROUP BY", <PostgreSQL21GroupBy />),
 }
 
 function mapPostgresGuide(title, comp) {
