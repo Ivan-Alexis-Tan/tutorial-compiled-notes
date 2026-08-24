@@ -7,7 +7,7 @@ export const studentsData = [
     mapStudentData(4, "Ram", 56, today),
     mapStudentData(5, "Shyam", 45, today),
     mapStudentData(6, "Preeti", 67, today),
-    mapStudentData(7, "Priya", "[null]", today),
+    mapStudentData(7, "Priya", null, today),
 ]
 
 export function sliceDummyData(data, start = 0, end) {
@@ -30,6 +30,18 @@ export const studentData2 = [
   { id: 15, name: 'Emma',    marks: 76, created_at: today, grade_level: 10, gender: 'Female' },
   { id: 16, name: 'Lucas',   marks: 59, created_at: today, grade_level: 7,  gender: 'Male' },
   { id: 17, name: 'Olivia',  marks: 88, created_at: today, grade_level: 8,  gender: 'Female' },
+]
+
+export const jrLevels = [7, 8, 9, 10]
+export const genders = ["Male", "Female"]
+
+export const fullStudentsData = [
+    ...studentsData.map((student, idx) => ({
+        ...student, 
+        grade_level: jrLevels[idx % 4],
+        gender: genders[idx % 2],
+    })),
+    ...studentData2
 ]
 
 export function mapCustomersTable(id, lastName, firstName, age) {
