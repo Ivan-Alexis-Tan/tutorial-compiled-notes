@@ -65,3 +65,23 @@ export const ordersTable = [
     mapOrdersTable(4, 24562, 1),
 ]
 
+export const ordersTable2 = [
+  { id: 1, item_name: "Laptop",   category: "Electronics", brand: "Lenovo",   price: 45000, quantity: 2 },
+  { id: 2, item_name: "Keyboard", category: "Electronics", brand: "Logitech", price: 2500,  quantity: 5 },
+  { id: 3, item_name: "Mouse",    category: "Electronics", brand: "Logitech", price: 1200,  quantity: 8 },
+  { id: 4, item_name: "Monitor",  category: "Electronics", brand: "Samsung",  price: 12500, quantity: 3 },
+
+  { id: 5, item_name: "Notebook", category: "Stationery",  brand: "Moleskine", price: 350, quantity: 12 },
+  { id: 6, item_name: "Pen",      category: "Stationery",  brand: "Pilot",     price: 80,  quantity: 25 },
+  { id: 7, item_name: "Marker",   category: "Stationery",  brand: "Pilot",     price: 120, quantity: 15 },
+  { id: 8, item_name: "Folder",   category: "Stationery",  brand: "Kokuyo",    price: 150, quantity: 20 },
+
+  { id: 9,  item_name: "Desk",    category: "Furniture",   brand: "IKEA",      price: 8500, quantity: 3 },
+  { id: 10, item_name: "Chair",   category: "Furniture",   brand: "IKEA",      price: 4500, quantity: 6 },
+  { id: 11, item_name: "Cabinet", category: "Furniture",   brand: "IKEA",      price: 7000, quantity: 4 },
+  { id: 12, item_name: "Shelf",   category: "Furniture",   brand: "IKEA",      price: 5500, quantity: 5 }
+]
+
+export function mapOrdersTable2(id, item_name, price, quantity) {
+    return {id, item_name, category, brand, price, quantity}
+}
