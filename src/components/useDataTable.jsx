@@ -65,10 +65,10 @@ export default function DataTable({
     return (
         <table className={className ?? ""}>
             <thead className="bg-[hsl(0,0%,27%)]">
-                {colHeads.length >= 2
+                {colHeads.length >= 1
                     && <tr>
                         {indexed && <td></td>}
-                        
+
                         {colHeads.map((header, idx) => (
                             <td key={header} className={`hc${idx}`}>
                                 {frmtHeader(header)}
@@ -78,7 +78,7 @@ export default function DataTable({
                 }
             </thead>
             <tbody>
-                {(colHeads.length >= 2 & data.length >= 1)
+                {(colHeads.length >= 1 & data.length >= 1)
                     ? dataVals.map((row, idx) => (
                         <tr key={`r${idx}`} className={`r${idx}`}>
                             {indexed && <td>{idx + 1}</td>}
@@ -86,7 +86,7 @@ export default function DataTable({
                             {row.map((item, index) => {
                                 const coord = `r${idx}c${index}`
                                 return (
-                                    <td key={coord} className={coord}>{item}</td>
+                                    <td key={coord} className={coord}>{item === null ? "[null]" : item}</td>
                                 )
                             })}
                         </tr>
