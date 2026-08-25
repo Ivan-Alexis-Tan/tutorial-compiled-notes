@@ -103,3 +103,38 @@ export const salesPerBrand = ordersTable2
             return [...acc, {brand: order.brand, total_sales: sales}]
         }, []
     )
+
+export const customersTable3 = [
+  { id: 1, name: "Juan Dela Cruz", city: "Cebu" },
+  { id: 2, name: "Maria Santos", city: "Manila" },
+  { id: 3, name: "Pedro Reyes", city: "Davao" },
+  { id: 4, name: "Ana Garcia", city: "Cebu" },
+  { id: 5, name: "Miguel Torres", city: "Iloilo" },
+  { id: 6, name: "Sofia Mendoza", city: "Manila" },
+  { id: 7, name: "Carlos Ramos", city: "Baguio" },
+  { id: 8, name: "Elena Cruz", city: "Cebu" },
+  { id: 9, name: "Daniel Flores", city: "Davao" },
+  { id: 10, name: "Isabella Navarro", city: "Iloilo" }
+];
+
+export const ordersTable3 = [
+  { id: 1, customer_id: 1, product: "Laptop", amount: 45000 },
+  { id: 2, customer_id: 2, product: "Keyboard", amount: 2500 },
+  { id: 3, customer_id: 1, product: "Mouse", amount: 1200 },
+  { id: 4, customer_id: 3, product: "Monitor", amount: 12500 },
+  { id: 5, customer_id: 4, product: "Headphones", amount: 2800 },
+  { id: 6, customer_id: 2, product: "Laptop Stand", amount: 1800 },
+  { id: 7, customer_id: 1, product: "Webcam", amount: 3200 },
+  { id: 8, customer_id: 5, product: "Keyboard", amount: 2500 },
+  { id: 9, customer_id: 3, product: "Mouse", amount: 1200 },
+  { id: 10, customer_id: 6, product: "Laptop", amount: 45000 }
+];
+
+export const employeesTable = [
+    {id: 1, name: "Amit", manager_id: null, department: "IT", salary: 80000},
+    {id: 2, name: "Rahul", manager_id: 1, department: "IT", salary: 60000},
+    {id: 3, name: "Neha", manager_id: 1, department: "IT", salary: 55000},
+    {id: 4, name: "Karan", manager_id: 2, department: "HR", salary: 50000},
+    {id: 5, name: "Pooja", manager_id: 2, department: "HR", salary: 48000},
+    {id: 6, name: "Rohit", manager_id: 3, department: "Sales", salary: 45000},
+]
