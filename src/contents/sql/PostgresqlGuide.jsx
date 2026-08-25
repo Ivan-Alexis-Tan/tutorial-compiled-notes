@@ -22,6 +22,7 @@ import PostgreSQL19Pagination from "./postgresql/Postgresql19Pagination"
 import PostgreSQL20AggregateFn from "./postgresql/Postgresql20AggregateFn"
 import PostgreSQL21GroupBy from "./postgresql/Postgresql21GroupBy"
 import PostgreSQL22Having from "./postgresql/Postgresql22Having"
+import PostgreSQL23JoinTable from "./postgresql/Postgresql23JoinTables"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -58,6 +59,7 @@ export const routesPostgresqlGuides = {
     20: mapPostgresGuide("Aggregate Functions", <PostgreSQL20AggregateFn />),
     21: mapPostgresGuide("GROUP BY", <PostgreSQL21GroupBy />),
     22: mapPostgresGuide("HAVING", <PostgreSQL22Having />),
+    23: mapPostgresGuide("INNER JOIN", <PostgreSQL23JoinTable />),
 }
 
 function mapPostgresGuide(title, comp) {
