@@ -55,6 +55,39 @@ const groupByCatAndBrand = ordersTable2.reduce(
 
 const ordersCatAndBrands = Object.entries(groupByCatAndBrand)
 
+const electronicsSold = ordersTable2
+    .filter(order => order.category === "Stationery")
+    .reduce(
+        (acc, order) => {
+            const brandVal = acc.find(item => item.brand === order.brand)
+
+            if (brandVal) {
+                const filtered = acc.filter(item => item.brand !== order.brand)
+                return [...filtered, {brand: brandVal.brand, sum: brandVal.sum + order.quantity}]
+            }
+            
+            return [...acc, {brand: order.brand, sum: order.quantity}]
+        }, []
+    )
+
+const salesPerBrand = ordersTable2
+    .reduce(
+        (acc, order) => {
+            const brandVal = acc.find(item => item.brand === order.brand)
+            const sales = order.price * order.quantity
+
+            if (brandVal) {
+                const filtered = acc.filter(item => item.brand !== order.brand)
+                return [
+                    ...filtered,
+                    {brand: brandVal.brand, total_sales: brandVal.total_sales + sales}
+                ]
+            }
+            
+            return [...acc, {brand: order.brand, total_sales: sales}]
+        }, []
+    )
+
 export default function PostgreSQL21GroupBy() {
     const { useHookTools } = useToggleDataTable(tableIds)
 
@@ -228,6 +261,60 @@ GROUP BY brand;
                         <li><code>category</code> is in <code>SELECT</code>, but not in <code>GROUP BY</code>.</li>
                         <li><code>category</code> must be included in <code>GROUP BY</code> as well.</li>
                     </ul>
+                </div>
+            </div>
+
+            <hr className="--hr-faded" />
+
+            <div>
+                <h2><code>GROUP BY</code> + <code>WHERE</code> (Filtering BEFORE Grouing)</h2>
+                <p className="mb-3"><strong>Example:</strong></p>
+
+                <pre><code>
+{`</> PostgreSQL
+SELECT
+    brand,
+    SUM(quantity)
+FROM orders
+WHERE category = 'Electronics'
+GROUP BY brand;
+`}
+                </code></pre>
+
+                <div className="mb-5">
+                    <p className="mb-3"><strong>Return:</strong></p>
+                    <DataTable className="mx-auto w-50!"
+                        indexed={true}
+                        data={electronicsSold}
+                    />
+                </div>
+                
+                <p><code>WHERE</code> filters rows <strong>before grouping</strong>.</p>
+            </div>
+
+            <hr className="--hr-faded" />
+
+            <div>
+                <h2><code>GROUP BY</code> with <code>HAVING</code></h2>
+
+                <p className="mb-3"><strong>Example:</strong></p>
+                <pre><code>
+{`</> PostgreSQL
+SELECT 
+    brand,
+    SUM(quantity * price) AS total_sales
+FROM orders
+GROUP BY brand
+HAVING SUM(quantity * price) > 10000;
+`}
+                </code></pre>
+
+                <div>
+                    <p className="mb-3"><strong>Return:</strong></p>
+                    <DataTable className="mx-auto w-80!"
+                        indexed={true}
+                        data={salesPerBrand.filter(brand => brand.total_sales > 10000)}
+                    />
                 </div>
             </div>
         </div>
