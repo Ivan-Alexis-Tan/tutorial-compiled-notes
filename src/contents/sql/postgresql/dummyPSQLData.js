@@ -85,3 +85,21 @@ export const ordersTable2 = [
 export function mapOrdersTable2(id, item_name, price, quantity) {
     return {id, item_name, category, brand, price, quantity}
 }
+
+export const salesPerBrand = ordersTable2
+    .reduce(
+        (acc, order) => {
+            const brandVal = acc.find(item => item.brand === order.brand)
+            const sales = order.price * order.quantity
+
+            if (brandVal) {
+                const filtered = acc.filter(item => item.brand !== order.brand)
+                return [
+                    ...filtered,
+                    {brand: brandVal.brand, total_sales: brandVal.total_sales + sales}
+                ]
+            }
+            
+            return [...acc, {brand: order.brand, total_sales: sales}]
+        }, []
+    )

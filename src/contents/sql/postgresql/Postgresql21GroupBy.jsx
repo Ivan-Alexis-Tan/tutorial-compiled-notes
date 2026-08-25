@@ -1,5 +1,5 @@
 import DataTable, { ToogleDataTable, useToggleDataTable } from "../../../components/useDataTable";
-import { fullStudentsData, jrLevels, ordersTable2 } from "./dummyPSQLData";
+import { fullStudentsData, jrLevels, ordersTable2, salesPerBrand } from "./dummyPSQLData";
 
 const tableIds = {
     t1: false,
@@ -67,24 +67,6 @@ const electronicsSold = ordersTable2
             }
             
             return [...acc, {brand: order.brand, sum: order.quantity}]
-        }, []
-    )
-
-const salesPerBrand = ordersTable2
-    .reduce(
-        (acc, order) => {
-            const brandVal = acc.find(item => item.brand === order.brand)
-            const sales = order.price * order.quantity
-
-            if (brandVal) {
-                const filtered = acc.filter(item => item.brand !== order.brand)
-                return [
-                    ...filtered,
-                    {brand: brandVal.brand, total_sales: brandVal.total_sales + sales}
-                ]
-            }
-            
-            return [...acc, {brand: order.brand, total_sales: sales}]
         }, []
     )
 
