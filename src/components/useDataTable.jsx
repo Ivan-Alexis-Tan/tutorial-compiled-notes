@@ -18,32 +18,30 @@ export function useToggleDataTable({ toggleState = toogleStateDefault }) {
     }
 }
 
-export const ToogleDataTable = ({ tableData = [], tableKey, useHookTools, btnText = "Return"}) => {
-    return (
-        <div>
-            <div className="mb-3 [&_span]:px-3 [&_span]:py-1 
-                            [&_span]:hover:bg-[hsl(0,0%,0%)] [&_span]:hover:text-(--link-hover-bg-clr) 
-                            [&_span]:rounded-2xl [&_span]:border"
-            >
-                {useHookTools.viewTable[tableKey] 
-                    ? <span
-                        onClick={_ => useHookTools.toggleTable(tableKey)}
-                        title={useHookTools.viewTable[tableKey] ? "Hide" : "Show return"}
-                    >
-                        ❌ {btnText}
-                    </span>
-                    : <span
-                        onClick={_ => useHookTools.toggleTable(tableKey)}
-                        title={useHookTools.viewTable[tableKey] ? "Hide" : "Show return"}
-                    >
-                        👁️ {btnText}
-                    </span>
-                }
-            </div>
+export const ToogleDataTable = ({ 
+    tableData = [], 
+    tableKey, 
+    useHookTools, 
+    btnText = "Return", 
+    className = ""
+}) => {
+    const showTable = useHookTools.viewTable[tableKey]
 
-            {useHookTools.viewTable[tableKey] 
-                && <div className="flex justify-center p-2 py-5 rounded-2xl bg-black">
-                    <div className="w-auto">
+    return (
+        <div className={className ?? ""}>
+
+            {/* Table Toggle Button */}
+            <button className="data-table-btn mb-2 block hover:[&,&_code]:text-(--link-hover-bg-clr)! rounded-2xl!"
+                onClick={_ => useHookTools.toggleTable(tableKey)}
+                title={showTable ? "Hide" : "Show return"}
+            >
+                {showTable ? "❌" : "👁️"} {btnText}
+            </button>
+
+            {/* Data Table */}
+            {showTable 
+                && <div className="data-table-container flex justify-center p-2 rounded-2xl bg-black">
+                    <div className="data-table overflow-auto">
                         <DataTable data={tableData} />
                     </div>
                 </div>
