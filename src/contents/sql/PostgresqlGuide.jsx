@@ -26,6 +26,7 @@ import PostgreSQL23JoinTable from "./postgresql/Postgresql23JoinTables"
 import PostgreSQLSubqueries from "./postgresql/Postgresql24Subqueries"
 import PostgreSQL25CTE from "./postgresql/Postgresql25CTE"
 import PostgreSQL26RowNumberFn from "./postgresql/Postgresql26RowNumberFn"
+import PostgreSQL27RankAndDenseRank from "./postgresql/Postgresql27RankAndDenseRank"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -66,6 +67,7 @@ export const routesPostgresqlGuides = {
     24: mapPostgresGuide("Subqueries", <PostgreSQLSubqueries />),
     25: mapPostgresGuide("Common Table Expression", <PostgreSQL25CTE />),
     26: mapPostgresGuide("ROW_NUMBER()", <PostgreSQL26RowNumberFn />),
+    27: mapPostgresGuide("RANK() and DENSE_RANK()", <PostgreSQL27RankAndDenseRank />),
 }
 
 function mapPostgresGuide(title, comp) {
