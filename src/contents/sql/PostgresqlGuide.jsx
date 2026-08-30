@@ -24,6 +24,7 @@ import PostgreSQL21GroupBy from "./postgresql/Postgresql21GroupBy"
 import PostgreSQL22Having from "./postgresql/Postgresql22Having"
 import PostgreSQL23JoinTable from "./postgresql/Postgresql23JoinTables"
 import PostgreSQLSubqueries from "./postgresql/Postgresql24Subqueries"
+import PostgreSQL25CTE from "./postgresql/Postgresql25CTE"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -62,6 +63,7 @@ export const routesPostgresqlGuides = {
     22: mapPostgresGuide("HAVING", <PostgreSQL22Having />),
     23: mapPostgresGuide("INNER JOIN", <PostgreSQL23JoinTable />),
     24: mapPostgresGuide("Subqueries", <PostgreSQLSubqueries />),
+    25: mapPostgresGuide("Common Table Expression", <PostgreSQL25CTE />),
 }
 
 function mapPostgresGuide(title, comp) {
