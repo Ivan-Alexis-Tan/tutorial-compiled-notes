@@ -25,6 +25,37 @@ const employeeManagers = employeesTable.reduce(
     }, []
 )
 
+const leftJoin = customersTable3.reduce(
+    (acc, { id, name }) => {
+        const orders = ordersTable3.filter(({ customer_id }) => customer_id === id)
+        
+        if (orders.length >= 1) {
+            return [
+                ...acc,
+                ...orders.map(({ product, amount, id: order_id }) => ({ name, product, amount, order_id, customer_id: id }))
+            ]
+        }
+        else return [...acc, { name, product: null, amount: null, order_id: null, customer_id: id }]
+    }, []
+)
+
+const rightJoin = ordersTable3.reduce(
+    (acc, { id, customer_id, product, amount }) => {
+        const customer = customersTable3.find(({ id }) => id === customer_id)
+
+        if (customer) return [...acc, {name: customer.name, product, amount, order_id: id, customer_id}]
+        return [...acc, {name: null, product, amount, order_id: id, customer_id}]
+    }, []
+)
+
+const fullOuterJoin = [...leftJoin, ...rightJoin].reduce(
+    (acc, item) => {
+        const exists = acc.filter(({ customer_id, order_id }) => customer_id === item.customer_id && order_id === item.order_id)
+
+        if (exists.length >= 1) return acc;
+        return [...acc, item]
+    }, []
+)
 
 export default function PostgreSQL23JoinTable() {
     const { useHookTools } = useToggleDataTable(tableIds)
@@ -184,6 +215,175 @@ INNER JOIN employees m
                             data={employeeManagers}
                         />
                     </div>
+                </div>
+            </div>
+            
+            <hr />
+
+            <div>
+                <h2>3. <code>LEFT JOIN</code></h2>
+
+                <ul>
+                    <li>Returns all rows from the <strong>left table</strong>.</li>
+                    <li>Matching rows from the right table</li>
+                    <li><code>NULL</code> for right-table columns when no match exists.</li>
+                </ul>
+
+                <div>
+                    <h3>Basic Syntax:</h3>
+                    <pre><code>
+{`</> PostgreSQL
+SELECT <col_names>
+FROM <table_name_1>
+LEFT JOIN <table_name_2>
+    ON <join_condition>;
+`}
+                    </code></pre>
+
+                    <p className="mb-3"><strong>Example:</strong></p>
+                    <pre><code>
+{`</> PostgreSQL
+SELECT 
+    c.name,
+    o.product,
+    o.amount
+FROM customers c
+LEFT JOIN orders o
+    ON c.id = o.customer_id;
+`}
+                    </code></pre>
+                    
+                    <p className="mb-3"><strong>Return:</strong></p>
+                    <div className="overflow-auto">
+                        <DataTable className="mx-auto w-100!"
+                            indexed={true}
+                            data={leftJoin.map(({ name, product, amount }) => ({ name, product, amount }))}
+                        />
+                    </div>
+                </div>
+                
+                <hr className="--hr-faded" />
+
+                <div>
+                    <h3>Filtering LEFT JOIN Results</h3>
+                    
+                    <div className="*:mb-1">
+                        <p className="mb-3!">Condition must be placed in the <code>ON</code> clause.</p>
+                        <p>❌ <code>{`WHERE o.amount > 2000`}</code></p>
+                        <p className="ml-5 mb-3!">- This converts the <code>LEFT JOIN</code> into an <code>INNER JOIN</code>.</p>
+                        <p>✅Correct:</p>
+                    </div>
+
+                    <pre><code>
+{`</> PostgreSQL
+SELECT 
+    c.name,
+    o.product,
+    o.amount
+FROM customers c
+LEFT JOIN orders o
+    ON c.id = o.customer_id
+    AND o.amount > 2000;    -- Place here
+`}
+                    </code></pre>
+
+                    <p className="mb-3"><strong>Return:</strong></p>
+                    <div className="overflow-auto">
+                        <DataTable className="mx-auto w-100!"
+                            indexed={true}
+                            data={
+                                leftJoin
+                                    .filter(({ amount }) => amount > 2000 || amount === null)
+                                    .map(({ name, product, amount }) => ({ name, product, amount }))
+                            }
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div>
+                <h2>4. <code>RIGHT JOIN</code></h2>
+
+                <ul>
+                    <li>All rows from the <strong>right table</strong>.</li>
+                    <li>Matching rows from the left table</li>
+                    <li><code>NULL</code> for left-table columns when no match exists.</li>
+                </ul>
+
+                <h3>Syntax:</h3>
+                <pre><code>
+{`</> PostgreSQL
+SELECT <col_names>
+FROM <table_name_1>
+RIGHT JOIN <table_name_2>
+    ON <join_condition>;
+`}
+                </code></pre>
+
+                <h3>Return:</h3>
+                <pre><code>
+{`</> PostgreSQL
+SELECT
+    c.name,
+    o.product,
+    o.amount
+FROM customer c
+RIGHT JOIN orders o
+    ON c.id = o.customer_id;
+`}
+                </code></pre>
+
+                <div className="overflow-auto">
+                    <DataTable className="mx-auto w-100!"
+                        indexed={true}
+                        data={rightJoin.map(({ name, product, amount }) => ({ name, product, amount }))}
+                    />
+                </div>
+            </div>
+
+            <hr />
+
+            <div>
+                <h2>5. <code>FULL OUTER JOIN</code></h2>
+
+                <ul>
+                    <li>All matching rows from both tables.</li>
+                    <li>All unmatched rows from the left table.</li>
+                    <li>All unmatched rows from the right table.</li>
+                    <li>Unmatched columns are filled with <code>NULL</code></li>
+                </ul>
+
+                <h3>Syntax:</h3>
+                <pre><code>
+{`</> PostgreSQL
+SELECT <col_names>
+FROM <table_name_1>
+FULL OUTER JOIN <table_name_2>
+    ON <join_condition>;
+`}
+                </code></pre>
+                
+                <h3>Example:</h3>
+                <pre><code>
+{`</> PostgreSQL
+SELECT
+    c.name,
+    o.product,
+    o.amount
+FROM customer c
+FULL OUTER JOIN orders o
+    ON c.id = o.customer_id;
+`}
+                </code></pre>
+
+                <p className="mb-3"><strong>Return:</strong></p>
+                <div className="overflow-auto">
+                    <DataTable className="mx-auto w-100!"
+                        indexed={true}
+                        data={fullOuterJoin.map(({ name, product, amount }) => ({ name, product, amount }))}
+                    />
                 </div>
             </div>
         </div>

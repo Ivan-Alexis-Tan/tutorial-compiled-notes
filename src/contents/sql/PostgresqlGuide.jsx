@@ -63,7 +63,7 @@ export const routesPostgresqlGuides = {
     20: mapPostgresGuide("Aggregate Functions", <PostgreSQL20AggregateFn />),
     21: mapPostgresGuide("GROUP BY", <PostgreSQL21GroupBy />),
     22: mapPostgresGuide("HAVING", <PostgreSQL22Having />),
-    23: mapPostgresGuide("INNER JOIN", <PostgreSQL23JoinTable />),
+    23: mapPostgresGuide("JOIN Tables", <PostgreSQL23JoinTable />),
     24: mapPostgresGuide("Subqueries", <PostgreSQLSubqueries />),
     25: mapPostgresGuide("Common Table Expression", <PostgreSQL25CTE />),
     26: mapPostgresGuide("ROW_NUMBER()", <PostgreSQL26RowNumberFn />),
