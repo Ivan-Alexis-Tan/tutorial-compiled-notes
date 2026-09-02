@@ -28,6 +28,7 @@ import PostgreSQL25CTE from "./postgresql/Postgresql25CTE"
 import PostgreSQL26RowNumberFn from "./postgresql/Postgresql26RowNumberFn"
 import PostgreSQL27RankAndDenseRank from "./postgresql/Postgresql27RankAndDenseRank"
 import PostgreSQL28PartitionByAndOrderBy from "./postgresql/Postgresql28PartitionByAndOrderBy"
+import PostgreSQL29ExplainAndAnalyze from "./postgresql/Postgresql29ExplainAndAnalyze"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -70,6 +71,7 @@ export const routesPostgresqlGuides = {
     26: mapPostgresGuide("ROW_NUMBER()", <PostgreSQL26RowNumberFn />),
     27: mapPostgresGuide("RANK() and DENSE_RANK()", <PostgreSQL27RankAndDenseRank />),
     28: mapPostgresGuide("PARTITION BY and ORDER BY", <PostgreSQL28PartitionByAndOrderBy />),
+    29: mapPostgresGuide("EXPLAIN and EXPLAIN ANALYZE", <PostgreSQL29ExplainAndAnalyze />),
 }
 
 function mapPostgresGuide(title, comp) {
