@@ -29,6 +29,7 @@ import PostgreSQL26RowNumberFn from "./postgresql/Postgresql26RowNumberFn"
 import PostgreSQL27RankAndDenseRank from "./postgresql/Postgresql27RankAndDenseRank"
 import PostgreSQL28PartitionByAndOrderBy from "./postgresql/Postgresql28PartitionByAndOrderBy"
 import PostgreSQL29ExplainAndAnalyze from "./postgresql/Postgresql29ExplainAndAnalyze"
+import PostgreSQL30BeginCommitRollback from "./postgresql/Postgresql30BeginCommitRollback"
 
 export default function PostgresqlGuide() {
     const { id } = useParams()
@@ -72,6 +73,7 @@ export const routesPostgresqlGuides = {
     27: mapPostgresGuide("RANK() and DENSE_RANK()", <PostgreSQL27RankAndDenseRank />),
     28: mapPostgresGuide("PARTITION BY and ORDER BY", <PostgreSQL28PartitionByAndOrderBy />),
     29: mapPostgresGuide("EXPLAIN and EXPLAIN ANALYZE", <PostgreSQL29ExplainAndAnalyze />),
+    30: mapPostgresGuide("BEGIN, COMMIT, and ROLLBACK", <PostgreSQL30BeginCommitRollback />),
 }
 
 function mapPostgresGuide(title, comp) {
