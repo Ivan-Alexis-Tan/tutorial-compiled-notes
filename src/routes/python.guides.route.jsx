@@ -5,7 +5,7 @@ import DjangoGuide from "../contents/python/DjangoGuide"
 import SQLAlchemyGuide from "../contents/python/SQLAlchemyGuide"
 import AsyncIOGuide from "../contents/python/AsyncIOGuide"
 import AlembicGuide from "../contents/python/AlembecGuide"
-import FastApiJwt from "../contents/python/FastApiJwtGuide"
+import FastApiJwt from "../contents/python/fastapi/fastapi-jwt-auth/FastApiJwtAuth"
 
 export const pythonGuidesRoute = [
     {
