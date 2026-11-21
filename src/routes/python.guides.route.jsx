@@ -6,6 +6,7 @@ import SQLAlchemyGuide from "../contents/python/SQLAlchemyGuide"
 import AsyncIOGuide from "../contents/python/AsyncIOGuide"
 import AlembicGuide from "../contents/python/AlembecGuide"
 import FastApiJwt from "../contents/python/fastapi/fastapi-jwt-auth/FastApiJwtAuth"
+import PytestGuide from "../contents/python/PytestGuide"
 
 export const pythonGuidesRoute = [
     {
@@ -39,7 +40,11 @@ export const pythonGuidesRoute = [
     {
         path: 'fastapijwtguide/:id',
         element: <FastApiJwt />
-    }
+    },
+    {
+        path: 'pytestguide/:id',
+        element: <PytestGuide />
+    },
 ]
 
 export const pythonProjectsRoute = [
