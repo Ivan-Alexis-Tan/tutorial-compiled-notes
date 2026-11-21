@@ -84,13 +84,24 @@ const routeData = {
             },
             fastapijwt: {
                 text: "FastAPI JWT Auth",
+                guideCode: "fastapijwtguide",
                 titles: {
                     1: 'Installation and Setup',
                     2: 'User Registration (Sign up)',
                     3: "User Login",
                     4: "User Validation and Authorization"
                 },
-                guideCode: "fastapijwtguide"
+            },
+            pytest: {
+                text: "PyTest",
+                guideCode: 'pytestguide',
+                titles: {
+                    1: "Installation and Basic Testing",
+                    2: "Unit Testing",
+                    3: "Fixtures",
+                    4: "Parameterized Testing",
+                    5: "Mocks",
+                },
             },
         },
     },
