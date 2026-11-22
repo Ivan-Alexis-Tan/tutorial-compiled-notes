@@ -20,6 +20,8 @@ export default function PytestGuide() {
             return <C3PytestFixtures />
         case 4:
             return <C4PytestParameterizedTesting />
+        case 5:
+            return <C5PytestMocks />
         default:
             break
     }
