@@ -63,7 +63,7 @@ export default function SummaryTable({ tableStates = mappedDefault, className, t
                 </div>
             </>
             : <>
-                <h3 className="inline hover:text-(--link-hover-text-clr) border rounded-4xl p-1 px-2 text-xl cursor-pointer"
+                <h3 className="p-1 px-2 inline-block hover:text-(--link-hover-text-clr) border rounded-4xl text-xl cursor-pointer"
                     onClick={_ => setRowId(0)}
                 >&larr; View Summary Table</h3>
 
