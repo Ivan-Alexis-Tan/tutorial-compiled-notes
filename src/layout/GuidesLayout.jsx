@@ -44,7 +44,7 @@ export default function GuidesLayout() {
                 </div>
             </div>
             
-            {/* Mobile Device Sidebar */}
+            {/* Mobile Device Guide Navigation Popup */}
             <div className={`
                     fixed inset-0 z-(--z-ui-toggles) sm:hidden
                     ${showSidebar ? "opacity-100 visible" : "opacity-0 invisible"}
@@ -59,13 +59,13 @@ export default function GuidesLayout() {
                 <SideBarLayout />
             </div>
             
-            {/* Desktop Sidebar */}
+            {/* In-Desktop Sidebar and Guide Content */}
             <div className='flex gap-5'>
                 <div className='hidden sticky top-32 sm:top-23 w-[30vw] max-w-62 min-h-0 overflow-auto h-[calc(100vh-8.5rem)] sm:block sm:h-[calc(100vh-6rem)]'>                  
                     <SideBarLayout />
                 </div>
 
-                <div className='min-w-0 flex-10 overflow-auto'>
+                <div className='min-w-0 flex-1'>
                     <Outlet />
                 </div>
             </div>
