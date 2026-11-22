@@ -21,6 +21,7 @@
 
   --txt-red: hsl(359, 100%, 70%);
   --bg-clr: hsl(0, 0%, 14%);
+  --blk-lucent: hsla(0, 0%, 0%, 0.8);
 
   --link-text-clr: hsl(0, 0%, 87%);
   --link-hover-text-clr: hsl(160, 100%, 75%);
@@ -152,28 +153,28 @@ pre code {
 table {
   width: 100%;
   border-collapse: collapse;
-}
 
-table th, table td {
-  padding: .5em;
-  text-align: left;
-}
+  thead th { background: hsl(0, 0%, 25%); }
 
-table thead th {
-  background: hsl(0, 0%, 25%);
-}
+  th, td {
+    padding: .5em;
+    text-align: left;
+  }
 
-tbody tr th, tbody tr td {
-  border: 1px solid hsl(0, 0%, 20%);
-  border-radius: 5px;
-}
+  tbody {
+    tr th, tr td {
+      border: 1px solid hsl(0, 0%, 20%);
+      border-radius: 5px;
+    }
+  }
 
-table li::before {
-  content: "– ";
-}
+  li::before {
+    content: "– ";
+  }
 
-table li::marker {
-  content: none
+  li::marker {
+    content: none
+  }
 }
 
 .table-background {
